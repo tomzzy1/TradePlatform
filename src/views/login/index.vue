@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">Data Query and Trading Platform</h3>
       </div>
 
       <el-form-item prop="username">
@@ -49,17 +49,16 @@
 
       <div style="position:relative">
         <div class="tips">
-          <span>Username : admin</span>
-          <span>Password : any</span>
+          <span>Username : admin / buyer / worker / seller</span>
         </div>
         <div class="tips">
-          <span style="margin-right:18px;">Username : editor</span>
           <span>Password : any</span>
         </div>
-
+        <!--
         <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
           Or connect with
         </el-button>
+        -->
       </div>
     </el-form>
 
@@ -97,7 +96,7 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
+        username: 'buyer',
         password: '111111'
       },
       loginRules: {
@@ -271,6 +270,7 @@ $light_gray:#eee;
     font-size: 14px;
     color: #fff;
     margin-bottom: 10px;
+    text-align: right;
 
     span {
       &:first-of-type {
