@@ -18,13 +18,13 @@ const galleryRouter = {
             path: 'gallery_table',
             component: () => import('@/views/gallery/gallery_table'),
             name: 'gallery_table',
-            meta: {title: 'Table', noCache: true }
+            meta: {title: 'Table'}
         },
         {
             path: 'gallery_grid',
             component: () => import('@/views/gallery/gallery_grid'),
             name: 'gallery_grid',
-            meta: {title: 'Grid', noCache: true }
+            meta: {title: 'Grid'}
         }
     ]
 }
