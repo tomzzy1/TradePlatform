@@ -273,7 +273,7 @@ export const asyncRoutes = [
         path: 'log',
         component: () => import('@/views/error-log/index'),
         name: 'ErrorLog',
-        meta: { title: 'Error Log', icon: 'bug', roles: ['admin']}
+        meta: { title: 'Error Log', icon: 'bug', roles: ['admin'] }
       }
     ]
   },
@@ -363,7 +363,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/theme/index'),
         name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme', roles: ['admin']}
+        meta: { title: 'Theme', icon: 'theme', roles: ['admin'] }
       }
     ]
   },
