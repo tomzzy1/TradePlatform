@@ -13,6 +13,7 @@ import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
 import galleryRouter from './modules/gallery'
 import cartRouter from './modules/cart'
+import uploadRouter from './modules/upload_item'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -194,6 +195,7 @@ export const asyncRoutes = [
   tableRouter,
   galleryRouter,
   cartRouter,
+  uploadRouter,
 
   {
     path: '/example',

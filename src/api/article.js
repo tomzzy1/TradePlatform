@@ -1,13 +1,5 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
-  return request({
-    url: '/vue-element-admin/article/list',
-    method: 'get',
-    params: query
-  })
-}
-
 export function fetchArticle(id) {
   return request({
     url: '/vue-element-admin/article/detail',
@@ -16,7 +8,15 @@ export function fetchArticle(id) {
   })
 }
 
-export function fetchPv(pv) {
+export function updateArticle(data) {
+  return request({
+    url: '/vue-element-admin/article/update',
+    method: 'post',
+    data
+  })
+}
+
+export function fetchPv(data) {
   return request({
     url: '/vue-element-admin/article/pv',
     method: 'get',
@@ -24,18 +24,38 @@ export function fetchPv(pv) {
   })
 }
 
-export function createArticle(data) {
+
+
+// used for cart
+
+export function fetchList(query) {
   return request({
-    url: '/vue-element-admin/article/create',
-    method: 'post',
-    data
+    url: '/vue-element-admin/cart/list',
+    method: 'get',
+    params: query
   })
 }
 
-export function updateArticle(data) {
+export function updateCart(item) {
   return request({
-    url: '/vue-element-admin/article/update',
+    url: '/vue-element-admin/cart/update',
     method: 'post',
-    data
+    item
+  })
+}
+
+export function deleteCart(id) {
+  return request({
+    url: '/vue-element-admin/cart/delete',
+    method: 'post',
+    id
+  })
+}
+
+export function addCart(id) {
+  return request({
+    url: '/vue-element-admin/cart/add',
+    nethod: 'post',
+    id
   })
 }
