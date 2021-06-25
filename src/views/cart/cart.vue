@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { fetchList, updateArticle, fetchPv, addItem, updateCart, deleteCart, buyCart } from '@/api/article'
+import { fetchList, updateCart, deleteCart, buyCart } from '@/api/cart'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -193,25 +193,25 @@ export default {
         //         this.$refs['dataForm'].clearValidate()
         //     })
         // },
-        updateData() {
-            this.$refs['dataForm'].validate((valid) => {
-                if (valid) {
-                    const tempData = Object.assign({}, this.temp)
-                    tempData.timestamp = +new Date(tempData.timestamp)
-                    updateCart(tempData).then(() => {
-                        const index = this.list.findIndex(v => v.id === this.temp.id)
-                        this.list.splice(index, 1, this.temp)
-                        this.dialogFormVisible = false
-                        this.$notify({
-                            title: 'Success',
-                            message: 'Update Successfully',
-                            type: 'success',
-                            duration: 2000
-                        })
-                    })
-                }
-            })
-        },
+        // updateData() {
+        //     this.$refs['dataForm'].validate((valid) => {
+        //         if (valid) {
+        //             const tempData = Object.assign({}, this.temp)
+        //             tempData.timestamp = +new Date(tempData.timestamp)
+        //             updateCart(tempData).then(() => {
+        //                 const index = this.list.findIndex(v => v.id === this.temp.id)
+        //                 this.list.splice(index, 1, this.temp)
+        //                 this.dialogFormVisible = false
+        //                 this.$notify({
+        //                     title: 'Success',
+        //                     message: 'Update Successfully',
+        //                     type: 'success',
+        //                     duration: 2000
+        //                 })
+        //             })
+        //         }
+        //     })
+        // },
         changeNum(row, new_num) {
             var tempItem = {
             id: row.id,
