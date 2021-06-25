@@ -4,10 +4,13 @@
     <el-select v-model="listQuery.sort" style="width: 140px; margin-right: 10px;" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" style="float: right" @click="handleFilter">
+      <el-input v-model="listQuery.name" placeholder="Name" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         Search
       </el-button>
-      <el-input v-model="listQuery.name" placeholder="Name" style="width: 200px; margin-right: 10px; float: right" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right">
+        Buy
+      </el-button>
     </div>
 
     <el-table
@@ -20,6 +23,11 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
+
+      <el-table-column label="Selected" align="center" width="100px">
+        <el-checkbox v-model="checked"></el-checkbox>
+      </el-table-column>
+
       <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
@@ -48,13 +56,13 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="330" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="increaseNumber(row)">
+          <el-button v-waves type="primary" size="mini" @click="increaseNumber(row)">
             +
           </el-button>
-          <el-button type="primary" size="mini" @click="decreaseNumber(row)">
+          <el-button v-waves type="primary" size="mini" @click="decreaseNumber(row)">
             -
           </el-button>
-          <el-button size='mini' type="success">
+          <el-button v-waves size='mini' type="success" @click="buyGood(row)">
             Buy
           </el-button>
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
@@ -70,7 +78,7 @@
 </template>
 
 <script>
-import { fetchList, updateArticle, fetchPv, addItem, updateCart, deleteCart } from '@/api/article'
+import { fetchList, updateArticle, fetchPv, addItem, updateCart, deleteCart, buyCart } from '@/api/article'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -91,13 +99,12 @@ export default {
                 name: undefined,
                 number: undefined,
                 price: undefined,
-                sort: '+id'
+                sort: '+id',
+                checked: false
             },
             sortOptions: [
                 { label: 'ID Ascending', key: '+id' },
                 { label: 'ID Descending', key: '-id' }
-                // { label: 'Price Ascending', key: '+price'},
-                // { label: 'Price Descending', key: '-price'}
             ],
             temp: {
                 id: undefined,
@@ -137,9 +144,6 @@ export default {
             if (prop === 'id') {
                 this.sortByID(order)
             }
-            // else if (prop === 'price') {
-            //     this.sortByPrice(order)
-            // }
         },
         sortByID(order) {
             if (order === 'ascending') {
@@ -147,14 +151,8 @@ export default {
             } else {
                 this.listQuery.sort = '-id'
             }
+            this.handleFilter()
         },
-        // sortByPrice(order) {
-        //     if (order === 'ascending') {
-        //         this.listQuery.sort = '+price'
-        //     } else {
-        //         this.listQuery.sort = '-price'
-        //     }
-        // },
         resetTemp() {
             this.temp = {
                 id: undefined,
@@ -224,6 +222,20 @@ export default {
         getSortClass: function(key) {
             const sort = this.listQuery.sort
             return sort === `+${key}` ? 'ascending' : 'descending'
+        },
+        buyGoods() {
+          var idArray = new Array()
+          for (i in row.list){
+            if (i.checked == true) {
+              idArray.push(i.id)
+            }
+          }
+          buyCart(idArray)
+        },
+        buyGood(row) {
+          var idArray = new Array()
+          idArray.push(row.id)
+          buyCart(idArray)
         }
     }
 }

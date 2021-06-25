@@ -12,7 +12,7 @@ const cartRouter = {
             component: () => import('@/views/cart/cart'),
             name: 'Cart',
             meta: { title: 'Cart',
-                    icon: 'list',
+                    icon: 'el-icon-goods',
                     roles: ['buyer', 'admin']
                   }
         }

@@ -55,7 +55,15 @@ export function deleteCart(id) {
 export function addCart(id) {
   return request({
     url: '/vue-element-admin/cart/add',
-    nethod: 'post',
+    method: 'post',
     id
+  })
+}
+
+export function buyCart(id_array) {
+  return request({
+    url: '/vue-element-admin/cart/buy',
+    method: 'post',
+    id_array
   })
 }
