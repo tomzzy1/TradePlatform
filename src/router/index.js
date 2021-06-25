@@ -14,6 +14,7 @@ import nestedRouter from './modules/nested'
 import galleryRouter from './modules/gallery'
 import cartRouter from './modules/cart'
 import uploadRouter from './modules/upload_item'
+import orderRouter from './modules/order'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -196,6 +197,7 @@ export const asyncRoutes = [
   galleryRouter,
   cartRouter,
   uploadRouter,
+  orderRouter,
 
   {
     path: '/example',
