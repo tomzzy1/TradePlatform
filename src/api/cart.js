@@ -8,27 +8,27 @@ export function fetchList(query) {
   })
 }
 
-export function updateCart(item) {
+export function updateCart(data) {
   return request({
     url: '/vue-element-admin/cart/update',
     method: 'post',
-    item
+    data
   })
 }
 
-export function deleteCart(id) {
+export function deleteCart(data) {
   return request({
     url: '/vue-element-admin/cart/delete',
     method: 'post',
-    id
+    data
   })
 }
 
-export function addCart(id) {
+export function addCart(data) {
   return request({
     url: '/vue-element-admin/cart/add',
     method: 'post',
-    id
+    data
   })
 }
 
