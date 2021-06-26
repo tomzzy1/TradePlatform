@@ -12,7 +12,10 @@ for (let i = 0; i < count; i++) {
         timestamp: +Mock.Random.date('T'),
         name: 'DataSet '+ (i+1),
         number: '@integer(1, 5)',
-        price: '$@float(0, 100, 2, 2)'
+        price: '$@float(0, 100, 2, 2)',
+        source: 'www.zju.com',
+        size: '@integer(1, 5)GB',
+        author: 'ZJU'
     }))
 }
 
