@@ -28,11 +28,11 @@
         <el-checkbox v-model="checked"></el-checkbox>
       </el-table-column>
 
-      <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
+      <!-- <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       
       <el-table-column label="Name" min-width="100px" align="center">
         <template slot-scope="{row}">
