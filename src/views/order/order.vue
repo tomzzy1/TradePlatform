@@ -17,7 +17,7 @@
 
             <el-table-coloum label="Name" prop="name" align="center" min-width="100">
                 <template slot-scope="{row}">
-                    <span>{{ row.id }}</span>
+                    <span>{{ row.name }}</span>
                 </template>
             </el-table-coloum>
 
@@ -34,7 +34,9 @@
             </el-table-coloum>
         </el-table>
 
-        <div class="operation_bar">
+        <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+
+        <!-- <div class="operation_bar">
             <el-card shadow="hover">
                 <span class="total_price">Total Price: ${{ total_price}} </span>
                 <br />
@@ -46,7 +48,7 @@
                     Cancel
                 </el-button>
             </el-card>
-        </div>
+        </div> -->
 
     </div>
 </template>
@@ -77,9 +79,15 @@ export default {
     directives: {waves},
     data() {
         return {
+            total: 0,
+            list: null,
             order_success: undefined,
             total_price: 10,
-            list_loading: true
+            list_loading: true,
+            listQuery: {
+                page: 1,
+                limit: 20
+            }
         }
     },
     created() {
@@ -88,24 +96,23 @@ export default {
     methods: {
         getList() {
             this.listLoading = true
-            fetchList().then(response => {
+            fetchList(this.listQuery).then(response => {
                 this.list = response.data.items
-                this.list = response.data.total
+                this.total_price = response.data.total_prices
 
                 // simulation for timeout
                 setTimeout(() => {
                     this.listLoading = false
                 }, 1.5 * 1000)
             })
-        },
-        orderGoods() {
-            orderConfirm(total_price)
-        },
-        orderCancel() {
-
         }
+        // orderGoods() {
+        //     orderConfirm(total_price)
+        // },
+        // orderCancel() {
+
+        // }
     }
-    
 }
     
 </script>
