@@ -1,13 +1,15 @@
 <template>
     <div class="app-container">
-        <div class="upload_bar">
-            <el-input v-model="ID" placeholder="ID" class="id_input" />
+        <div>
+        <el-card class="upload_bar" shadow="hover">
+            <el-input v-model="time" placeholder="Time" class="time_input" />
             <el-select class="file_type_select" placeholder="File Type">
-                <el-option v-for="item in fileTypeOptions" :key="item" :label="item" :value="item" />
+                <el-option v-for="item in fileTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
             </el-select>
             <el-button @click="addToCart(ID)" type="primary">
                 Upload
             </el-button>
+        </el-card>
         </div>
         <!-- <hr /> -->
         <div class="notice">
@@ -19,24 +21,21 @@
 
 <style>
 
-    .app-container {
-        /* display: table-cell; */
-        /* vertical-align: middle; */
+    /* .app-container {
+        display: table-cell;
+        vertical-align: middle;
         transform: translate(50%,180%);
-        /* align-self: center; */
+        align-self: center;
         position: fixed;
-        /* margin-left: 30%; */
-    }
-
-    /* .upload_bar {
-        transform: translate(50%,180%);
-        position: absolute;
-        left: 50%;
-        top: 50%;
+        margin-left: 30%;
     } */
 
-    .id_input {
-        width: 200px;
+    .upload_bar {
+        float: center;
+    }
+
+    .time_input {
+        width: 300px;
         margin-right: 10px;
     }
 

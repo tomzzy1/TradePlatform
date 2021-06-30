@@ -15,6 +15,7 @@ import galleryRouter from './modules/gallery'
 import cartRouter from './modules/cart'
 import uploadRouter from './modules/upload_item'
 import orderRouter from './modules/order'
+import crowdsourcingRouter from './modules/crowdsourcing'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -198,6 +199,7 @@ export const asyncRoutes = [
   cartRouter,
   uploadRouter,
   orderRouter,
+  crowdsourcingRouter,
 
   {
     path: '/example',
