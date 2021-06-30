@@ -17,25 +17,24 @@ for (let i = 0; i < count; i++) {
 }
 
 module.exports = [
-  {
-    url: '/vue-element-admin/order/list',
-    type: 'get',
-    response: config => {
-        const { page = 1, limit = 20, sort } = config.query
+    {
+        url: '/vue-element-admin/order/list',
+        type: 'get',
+        response: config => {
+            const { page = 1, limit = 20, sort } = config.query
 
-        let mockList = List
+            let mockList = List
 
-        const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+            const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
 
-        return {
-            code: 20000,
-            data: {
-                total_prices: pageList.length,
-                total: pageList.length,
-                items: pageList
+            return {
+                code: 20000,
+                data: {
+                    total_prices: pageList.length,
+                    total: pageList.length,
+                    items: pageList
+                }
             }
         }
-      }
     }
-  }
 ]
