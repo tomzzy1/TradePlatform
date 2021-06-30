@@ -58,7 +58,7 @@ import { fetchList, updateArticle, fetchPv, addCart, updateCart, deleteCart } fr
 
 const fileTypeOptions = [
     { key: 'CSV_file', display_name: 'CSV' },
-    { key: 'PDF_file', display_name: 'PDF' },
+    { key: '_file', display_name: '' },
     { key: 'PNG_file', display_name: 'PNG' }
 ]
 

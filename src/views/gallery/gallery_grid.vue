@@ -19,88 +19,6 @@
             </el-button>
         </div>
 
-        <!-- <div class="app-grid">
-        <el-row :gutter="20">
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-light">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-dark">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-light">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-dark">
-                </div>
-            </el-col>
-        </el-row>
-        <el-row :gutter="20">
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-light">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-dark">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-light">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-dark">
-                </div>
-            </el-col>
-        </el-row>
-        <el-row :gutter="20">
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-light">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-dark">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-light">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple">
-                </div>
-            </el-col>
-            <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="4">
-                <div class="grid-content bg-purple-dark">
-                </div>
-            </el-col>
-        </el-row>
-        </div>
-    </div> -->
-
         <div class="app-grid">
             <el-row :gutter="20">
                 <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="4" :span="4" v-for="o in 20" :key="o" >
@@ -129,27 +47,6 @@
 </template>
 
 <style>
-    /* .el-col {
-        border-radius: 4px;
-        margin-bottom: 20px;
-        float: center;
-    }
-    .bg-purple-dark {
-        background: #99a9bf;
-    }
-    .bg-purple {
-        background: #d3dce6;
-    }
-    .bg-purple-light {
-        background: #e5e9f2;
-    }
-    .grid-content {
-        border-radius: 4px;
-        min-height: 200px;
-        min-width: 200px;
-        height: 250px;
-        width: 250px;  
-    } */
 
     .el-col {
         margin-bottom: 20px;
@@ -218,235 +115,138 @@
 </style>
 
 <script>
-import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
-import waves from '@/directive/waves' // waves directive
+import { fetchList, updateCart, deleteCart, buyCart } from '@/api/cart'
+import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
-import Pagination from '@/components/Pagination' // secondary package based on el-pagination
-
-const calendarTypeOptions = [
-  { key: 'CN', display_name: 'China' },
-  { key: 'US', display_name: 'USA' },
-  { key: 'JP', display_name: 'Japan' },
-  { key: 'EU', display_name: 'Eurozone' }
-]
-
-// arr to obj, such as { CN : "China", US : "USA" }
-const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
-  acc[cur.key] = cur.display_name
-  return acc
-}, {})
+import Pagination from '@/components/Pagination'
 
 export default {
-  name: 'ComplexTable',
-  components: { Pagination },
-  directives: { waves },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
+    name: 'cart',
+    components: { Pagination },
+    directives: { waves },
+    data() {
+        return {
+            tableKey: 0,
+            list: null,
+            total: 0,
+            listLoading: true,
+            listQuery: {
+                page: 1,
+                limit: 20,
+                name: undefined,
+                number: undefined,
+                price: undefined,
+                sort: '+id',
+                checked: false
+            },
+            sortOptions: [
+                { label: 'ID Ascending', key: '+id' },
+                { label: 'ID Descending', key: '-id' }
+            ],
+            temp: {
+                id: undefined,
+                timestamp: new Date(),
+                name: '',
+                number: '',
+            },
+            dialogFormVisible: false,
+            dialogPvVisible: false,
+            dialogStatus: '',
+            dialogPvVisible: false,
+            pvData: [],
+        }
     },
-    typeFilter(type) {
-      return calendarTypeKeyValue[type]
-    }
-  },
-  data() {
-    return {
-      tableKey: 0,
-      list: null,
-      total: 0,
-      listLoading: true,
-      listQuery: {
-        page: 1,
-        limit: 20,
-        importance: undefined,
-        name: undefined,
-        type: undefined,
-        price: undefined,
-        sort: '+id'
-      },
-      importanceOptions: [1, 2, 3],
-    //   calendarTypeOptions,
-      sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
-      statusOptions: ['published', 'draft', 'deleted'],
-      showReviewer: false,
-      temp: {
-        id: undefined,
-        importance: 1,
-        remark: '',
-        timestamp: new Date(),
-        name: '',
-        type: '',
-        price: 0,
-        status: 'published'
-      },
-      dialogFormVisible: false,
-      dialogStatus: '',
-      textMap: {
-        update: 'Edit',
-        create: 'Create'
-      },
-      dialogPvVisible: false,
-      pvData: [],
-      rules: {
-        type: [{ required: true, message: 'type is required', trigger: 'change' }],
-        timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
-        name: [{ required: true, message: 'name is required', trigger: 'blur' }]
-      },
-      downloadLoading: false
-    }
-  },
-  created() {
-    this.getList()
-  },
-  methods: {
-    getList() {
-      this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
+    created() {
+        this.getList()
+    },
+    methods: {
+        getList() {
+            this.listLoading = true
+            fetchList(this.listQuery).then(response => {
+                this.list = response.data.items
+                this.total = response.data.total
 
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
-      })
-    },
-    handleFilter() {
-      this.listQuery.page = 1
-      this.getList()
-    },
-    handleModifyStatus(row, status) {
-      this.$message({
-        message: '操作Success',
-        type: 'success'
-      })
-      row.status = status
-    },
-    sortChange(data) {
-      const { prop, order } = data
-      if (prop === 'id') {
-        this.sortByID(order)
-      }
-    },
-    sortByID(order) {
-      if (order === 'ascending') {
-        this.listQuery.sort = '+id'
-      } else {
-        this.listQuery.sort = '-id'
-      }
-      this.handleFilter()
-    },
-    resetTemp() {
-      this.temp = {
-        id: undefined,
-        importance: 1,
-        remark: '',
-        timestamp: new Date(),
-        title: '',
-        status: 'published',
-        type: ''
-      }
-    },
-    handleCreate() {
-      this.resetTemp()
-      this.dialogStatus = 'create'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
-    },
-    createData() {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
-          this.temp.author = 'vue-element-admin'
-          createArticle(this.temp).then(() => {
-            this.list.unshift(this.temp)
-            this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: 'Created Successfully',
-              type: 'success',
-              duration: 2000
+                // simulation for timeout
+                setTimeout(() => {
+                    this.listLoading = false
+                }, 1.5 * 1000)
             })
+        },
+        handleFilter() {
+            this.listQuery.page = 1
+            this.getList()
+        },
+        sortChange(data) {
+            const { prop, order } = data
+            if (prop === 'id') {
+                this.sortByID(order)
+            }
+        },
+        sortByID(order) {
+            if (order === 'ascending') {
+                this.listQuery.sort = '+id'
+            } else {
+                this.listQuery.sort = '-id'
+            }
+            this.handleFilter()
+        },
+        resetTemp() {
+            this.temp = {
+                id: undefined,
+                timestamp: new Date(),
+                name: '',
+                number: ''
+            }
+        },
+        increaseNumber(row) {
+          row.number += 1
+          this.changeNum(row, row.number)
+        },
+        decreaseNumber(row) {
+          if (row.number != 1) {
+            row.number -= 1
+            this.changeNum(row, row.number)
+          } else {
+            this.handleDelete(row, )
+            this.changeNum(row, row.number)
+          }
+        },
+        handleDelete(row, index) {
+          this.$notify({
+            title: 'Success',
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
           })
+          this.list.splice(index, 1)
+          deleteCart(row.id)
+        },
+        changeNum(row, new_num) {
+            var tempItem = {
+            id: row.id,
+            num: new_num
+          }
+          updateCart(tempItem)
+        },
+        getSortClass: function(key) {
+            const sort = this.listQuery.sort
+            return sort === `+${key}` ? 'ascending' : 'descending'
+        },
+        buyGoods() {
+          var idArray = new Array()
+          for (i in row.list){
+            if (i.checked == true) {
+              idArray.push(i.id)
+            }
+          }
+          buyCart(idArray)
+        },
+        buyGood(row) {
+          var idArray = new Array()
+          idArray.push(row.id)
+          buyCart(idArray)
         }
-      })
-    },
-    handleUpdate(row) {
-      this.temp = Object.assign({}, row) // copy obj
-      this.temp.timestamp = new Date(this.temp.timestamp)
-      this.dialogStatus = 'update'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
-    },
-    updateData() {
-      this.$refs['dataForm'].validate((valid) => {
-        if (valid) {
-          const tempData = Object.assign({}, this.temp)
-          tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-          updateArticle(tempData).then(() => {
-            const index = this.list.findIndex(v => v.id === this.temp.id)
-            this.list.splice(index, 1, this.temp)
-            this.dialogFormVisible = false
-            this.$notify({
-              title: 'Success',
-              message: 'Update Successfully',
-              type: 'success',
-              duration: 2000
-            })
-          })
-        }
-      })
-    },
-    handleDelete(row, index) {
-      this.$notify({
-        title: 'Success',
-        message: 'Delete Successfully',
-        type: 'success',
-        duration: 2000
-      })
-      this.list.splice(index, 1)
-    },
-    handleFetchPv(pv) {
-      fetchPv(pv).then(response => {
-        this.pvData = response.data.pvData
-        this.dialogPvVisible = true
-      })
-    },
-    handleDownload() {
-      this.downloadLoading = true
-      import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-        const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
-        const data = this.formatJson(filterVal)
-        excel.export_json_to_excel({
-          header: tHeader,
-          data,
-          filename: 'table-list'
-        })
-        this.downloadLoading = false
-      })
-    },
-    formatJson(filterVal) {
-      return this.list.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
-    },
-    getSortClass: function(key) {
-      const sort = this.listQuery.sort
-      return sort === `+${key}` ? 'ascending' : 'descending'
     }
-  }
 }
+
 </script>
