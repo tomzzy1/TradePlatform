@@ -1,17 +1,55 @@
 <template>
     <div class="app-container">
-        <el-input v-model = "ID" placeholder="ID" class="id_input" />
-        <el-button @click="addToCart(ID)" type="primary">
-            Upload
-        </el-button>
+        <div class="upload_bar">
+            <el-input v-model="ID" placeholder="ID" class="id_input" />
+            <el-select class="file_type_select" placeholder="File Type">
+                <el-option v-for="item in fileTypeOptions" :key="item" :label="item" :value="item" />
+            </el-select>
+            <el-button @click="addToCart(ID)" type="primary">
+                Upload
+            </el-button>
+        </div>
+        <!-- <hr /> -->
+        <div class="notice">
+            <span>Please select the type of file and then upload it.</span>
+        </div>
     </div>
+    
 </template>
 
 <style>
 
+    .app-container {
+        /* display: table-cell; */
+        /* vertical-align: middle; */
+        transform: translate(50%,180%);
+        /* align-self: center; */
+        position: fixed;
+        /* margin-left: 30%; */
+    }
+
+    /* .upload_bar {
+        transform: translate(50%,180%);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    } */
+
     .id_input {
-        width: 300px;
+        width: 200px;
         margin-right: 10px;
+    }
+
+    .file_type_select {
+        width: 150px;
+        margin-right: 10px;
+    }
+
+    .notice {
+        font-size: 5px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 20px;
+        text-align: center;
     }
 
 </style>
@@ -19,10 +57,17 @@
 <script>
 import { fetchList, updateArticle, fetchPv, addCart, updateCart, deleteCart } from '@/api/article'
 
+const fileTypeOptions = [
+    { key: 'CSV_file', display_name: 'CSV' },
+    { key: 'PDF_file', display_name: 'PDF' },
+    { key: 'PNG_file', display_name: 'PNG' }
+]
+
 export default {
     data() {
         return {
-            ID: undefined
+            ID: undefined,
+            fileTypeOptions
         }
     },
     methods: {
