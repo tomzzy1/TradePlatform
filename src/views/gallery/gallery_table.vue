@@ -15,109 +15,76 @@
             </el-select>
             <el-input placeholder="Name" style="width: 200px; margin-right: 5px; margin-left: 30px" class="filter-item" @keyup.enter.native="handleFilter" />
             <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="handleFilter">
-                Search
+              Search
             </el-button>
         </div>
 
     <el-table
       :key="tableKey"
       v-loading="listLoading"
-      :data="list"
+      :data="List"
       border
       fit
       highlight-current-row
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <el-table-column label="Name" align="center" min-width="150px">
+      <el-table-column label="Name" align="center" min-width="100px">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.name }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Date" width="100px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.Name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="Author" align="center" width="100px">
+      <el-table-column label="Description" align="center" width="300px" style="word-wrap:break-word;">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <span style = "word-wrap:break-word;">{{ row.Description }}</span>
         </template>
       </el-table-column>
+
+      <el-table-column label="Time" width="100px" align="center">
+        <template slot-scope="{row}">
+          <span>{{ row.Time }}</span>
+        </template>
+      </el-table-column>
+      
       <el-table-column label="Size" align="center" width="80px">
         <template slot-scope="{row}">
-          <span>{{ row.size }}</span>
+          <span>{{ row.Size }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Source" align="center" width="120px">
         <template slot-scope="{row}">
-          <span>{{ row.source }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Price" align="center" width="80px">
-        <template slot-scope="{row}">
-          <span>{{ row.price }}</span>
+          <span>{{ row.Source }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Actions" align="center" width="120" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <!-- <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
-          </el-button> -->
-          <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
-            Add to Cart
+          <el-button  @click="dialogVisible=true, updataDialogID(row.ID)" type = "primary">
+            Query
           </el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
-
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="Type" prop="type">
-          <el-select v-model="temp.type" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Date" prop="timestamp">
-          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />
-        </el-form-item>
-        <el-form-item label="Title" prop="title">
-          <el-input v-model="temp.title" />
-        </el-form-item>
-        <el-form-item label="Status">
-          <el-select v-model="temp.status" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in statusOptions" :key="item" :label="item" :value="item" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Imp">
-          <el-rate v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']" :max="3" style="margin-top:8px;" />
-        </el-form-item>
-        <el-form-item label="Remark">
-          <el-input v-model="temp.remark" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="Please input" />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">
-          Cancel
+    <el-dialog
+      title="Query"
+      :visible.sync="dialogVisible"
+      width="50%"
+      :before-close="handleClose">
+      <span class="notice">Please type in the corret query.</span>
+      <el-input class="query_input" v-model="query" placeholder="Query Language" style="min-width: 50px;" />
+      <div align="center">
+        <el-button v-waves @click="addToCart(dialogID)" type="success" style="width:150px;">
+          Add to Cart
         </el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
-          Confirm
+        <el-button v-waves type = "danger" @click="dialogVisible=false, deleteDialogID" style="width:150px; text-align:center;">
+          Cancel
         </el-button>
       </div>
     </el-dialog>
 
-    <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
-      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
-        <el-table-column prop="key" label="Channel" />
-        <el-table-column prop="pv" label="Pv" />
-      </el-table>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
-      </span>
-    </el-dialog>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+
   </div>
 </template>
 
@@ -128,11 +95,12 @@ import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 
 export default {
-    name: 'gallery_grid',
+    name: 'gallery_table',
     components: { Pagination },
     directives: { waves },
     data() {
         return {
+            tableKey: 0,
             total: 0,
             listLoading: true,
             List: null,
@@ -217,7 +185,7 @@ export default {
         updateDialogID(id) {
             this.dialogID = id
         },
-        deleteDialogID(id) {
+        deleteDialogID() {
             this.dialogID = null
         }
     }

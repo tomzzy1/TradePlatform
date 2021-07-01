@@ -34,7 +34,7 @@
                         <br />
                         <span class="dataset_time">Time: {{ item.Time }}</span>
                         <div class="bottom clearfix">
-                        <el-button type="text" class="button" @click="dialogVisible = true, updataDialogID">Query</el-button>
+                        <el-button type="text" class="button" @click="dialogVisible = true, updataDialogID(item.ID)">Query</el-button>
                         </div>
                     </div>
                     </el-card>
@@ -238,7 +238,7 @@ export default {
         updateDialogID(id) {
             this.dialogID = id
         },
-        deleteDialogID(id) {
+        deleteDialogID() {
             this.dialogID = null
         }
     }

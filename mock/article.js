@@ -75,60 +75,60 @@
 
 // for the test of gallery grid
 
-const Mock = require('mockjs')
-List = []
-count = 12
+// const Mock = require('mockjs')
+// List = []
+// count = 12
 
-for (let i = 0; i < count; i++) {
-    List.push(Mock.mock({
-        ID: '@increment',
-        Description: 'This is a dataset. This is a dataset. This is a dataset. This is a dataset. This is a Dataset. This is a dataset. This is a dataset.',
-        Time: +Mock.Random.date('T'),
-        Name: 'DataSet '+ (i+1),
-        Source: 'www.zju' + (i+1) + '.com',
-        Size: '@integer(1, 5)GB',
-    }))
-}
+// for (let i = 0; i < count; i++) {
+//     List.push(Mock.mock({
+//         ID: '@increment',
+//         Description: 'This is a dataset. This is a dataset. This is a dataset. This is a dataset. This is a Dataset. This is a dataset. This is a dataset.',
+//         Time: +Mock.Random.date('yyyy-MM-dd'),
+//         Name: 'DataSet '+ (i+1),
+//         Source: 'www.zju' + (i+1) + '.com',
+//         Size: '@integer(1, 5)GB',
+//     }))
+// }
 
-// List = [
-//   {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
-//   {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
-//   {ID: 3, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "3GB", Source: "www.zju.com", Time: "2002"},
-//   {ID: 4, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "4GB", Source: "www.zju.com", Time: "2003"},
-//   {ID: 5, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "5GB", Source: "www.zju.com", Time: "2004"},
-//   {ID: 6, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "6GB", Source: "www.zju.com", Time: "2005"},
-//   {ID: 7, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "7GB", Source: "www.zju.com", Time: "2006"},
-//   {ID: 8, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "8GB", Source: "www.zju.com", Time: "2008"},
-//   {ID: 9, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "9GB", Source: "www.zju.com", Time: "2009"},
-//   {ID: 10, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "10GB", Source: "www.zju.com", Time: "2010"},
-//   {ID: 11, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
-// ]
+// // List = [
+// //   {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
+// //   {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
+// //   {ID: 3, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "3GB", Source: "www.zju.com", Time: "2002"},
+// //   {ID: 4, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "4GB", Source: "www.zju.com", Time: "2003"},
+// //   {ID: 5, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "5GB", Source: "www.zju.com", Time: "2004"},
+// //   {ID: 6, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "6GB", Source: "www.zju.com", Time: "2005"},
+// //   {ID: 7, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "7GB", Source: "www.zju.com", Time: "2006"},
+// //   {ID: 8, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "8GB", Source: "www.zju.com", Time: "2008"},
+// //   {ID: 9, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "9GB", Source: "www.zju.com", Time: "2009"},
+// //   {ID: 10, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "10GB", Source: "www.zju.com", Time: "2010"},
+// //   {ID: 11, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
+// // ]
 
 
-module.exports = [
-  {
-    url: '/vue-element-admin/gallery/list',
-    type: 'get',
-    response: config => {
-      const { ID, page = 1, limit = 6, sort } = config.query
+// module.exports = [
+//   {
+//     url: '/vue-element-admin/gallery/list',
+//     type: 'get',
+//     response: config => {
+//       const { ID, page = 1, limit = 6, sort } = config.query
 
-      let mockList = List
+//       let mockList = List
 
-      if (sort === '-id') {
-        mockList = mockList.reverse()
-      }
+//       if (sort === '-id') {
+//         mockList = mockList.reverse()
+//       }
 
-      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+//       const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
 
-      return {
-        code: 20000,
-        data: {
-          total: mockList.length,
-          items: pageList
-        }
-      }
-    }
-  },
+//       return {
+//         code: 20000,
+//         data: {
+//           total: mockList.length,
+//           items: pageList
+//         }
+//       }
+//     }
+//   },
 
   // {
   //   url: '/vue-element-admin/gallery/cart',
@@ -145,6 +145,49 @@ module.exports = [
   //     }
   //   }
   // }
+// ]
+
+// mock data for testing of order page
+
+const Mock = require('mockjs')
+
+const List = []
+const count = 5
+
+for (let i = 0; i < count; i++) {
+    List.push(Mock.mock({
+        // id: '@increment',
+        // timestamp: +Mock.Random.date('T'),
+        name: 'DataSet '+ (i+1),
+        number: '3',
+        price: '$5',
+        // source: 'www.zju.com',
+        // size: '@integer(1, 5)GB',
+        // author: 'ZJU'
+    }))
+}
+
+module.exports = [
+    {
+        url: '/vue-element-admin/order/list',
+        type: 'get',
+        response: config => {
+            const { page = 1, limit = 20 } = config.query
+
+            let mockList = List
+
+            const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+            return {
+                code: 20000,
+                data: {
+                    total_prices: pageList.length,
+                    total: mockList.length,
+                    items: pageList
+                }
+            }
+        }
+    }
 ]
 
 

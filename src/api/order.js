@@ -1,16 +1,16 @@
 import request from  '@/utils/request'
 
-export function fetchList(data) {
+export function fetchList(id) {
     return request({
-        url: 'vue-element-admin/order/list',
+        url: '/vue-element-admin/order/list',
         method: 'get',
-        params: data
+        params: { id }
     })
 }
 
 export function orderConfirm(data) {
     return reuqest({
-        url: 'vue-element-admin/order/confirm',
+        url: '/vue-element-admin/order/confirm',
         method: 'post',
         data
     })
@@ -18,7 +18,7 @@ export function orderConfirm(data) {
 
 export function orderCompleted(data) {
     return request({
-        url: 'vue-element-admin/order/confirm',
+        url: '/vue-element-admin/order/confirm',
         method: 'post',
         data
     })

@@ -17,23 +17,23 @@
                 </template>
             </el-table-coloum> -->
 
-            <el-table-coloum label="Name" align="center" min-width="100">
+            <el-table-column label="Name" align="center" width="200px">
                 <template slot-scope="{row}">
                     <span>{{ row.name }}</span>
                 </template>
-            </el-table-coloum>
+            </el-table-column>
 
-            <el-table-coloum label="Number" align="center" width="100">
+            <el-table-column label="Number" align="center" width="200px">
                 <template slot-scope="{row}">
                     <span>{{ row.number }}</span>
                 </template>
-            </el-table-coloum>
+            </el-table-column>
 
-            <el-table-coloum label="Price" align="center" width="100">
+            <el-table-column label="Price" align="center" width="200px">
                 <template slot-scope="{row}">
                     <span>{{ row.price }}</span>
                 </template>
-            </el-table-coloum>
+            </el-table-column>
         </el-table>
 
         <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
@@ -73,8 +73,9 @@
 </style>
 
 <script>
-import { fetchList, orderConfirm } from '@/api/order'
+import { fetchList } from '@/api/order'
 import waves from '@/directive/waves'
+import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 
 export default {
@@ -112,7 +113,7 @@ export default {
                 // simulation for timeout
                 setTimeout(() => {
                     this.listLoading = false
-                }, 1.5 * 1000)
+                }, 1.5*1000)
             })
         }
         // orderGoods() {
