@@ -149,30 +149,154 @@
 
 // mock data for testing of order page
 
+// const Mock = require('mockjs')
+
+// const List = []
+// const count = 5
+
+// for (let i = 0; i < count; i++) {
+//     List.push(Mock.mock({
+//         // id: '@increment',
+//         // timestamp: +Mock.Random.date('T'),
+//         name: 'DataSet '+ (i+1),
+//         number: '3',
+//         price: '$5',
+//         // source: 'www.zju.com',
+//         // size: '@integer(1, 5)GB',
+//         // author: 'ZJU'
+//     }))
+// }
+
+// module.exports = [
+//     {
+//         url: '/vue-element-admin/order/list',
+//         type: 'get',
+//         response: config => {
+//             const { page = 1, limit = 20 } = config.query
+
+//             let mockList = List
+
+//             const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+//             return {
+//                 code: 20000,
+//                 data: {
+//                     total_prices: pageList.length,
+//                     total: mockList.length,
+//                     items: pageList
+//                 }
+//             }
+//         }
+//     }
+// ]
+
+// mock data for testing crowdsourcing
+
+// List = [
+//     Mock.mock({   ID: 1, question: 'Question 1: Please select the correct answer.',
+//         answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+//         correct_answer: 3,
+//         point: 1 }),
+//         Mock.mock({   ID: 2, question: 'Question 2: Please select the correct answer.',
+//         answer: ["This is incorrect.", "This is incorrect.", "This is correct."],
+//         correct_answer: 3,
+//         point: 1 })
+    // {   ID: 3, question: 'Question 3: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 4, question: 'Question 4: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 5, question: 'Question 5: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 6, question: 'Question 6: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 7, question: 'Question 7: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 8, question: 'Question 8: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 9, question: 'Question 9: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 10, question: 'Question 10: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 11, question: 'Question 11: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 12, question: 'Question 12: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 13, question: 'Question 13: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 14, question: 'Question 14: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 },
+    // {   ID: 15, question: 'Question 15: Please select the correct answer.',
+    //     answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+    //     correct_answer: 3,
+    //     point: 1 }
+// ]
+
 const Mock = require('mockjs')
 
 const List = []
-const count = 5
+const count = 15
 
 for (let i = 0; i < count; i++) {
-    List.push(Mock.mock({
-        // id: '@increment',
-        // timestamp: +Mock.Random.date('T'),
-        name: 'DataSet '+ (i+1),
-        number: '3',
-        price: '$5',
-        // source: 'www.zju.com',
-        // size: '@integer(1, 5)GB',
-        // author: 'ZJU'
-    }))
+
+    if (i == 1)
+    {
+        List.push(Mock.mock({
+            ID: i,
+            question: 'Question '+ (i+1) + ': Please select the correct answer.',
+            answer: ["This is incorrect.", "This is incorrect.", "This is correct."],
+            correct_answer: 3,
+            point: 1
+        }))
+    } else if (i == 2)
+    {
+        List.push(Mock.mock({
+            ID: i,
+            question: 'Question ' + (i+1) + ': Please select the correct answer.',
+            answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect.", "This is incorrect."],
+            correct_answer: 3,
+            point: 1
+        }))
+    } else {
+        List.push(Mock.mock({
+            ID: i,
+            question: 'Question ' + (i+1) + ': Please select the correct answer.',
+            answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+            correct_answer: 3,
+            point: 1
+        }))
+    }
 }
 
 module.exports = [
     {
-        url: '/vue-element-admin/order/list',
+        url: '/vue-element-admin/crowdsourcing/list',
         type: 'get',
         response: config => {
-            const { page = 1, limit = 20 } = config.query
+            const { page = 1, limit = 10 } = config.query
 
             let mockList = List
 
@@ -181,7 +305,6 @@ module.exports = [
             return {
                 code: 20000,
                 data: {
-                    total_prices: pageList.length,
                     total: mockList.length,
                     items: pageList
                 }
@@ -189,5 +312,3 @@ module.exports = [
         }
     }
 ]
-
-
