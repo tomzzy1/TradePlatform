@@ -7,3 +7,11 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function addtoCart(data) {
+  return request({
+    url: '/vue-element-admin/gallery/cart',
+    method: 'post',
+    data
+  })
+}

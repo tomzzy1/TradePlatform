@@ -28,21 +28,19 @@
                         <br />
                         <span class="dataset_info">{{ item.Description }}</span>
                         <br />
-                        <span class="dataset_size">{{ item.Size }}</span>
+                        <span class="dataset_size">Size: {{ item.Size }}</span>
                         <br />
-                        <span class="dataset_source">{{ item.Source }}</span>
+                        <span class="dataset_source">Source: {{ item.Source }}</span>
                         <br />
-                        <span class="dataset_time">{{ item.Time }}</span>
+                        <span class="dataset_time">Time: {{ item.Time }}</span>
                         <div class="bottom clearfix">
-                        <el-button type="text" class="button" @click="dialogVisible = true">Query</el-button>
+                        <el-button type="text" class="button" @click="dialogVisible = true, updataDialogID">Query</el-button>
                         </div>
                     </div>
                     </el-card>
                 </el-col>
             </el-row>
         </div>
-
-        <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
         <el-dialog
           title="Query"
@@ -52,15 +50,16 @@
           <span class="notice">Please type in the corret query.</span>
           <el-input class="query_input" v-model="this.query" placeholder="Query Language" style="min-width: 50px;" />
           <div align="center">
-            <el-button v-waves @click="addToCart" type="success" style="width:150px;">
+            <el-button v-waves @click="addToCart(dialogID)" type="success" style="width:150px;">
               Add to Cart
             </el-button>
-            <el-button v-waves @click="addToCart" type="danger" style="width:150px; text-align:center;">
+            <el-button v-waves type = "danger" @click="dialogVisible = false, deleteDialogID" style="width:150px; text-align:center;">
               Cancel
             </el-button>
           </div>
         </el-dialog>
 
+        <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
     </div>
 </template>
@@ -155,31 +154,27 @@ export default {
     directives: { waves },
     data() {
         return {
-            List: [
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "3GB", Source: "www.zju.com", Time: "2002"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "4GB", Source: "www.zju.com", Time: "2003"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "5GB", Source: "www.zju.com", Time: "2004"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "6GB", Source: "www.zju.com", Time: "2005"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "7GB", Source: "www.zju.com", Time: "2006"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "8GB", Source: "www.zju.com", Time: "2008"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "9GB", Source: "www.zju.com", Time: "2009"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "10GB", Source: "www.zju.com", Time: "2010"},
-              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
-            ],
-            tableKey: 0,
-            list: null,
             total: 0,
             listLoading: true,
+            List: null,
+            // List: [
+            //   {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
+            //   {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
+            //   {ID: 3, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "3GB", Source: "www.zju.com", Time: "2002"},
+            //   {ID: 4, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "4GB", Source: "www.zju.com", Time: "2003"},
+            //   {ID: 5, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "5GB", Source: "www.zju.com", Time: "2004"},
+            //   {ID: 6, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "6GB", Source: "www.zju.com", Time: "2005"},
+            //   {ID: 7, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "7GB", Source: "www.zju.com", Time: "2006"},
+            //   {ID: 8, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "8GB", Source: "www.zju.com", Time: "2008"},
+            //   {ID: 9, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "9GB", Source: "www.zju.com", Time: "2009"},
+            //   {ID: 10, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "10GB", Source: "www.zju.com", Time: "2010"},
+            //   {ID: 11, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
+            // ],
             listQuery: {
+                ID: undefined,
                 page: 1,
-                limit: 20,
-                name: undefined,
-                number: undefined,
-                price: undefined,
+                limit: 6,
                 sort: '+id',
-                checked: false
             },
             sortOptions: [
                 { label: 'ID Ascending', key: '+id' },
@@ -192,6 +187,7 @@ export default {
                 number: '',
             },
             dialogVisible: false,
+            dialogID: null
         }
     },
     created() {
@@ -201,7 +197,7 @@ export default {
         getList() {
             this.listLoading = true
             fetchList(this.listQuery).then(response => {
-                this.list = response.data.items
+                this.List = response.data.items
                 this.total = response.data.total
 
                 // simulation for timeout
@@ -228,19 +224,22 @@ export default {
             }
             this.handleFilter()
         },
-        resetTemp() {
-            this.temp = {
-                id: undefined,
-                timestamp: new Date(),
-                name: '',
-                number: ''
-            }
-        },
         getSortClass: function(key) {
             const sort = this.listQuery.sort
             return sort === `+${key}` ? 'ascending' : 'descending'
         },
-        addToCart() {
+        addToCart(id) {
+            var tmpID = id
+            if (id != null)
+            {
+                addtoCart(tmpID)
+            }
+        },
+        updateDialogID(id) {
+            this.dialogID = id
+        },
+        deleteDialogID(id) {
+            this.dialogID = null
         }
     }
 }
