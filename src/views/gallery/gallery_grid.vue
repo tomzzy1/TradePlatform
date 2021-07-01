@@ -21,28 +21,47 @@
 
         <div class="app-grid">
             <el-row :gutter="20">
-                <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="4" :span="4" v-for="o in 20" :key="o" >
+                <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="4" :span="4" v-for="item in List" :key="item" >
                     <el-card shadow="hover" :body-style="{ padding: '10px' }">
                     <div>
-                        <span class="dataset_name">DataSet</span>
+                        <span class="dataset_name">{{ item.Name }}</span>
                         <br />
-                        <span class="dataset_info">This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.</span>
+                        <span class="dataset_info">{{ item.Description }}</span>
                         <br />
-                        <span class="dataset_author">Author: ZJU</span>
+                        <span class="dataset_size">{{ item.Size }}</span>
                         <br />
-                        <span class="dataset_size">Size: 18650</span>
+                        <span class="dataset_source">{{ item.Source }}</span>
                         <br />
-                        <span class="dataset_source">Source: www.zju.com</span>
-                        <br />
-                        <span class="dataset_time">Time: 2 months ago</span>
+                        <span class="dataset_time">{{ item.Time }}</span>
                         <div class="bottom clearfix">
-                        <el-button type="text" class="button">Add to Cart</el-button>
+                        <el-button type="text" class="button" @click="dialogVisible = true">Query</el-button>
                         </div>
                     </div>
                     </el-card>
                 </el-col>
             </el-row>
         </div>
+
+        <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+
+        <el-dialog
+          title="Query"
+          :visible.sync="dialogVisible"
+          width="50%"
+          :before-close="handleClose">
+          <span class="notice">Please type in the corret query.</span>
+          <el-input class="query_input" v-model="this.query" placeholder="Query Language" style="min-width: 50px;" />
+          <div align="center">
+            <el-button v-waves @click="addToCart" type="success" style="width:150px;">
+              Add to Cart
+            </el-button>
+            <el-button v-waves @click="addToCart" type="danger" style="width:150px; text-align:center;">
+              Cancel
+            </el-button>
+          </div>
+        </el-dialog>
+
+
     </div>
 </template>
 
@@ -112,20 +131,43 @@
         margin-left: 10px;
     }
 
+    .notice {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 15px;
+    }
+
+    .query_input {
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
 </style>
 
 <script>
-import { fetchList, updateCart, deleteCart, buyCart } from '@/api/cart'
+import { fetchList } from '@/api/gallery'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 
 export default {
-    name: 'cart',
+    name: 'gallery_grid',
     components: { Pagination },
     directives: { waves },
     data() {
         return {
+            List: [
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "3GB", Source: "www.zju.com", Time: "2002"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "4GB", Source: "www.zju.com", Time: "2003"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "5GB", Source: "www.zju.com", Time: "2004"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "6GB", Source: "www.zju.com", Time: "2005"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "7GB", Source: "www.zju.com", Time: "2006"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "8GB", Source: "www.zju.com", Time: "2008"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "9GB", Source: "www.zju.com", Time: "2009"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "10GB", Source: "www.zju.com", Time: "2010"},
+              {Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
+            ],
             tableKey: 0,
             list: null,
             total: 0,
@@ -149,11 +191,7 @@ export default {
                 name: '',
                 number: '',
             },
-            dialogFormVisible: false,
-            dialogPvVisible: false,
-            dialogStatus: '',
-            dialogPvVisible: false,
-            pvData: [],
+            dialogVisible: false,
         }
     },
     created() {
@@ -198,53 +236,11 @@ export default {
                 number: ''
             }
         },
-        increaseNumber(row) {
-          row.number += 1
-          this.changeNum(row, row.number)
-        },
-        decreaseNumber(row) {
-          if (row.number != 1) {
-            row.number -= 1
-            this.changeNum(row, row.number)
-          } else {
-            this.handleDelete(row, )
-            this.changeNum(row, row.number)
-          }
-        },
-        handleDelete(row, index) {
-          this.$notify({
-            title: 'Success',
-            message: 'Delete Successfully',
-            type: 'success',
-            duration: 2000
-          })
-          this.list.splice(index, 1)
-          deleteCart(row.id)
-        },
-        changeNum(row, new_num) {
-            var tempItem = {
-            id: row.id,
-            num: new_num
-          }
-          updateCart(tempItem)
-        },
         getSortClass: function(key) {
             const sort = this.listQuery.sort
             return sort === `+${key}` ? 'ascending' : 'descending'
         },
-        buyGoods() {
-          var idArray = new Array()
-          for (i in row.list){
-            if (i.checked == true) {
-              idArray.push(i.id)
-            }
-          }
-          buyCart(idArray)
-        },
-        buyGood(row) {
-          var idArray = new Array()
-          idArray.push(row.id)
-          buyCart(idArray)
+        addToCart() {
         }
     }
 }

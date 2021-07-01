@@ -4,7 +4,7 @@ export function fetchList(data) {
     return request({
         url: 'vue-element-admin/order/list',
         method: 'get',
-        data
+        params: data
     })
 }
 

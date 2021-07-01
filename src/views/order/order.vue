@@ -1,5 +1,7 @@
 <template>
     <div class="app-container">
+
+        <!-- <span>Hello world!</span> -->
         <el-table
             :key="tableKey"
             v-loading="listLoading"
@@ -15,19 +17,19 @@
                 </template>
             </el-table-coloum> -->
 
-            <el-table-coloum label="Name" prop="name" align="center" min-width="100">
+            <el-table-coloum label="Name" align="center" min-width="100">
                 <template slot-scope="{row}">
                     <span>{{ row.name }}</span>
                 </template>
             </el-table-coloum>
 
-            <el-table-coloum label="Number" prop="number" align="center" width="100">
+            <el-table-coloum label="Number" align="center" width="100">
                 <template slot-scope="{row}">
                     <span>{{ row.number }}</span>
                 </template>
             </el-table-coloum>
 
-            <el-table-coloum label="Price" prop="price" align="center" width="100">
+            <el-table-coloum label="Price" align="center" width="100">
                 <template slot-scope="{row}">
                     <span>{{ row.price }}</span>
                 </template>
@@ -73,18 +75,24 @@
 <script>
 import { fetchList, orderConfirm } from '@/api/order'
 import waves from '@/directive/waves'
+import Pagination from '@/components/Pagination'
 
 export default {
     name: 'order',
-    directives: {waves},
+    components: { Pagination },
+    directives: { waves },
     data() {
         return {
+            tableKey: 0,
             total: 0,
             list: null,
             order_success: undefined,
-            total_price: 10,
+            total_price: undefined,
             list_loading: true,
             listQuery: {
+                // name: undefined,
+                // number: undefined,
+                // price: undefined,
                 page: 1,
                 limit: 20
             }
@@ -98,6 +106,7 @@ export default {
             this.listLoading = true
             fetchList(this.listQuery).then(response => {
                 this.list = response.data.items
+                this.total = response.data.total
                 this.total_price = response.data.total_prices
 
                 // simulation for timeout
