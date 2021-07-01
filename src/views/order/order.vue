@@ -11,13 +11,8 @@
             highlight-current-row
             style="width: 100%;"
         >
-            <!-- <el-table-coloum label="ID" prop="id" align="center" width="80">
-                <template slot-scope="{row}">
-                    <span>{{ row.id }}</span>
-                </template>
-            </el-table-coloum> -->
 
-            <el-table-column label="Name" align="center" width="200px">
+            <el-table-column label="Name" align="center" min-width="200px">
                 <template slot-scope="{row}">
                     <span>{{ row.name }}</span>
                 </template>
@@ -38,7 +33,7 @@
 
         <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
-        <!-- <div class="operation_bar">
+        <div class="operation_bar">
             <el-card shadow="hover">
                 <span class="total_price">Total Price: ${{ total_price}} </span>
                 <br />
@@ -50,7 +45,7 @@
                     Cancel
                 </el-button>
             </el-card>
-        </div> -->
+        </div>
 
     </div>
 </template>
@@ -88,8 +83,8 @@ export default {
             total: 0,
             list: null,
             order_success: undefined,
-            total_price: undefined,
-            list_loading: true,
+            total_price: 0,
+            listLoading: true,
             listQuery: {
                 // name: undefined,
                 // number: undefined,
@@ -113,7 +108,7 @@ export default {
                 // simulation for timeout
                 setTimeout(() => {
                     this.listLoading = false
-                }, 1.5*1000)
+                }, 1.5 * 1000)
             })
         }
         // orderGoods() {
