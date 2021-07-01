@@ -120,7 +120,7 @@ export default {
             listQuery: {
                 ID: undefined,
                 page: 1,
-                limit: 6,
+                limit: 10,
                 sort: '+id',
             },
             sortOptions: [
