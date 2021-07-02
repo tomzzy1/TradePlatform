@@ -171,12 +171,24 @@
                 fetchList(this.listQuery).then(response =>{
                     this.list = response.data.items
                     this.total = response.data.total
+                    // console.warn(this.list)
+                    for (var i = 0; i < this.list.length; i++)
+                    {
+                        var tmpList = this.list[i].answer.split(";")
+                        // console.warn(tmpList)
+                        // this.List[i].answer = new Array()
+                        // for (var j = 0; j < tmpList.length; j++){
+                        //     this.List[i].answer.push(tmpList[j])
+                        // }
+                        this.list[i].answer = tmpList
+                    }
 
                     // simulation for time out
                     setTimeout(() => {
                         this.listLoading = false
                     }, 1.5 * 1000)
                 })
+
                 // for (var i = 0; i < this.list.answer.length; i++)
                 // {
                 //     var tmp = this.list.ID

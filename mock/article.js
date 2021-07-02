@@ -268,7 +268,7 @@ for (let i = 0; i < count; i++) {
             ID: i,
             question: 'Question '+ (i+1) + ': Please select the correct answer.',
             hint: 'Follow your heart.',
-            answer: ["This is incorrect.", "This is incorrect.", "This is correct."],
+            answer: "This is incorrect.;This is incorrect.;This is correct.",
             correct_answer: 3,
             point: 1
         }))
@@ -278,7 +278,7 @@ for (let i = 0; i < count; i++) {
             ID: i,
             question: 'Question ' + (i+1) + ': Please select the correct answer.',
             hint: 'Follow your heart.',
-            answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect.", "This is incorrect."],
+            answer: "This is incorrect.;This is incorrect.;This is correct.;This is incorrect.;This is incorrect.;This is incorrect.",
             correct_answer: 3,
             point: 1
         }))
@@ -287,7 +287,7 @@ for (let i = 0; i < count; i++) {
             ID: i,
             question: 'Question ' + (i+1) + ': Please select the correct answer.',
             hint: 'Follow your heart.',
-            answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+            answer: "This is incorrect.;This is incorrect.;This is correct.;This is incorrect.",
             correct_answer: 3,
             point: 1
         }))
