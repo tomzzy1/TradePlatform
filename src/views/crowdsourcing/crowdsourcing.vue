@@ -8,6 +8,7 @@
                 <el-card shadow="hover" :body-style="{ padding: '10px' }">
                     <div>
                         <span class="question">{{ item.question }}</span>
+                        <span class="hint">Hint: {{ item.hint }}</span>
                         <el-radio-group v-model=" Answers[item.ID]">
                             <div class="options">
                             <el-radio class = "option" v-for="i in (item.answer.length)" :key="i" :label="i">{{ item.answer[i-1] }}</el-radio>
@@ -40,6 +41,14 @@
         margin-bottom: 10px;
         margin-left: 10px;
         margin-top: 10px;
+    }
+
+    .hint {
+        font-size: 15px;
+        display: block;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        font-style: italic;
     }
 
     .options {
