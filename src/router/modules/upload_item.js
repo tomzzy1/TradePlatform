@@ -12,7 +12,7 @@ const uploadRouter = {
             component: () => import('@/views/upload_item/upload_item'),
             name: 'Upload',
             meta: { title: 'Upload',
-                    icon: 'guide',
+                    icon: 'el-icon-upload',
                     roles: ['buyer', 'seller', 'admin']
                   }
         }
