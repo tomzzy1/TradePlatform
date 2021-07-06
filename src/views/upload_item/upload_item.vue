@@ -22,20 +22,39 @@
             </el-select>
             <br />
             <div align="center">
+            <el-upload
+                class="upload-file"
+                action="/vue-element-admin/upload_item/upload"
+                :limit="1"
+                multiple="false"
+                :file-list="fileList"
+                :accept="fileType"
+                :auto-upload="false"
+                :before-upload="beforeUpload"
+                :on-success="uploadSuccess">
+                <el-button slot="trigger" type="primary" class="el-upload_button">Select File</el-button>
+                <el-button class="upload_button" type="success" @click="submitUpload">Upload</el-button>
+                <div slot="tip" class="el-upload_tip">Please upload the certain type of file.</div>
+            </el-upload>
+            <!-- <el-button v-waves @click="uploadData" type="success">
+                    Upload
+                </el-button> -->
+            </div>
+            <!-- <div align="center">
                 <el-button v-waves @click="selectFile" type="primary">
                     Select File
                 </el-button> 
                 <el-button v-waves @click="uploadFile" type="success">
                     Upload
                 </el-button>
-            </div>
+            </div> -->
            
         </el-card>
         </div>
         <!-- <hr /> -->
-        <div class="notice">
+        <!-- <div class="notice">
             <span>Please upload the file with appropriate type.</span>
-        </div>
+        </div> -->
     </div>
     
 </template>
@@ -105,10 +124,19 @@
         margin-bottom: 20px;
     }
 
+    .el-upload_button {
+        margin-right: 10px;
+    }
+
+    .el-upload_tip {
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
 </style>
 
 <script>
-import { uploadItem } from '@/api/upload_item'
+import { upload_data } from '@/api/upload_item'
 
 const fileTypeOptions = [
     { key: 'CSV_file', display_name: 'CSV' },
@@ -125,15 +153,49 @@ export default {
             base_price: undefined,
             price_coefficient: undefined,
             sensitivity_degree: undefined,
-            fileType: undefined
+            fileType: undefined,
+            fileList: []
         }
     },
     methods: {
-        selectFile() {
-
+        uploadData() {
+            var tmpParams = {
+                Time: this.time,
+                BasePrice: this.base_price,
+                PriceCoefficient: this.price_coefficient,
+                SensitivityDegree: this.sensitivity_degree,
+                FileType: this.fileType
+                }
+            var tmpData = [
+                this.fileList,
+                tmpParams
+            ]
+            upload_data(tmpData)
+            this.$notify({
+                title: 'Success',
+                message: 'Upload Successfully',
+                type: 'success',
+                duration: 2000
+            })
+            
         },
-        uploadFile() {
-
+        submitUpload() {
+            this.$refs.upload.submit()
+            this.uploadData()
+        },
+        beforeUpload(file) {
+            const isCorrect = file.type == this.fileType
+            if(!isCorrect){
+                this.$message.error('Please upload the correct type of file!')
+                return false
+            }
+        },
+        uploadSuccess(res, file, fileList) {
+            if (res.code == '200') {
+                this.$message.success("Upload Successfully")
+            } else {
+                this.$message.error("Upload Failed")
+            }
         }
     }
 }    
