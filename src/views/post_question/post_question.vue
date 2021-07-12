@@ -71,7 +71,7 @@
 </style>
 
 <script>
-import { postQuestion } from '@/api/post_question'
+import { postQuestion, fetchInfo } from '@/api/post_question'
 
 const answerNumberOptions = [
     { key: 2, display_name: '2'},
@@ -84,15 +84,23 @@ const answerNumberOptions = [
 export default ({
     data() {
         return {
-            info: "This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data.",
+            // info: "This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data.",
+            info: null,
             question: undefined,
             answer_number: undefined,
             answerNumberOptions,
             answers: [],
             correct_answer: undefined,
             point: undefined,
-            correctAnswerOptions: undefined
+            correctAnswerOptions: undefined,
+            listQuery: {
+                ID: undefined,
+                info: undefined
+            }
         }
+    },
+    created() {
+        this.getInfo()
     },
     methods: {
         updateCorrectAnswerOptions() {
@@ -106,7 +114,19 @@ export default ({
             }
         },
         postTheQuestion() {
-
+            var tmpData = {
+                Question: this.question,
+                AnswerNumber: this.answer_number,
+                Answers: this.answers,
+                CorrectAnswer: this.correct_answer,
+                Point: this.point
+            }
+            postQuestion(tmpData)
+        },
+        getInfo() {
+            fetchInfo(this.listQuery).then(response => {
+                this.info = response.info
+            })
         }
     }
 })
