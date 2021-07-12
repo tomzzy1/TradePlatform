@@ -14,4 +14,4 @@ export function postQuestion(data) {
       method: 'post',
       data
     })
-  }
+}
