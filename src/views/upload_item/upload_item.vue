@@ -24,17 +24,22 @@
             <div align="center">
             <el-upload
                 class="upload-file"
-                action="/vue-element-admin/upload_item/upload"
+                action="#"
                 :limit="1"
                 multiple="false"
                 :file-list="fileList"
-                :accept="fileType"
+                :http-request="uploadHttpRequest"
                 :auto-upload="false"
                 :before-upload="beforeUpload"
+                :on-change="change"
                 :on-success="uploadSuccess">
                 <el-button slot="trigger" type="primary" class="el-upload_button">Select File</el-button>
-                <el-button class="upload_button" type="success" @click="submitUpload">Upload</el-button>
+                <!-- <el-button class="upload_button" type="success" @click="submitUpload">Upload</el-button> -->
+                <el-button class="upload_button" type="success" @click="uploadFile">Upload</el-button>
                 <div slot="tip" class="el-upload_tip">Please upload the certain type of file.</div>
+                <!-- <el-button @click="testRequest">
+                    Test
+                </el-button> -->
             </el-upload>
             <!-- <el-button v-waves @click="uploadData" type="success">
                     Upload
@@ -158,7 +163,37 @@ export default {
         }
     },
     methods: {
-        uploadData() {
+        // uploadData() {
+        //     var tmpParams = {
+        //         Time: this.time,
+        //         BasePrice: this.base_price,
+        //         PriceCoefficient: this.price_coefficient,
+        //         SensitivityDegree: this.sensitivity_degree,
+        //         FileType: this.fileType
+        //         }
+        //     var tmpData = [
+        //         this.fileList,
+        //         tmpParams
+        //     ]
+        //     upload_data(tmpData)
+        //     // this.$notify({
+        //     //     title: 'Success',
+        //     //     message: 'Upload Successfully',
+        //     //     type: 'success',
+        //     //     duration: 2000
+        //     // })
+            
+        // },
+        uploadFile() {
+            const formData = new FormData()
+            var that = this
+            console.warn("This is the fileList before formData.")
+            console.warn(this.fileList)
+            if (this.fileList) {
+                that.fileList.forEach((item, index) => {
+                    formData.append(index, item)
+                })
+            }
             var tmpParams = {
                 Time: this.time,
                 BasePrice: this.base_price,
@@ -167,21 +202,25 @@ export default {
                 FileType: this.fileType
                 }
             var tmpData = [
-                this.fileList,
+                formData,
                 tmpParams
             ]
+            console.warn("+++++ This is the data posted to the database +++++")
+            console.warn(tmpData)
             upload_data(tmpData)
-            this.$notify({
-                title: 'Success',
-                message: 'Upload Successfully',
-                type: 'success',
-                duration: 2000
-            })
             
         },
-        submitUpload() {
-            this.$refs.upload.submit()
-            this.uploadData()
+        // submitUpload() {
+        //     // this.$refs.upload.submit()
+        //     this.uploadData()
+        // },
+        uploadHttpRequest(data) {
+            let reader = new FileReader()
+            let that = this
+            reader.readAsText(data.file)
+            reader.onload = function() {
+                that.formData.mmiapXml = this.result
+            }
         },
         beforeUpload(file) {
             const isCorrect = file.type == this.fileType
@@ -196,6 +235,33 @@ export default {
             } else {
                 this.$message.error("Upload Failed")
             }
+        },
+        change(file, fileList) {
+            // var arr = []
+            // fileList.forEach((item) => {
+            //     arr.push(item.raw);
+            // });
+            // this.fileList = arr;
+            // console.warn("This is the fileList from function change.")
+            // console.warn(arr)
+            if (fileList.length > 0) {
+                this.fileList = [fileList[fileList.length - 1]]
+            }
+        },
+        testRequest() {
+            // var tmpParams = {
+            //     Time: this.time,
+            //     BasePrice: this.base_price,
+            //     PriceCoefficient: this.price_coefficient,
+            //     SensitivityDegree: this.sensitivity_degree,
+            //     FileType: this.fileType
+            //     }
+            // var tmpData = [
+            //     this.fileList,
+            //     tmpParams
+            // ]
+            // upload_data(tmpData)
+            this.submitUpload()
         }
     }
 }    
