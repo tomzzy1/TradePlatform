@@ -57,9 +57,12 @@
           <span>{{ row.Source }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="120" class-name="small-padding fixed-width">
+      <el-table-column label="Actions" align="center" width="240" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button  @click="dialogVisible=true, updataDialogID(row.ID)" type = "primary">
+          <el-button @click="directAddToCart(row.ID)" type="success">
+            Add to Cart
+          </el-button>
+          <el-button  @click="updateAndQuery(row.ID)" type = "primary">
             Query
           </el-button>
         </template>
@@ -67,29 +70,105 @@
     </el-table>
 
     <el-dialog
-      title="Query"
-      :visible.sync="dialogVisible"
-      width="50%"
-      :before-close="handleClose">
-      <span class="notice">Please type in the corret query.</span>
-      <el-input class="query_input" v-model="query" placeholder="Query Language" style="min-width: 50px;" />
-      <div align="center">
-        <el-button v-waves @click="addToCart(dialogID)" type="success" style="width:150px;">
-          Add to Cart
-        </el-button>
-        <el-button v-waves type = "danger" @click="dialogVisible=false, deleteDialogID" style="width:150px; text-align:center;">
-          Cancel
-        </el-button>
-      </div>
-    </el-dialog>
+          title="Query"
+          :visible.sync="dialogVisible"
+          width="50%"
+          :before-close="handleClose">
+          <span class="notice">You can either select the query language or type it in by yourself.<br />Be sure the query is correct.<br /></span>
+          <el-card class="selectAndQuery">
+          <span class="query_language">SELECT&nbsp;</span> 
+          <el-select clearable class="columnSelection" v-model="columns" multiple placeholder="Name of Columns">
+              <el-option
+                v-for="item in columnOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+          </el-select>
+          <br />
+          <span class="query_language">FROM&nbsp;&nbsp;&nbsp;</span>
+          <el-select clearable class="tableSelection" v-model="tableName" placeholder="Name of Table">
+              <el-option
+                v-for="item in tableOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+          </el-select>
+          </el-card>
+          <el-card class="query_input_card">
+          <el-input class="query_input" v-model="query2" placeholder="Query Language" style="min-width: 50px;" />
+          </el-card>
+          <div align="center">
+            <el-button v-waves @click="addToCart1(dialogID)" type="success" style="width:30%; height:50px;">
+              Add to Cart<br />with Query 1
+            </el-button>
+            <el-button v-waves @click="addToCart2(dialogID)" type="success" style="width:30%; height:50px;">
+              Add to Cart<br />with Query 2
+            </el-button>
+            <el-button v-waves type="danger" class="cancel_button" @click="Cancel" style="width:30%; height:50px;">
+              Cancel<br />
+              & Close
+            </el-button>
+          </div>
+        </el-dialog>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
   </div>
 </template>
 
+<style>
+
+  .notice {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 15px;
+      margin-bottom: 30px;
+      display: block;
+      font-style: italic;
+    }
+
+    .query_input {
+      /* margin-top: 10px; */
+      /* margin-bottom: 50px; */
+      width: 100%;
+      /* display: block;
+      float: center; */
+    }
+
+    .selectAndQuery {
+        margin-top: 20px;
+    }
+
+    .columnSelection {
+        width: 85%;
+        margin-bottom: 10px;
+        /* float: right; */
+    }
+
+    .tableSelection {
+        width: 88%;
+        /* float: right; */
+        /* margin-bottom: 20px; */
+    }
+
+    /* .query_language {
+        width: 20%;
+        display: block;
+    } */
+
+    .selectAndQuery {
+        margin-bottom: 20px;
+    }
+
+    .query_input_card {
+        margin-bottom: 30px;
+    }
+  
+</style>
+
 <script>
-import { fetchList } from '@/api/gallery'
+import { fetchList, addtoCart } from '@/api/gallery'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -104,6 +183,23 @@ export default {
             total: 0,
             listLoading: true,
             List: null,
+            addToCartTime: null,
+            query: null,
+            query1: null,
+            query2: null,
+            columnOptions: [
+                {value: "*", label: "*"},
+                {value: "Column 1", label: "Column 1"},
+                {value: "Column 2", label: "Column 2"},
+                {value: "Column 3", label: "Column 3"}
+            ],
+            tableOptions: [
+                {value: "Table 1", label: "Table 1"},
+                {value: "Table 2", label: "Table 2"},
+                {value: "Table 3", label: "Table 3"}
+            ],
+            columns: [],
+            tableName: null,
             // List: [
             //   {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
             //   {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
@@ -175,18 +271,83 @@ export default {
             const sort = this.listQuery.sort
             return sort === `+${key}` ? 'ascending' : 'descending'
         },
-        addToCart(id) {
-            var tmpID = id
-            if (id != null)
-            {
-                addtoCart(tmpID)
-            }
-        },
+        // addToCart(id) {
+        //     var tmpID = id
+        //     if (id != null)
+        //     {
+        //         addtoCart(tmpID)
+        //     }
+        // },
         updateDialogID(id) {
             this.dialogID = id
         },
         deleteDialogID() {
             this.dialogID = null
+            this.query1 = null
+            this.query2 = null
+            this.columns = []
+            this.tableName = null
+            console.warn("Attention!")
+        },
+        directAddToCart(tmpID) {
+            // console.warn(tmpID)
+            this.query = ""
+            var current_time = new Date()
+            this.addToCartTime = current_time.getTime()
+            // console.warn(this.addToCartTime)
+            var tmp_data = new Object() 
+            tmp_data.ID = tmpID
+            tmp_data.Query = this.query
+            tmp_data.Time = this.addToCartTime
+            // console.warn(tmp_data)
+            addtoCart(tmp_data)
+        },
+        addToCart1(tmpID) {
+            // console.warn(tmpID)
+            if ("*" in this.columns) {
+                var tmpCol = "*"
+            } else {
+                var tmpCol = ""
+                var cnt = 1
+                this.columns.forEach((item) => {
+                    if ((cnt !== 1) && (cnt !== this.columns.length)) {
+                        tmpCol += ","
+                    }
+                    tmpCol += item
+                    cnt += 1
+                })
+            }
+            var tmpTable = this.tableName
+            this.query1 = "SELECT " + tmpCol + " FROM " + tmpTable
+            var current_time = new Date()
+            this.addToCartTime = current_time.getTime()
+            var tmp_data = {
+                ID: tmpID,
+                Query: this.query1,
+                Time: this.addToCartTime
+            }
+            // console.warn(tmp_data)
+            addtoCart(tmp_data)
+        },
+        addToCart2(tmpID) {
+            // console.warn(tmpID)
+            var current_time = new Date()
+            this.addToCartTime = current_time.getTime()
+            var tmp_data = {
+                ID: tmpID,
+                Query: this.query2,
+                Time: this.addToCartTime
+            }
+            // console.warn(tmp_data)
+            addtoCart(tmp_data)
+        },
+        Cancel() {
+            this.dialogVisible = false
+            this.deleteDialogID()
+        },
+        updateAndQuery(tmpID) {
+            this.dialogVisible = true
+            this.updateDialogID(tmpID)
         }
     }
 }
