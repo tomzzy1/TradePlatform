@@ -6,32 +6,32 @@
             <div class="heading">Date: </div>
             <el-date-picker
                 class="date_picker"
-                v-model="time"
+                v-model="params.time"
                 type="date"
                 placeholder="Please select the data"
             >
             </el-date-picker>
-            <div class="heading">Base Price: </div><el-input class="base_price_input" v-model="base_price" placeholder="Base Price"  />
+            <div class="heading">Base Price: </div><el-input class="base_price_input" v-model="params.base_price" placeholder="Base Price"  />
             <br />
-            <div class="heading">Price Coefficient: </div><el-input class="price_coefficient_input" v-model="price_coefficient" placeholder="Price Coefficient" />
+            <div class="heading">Price Coefficient: </div><el-input class="price_coefficient_input" v-model="params.price_coefficient" placeholder="Price Coefficient" />
             <br />
-            <div class="heading">Sensitivity Degree: </div><el-input class="sensitivity_degree_input" v-model="sensitivity_degree" placeholder="Sensitivity Degree" />
+            <div class="heading">Sensitivity Degree: </div><el-input class="sensitivity_degree_input" v-model="params.sensitivity_degree" placeholder="Sensitivity Degree" />
             <br />
-            <div class="heading">File Type: </div><el-select v-model="fileType" class="file_type_select" placeholder="File Type">
-                <el-option v-for="item in fileTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
+            <!--div class="heading">File Type: </div><el-select v-model="fileType" class="file_type_select" placeholder="File Type">
+                <el-option v-for="item in fileTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />-->
             </el-select>
             <br />
             <div align="center">
             <el-upload
                 class="upload-file"
                 action="#"
-                :limit="1"
-                multiple="false"
+                :limit="10"
+                multiple
                 :file-list="fileList"
                 :http-request="uploadHttpRequest"
                 :auto-upload="false"
                 :before-upload="beforeUpload"
-                :on-change="change"
+                :on-change="onChange"
                 :on-success="uploadSuccess">
                 <el-button slot="trigger" type="primary" class="el-upload_button">Select File</el-button>
                 <!-- <el-button class="upload_button" type="success" @click="submitUpload">Upload</el-button> -->
@@ -152,75 +152,46 @@ const fileTypeOptions = [
 export default {
     data() {
         return {
-            ID: undefined,
-            time: undefined,
-            fileTypeOptions,
-            base_price: undefined,
-            price_coefficient: undefined,
-            sensitivity_degree: undefined,
-            fileType: undefined,
+            params: 
+            {
+                ID: undefined,
+                time: undefined,
+                //fileTypeOptions,
+                base_price: undefined,
+                price_coefficient: undefined,
+                sensitivity_degree: undefined//,
+                //fileType: undefined
+            },
             fileList: []
         }
     },
     methods: {
-        // uploadData() {
-        //     var tmpParams = {
-        //         Time: this.time,
-        //         BasePrice: this.base_price,
-        //         PriceCoefficient: this.price_coefficient,
-        //         SensitivityDegree: this.sensitivity_degree,
-        //         FileType: this.fileType
-        //         }
-        //     var tmpData = [
-        //         this.fileList,
-        //         tmpParams
-        //     ]
-        //     upload_data(tmpData)
-        //     // this.$notify({
-        //     //     title: 'Success',
-        //     //     message: 'Upload Successfully',
-        //     //     type: 'success',
-        //     //     duration: 2000
-        //     // })
-            
-        // },
         uploadFile() {
             const formData = new FormData()
-            var that = this
             console.warn("This is the fileList before formData.")
             console.warn(this.fileList)
             if (this.fileList) {
-                that.fileList.forEach((item, index) => {
-                    formData.append(index, item)
+                this.fileList.forEach((file, index) => {
+                    formData.append(index, file.raw, file.raw.name)
                 })
             }
-            var tmpParams = {
-                Time: this.time,
-                BasePrice: this.base_price,
-                PriceCoefficient: this.price_coefficient,
-                SensitivityDegree: this.sensitivity_degree,
-                FileType: this.fileType
-                }
-            var tmpData = [
-                formData,
-                tmpParams
-            ]
+            console.log(this.params)
+            formData.append('params', JSON.stringify(this.params))
             console.warn("+++++ This is the data posted to the database +++++")
-            console.warn(tmpData)
-            upload_data(tmpData)
-            
+            upload_data(formData)
+            this.$message.success("Upload Successfully")
         },
         // submitUpload() {
         //     // this.$refs.upload.submit()
         //     this.uploadData()
         // },
         uploadHttpRequest(data) {
-            let reader = new FileReader()
+            /*let reader = new FileReader()
             let that = this
             reader.readAsText(data.file)
             reader.onload = function() {
                 that.formData.mmiapXml = this.result
-            }
+            }*/
         },
         beforeUpload(file) {
             const isCorrect = file.type == this.fileType
@@ -236,17 +207,15 @@ export default {
                 this.$message.error("Upload Failed")
             }
         },
-        change(file, fileList) {
-            // var arr = []
-            // fileList.forEach((item) => {
-            //     arr.push(item.raw);
-            // });
-            // this.fileList = arr;
-            // console.warn("This is the fileList from function change.")
-            // console.warn(arr)
-            if (fileList.length > 0) {
-                this.fileList = [fileList[fileList.length - 1]]
-            }
+        onChange(file, fileList) {
+            console.warn('file list changed')
+            console.log(fileList)
+            let existFile = fileList.slice(0, fileList.length - 1).find(f => f.name === file.name)
+　　         if (existFile) {
+　　　　        this.$message.error('current file has been existed!')
+　　　　        fileList.pop()
+　　        }
+　　        this.fileList = fileList
         },
         testRequest() {
             // var tmpParams = {
