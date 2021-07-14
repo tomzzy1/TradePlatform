@@ -31,38 +31,38 @@
     >
       <el-table-column label="Name" align="center" min-width="100px">
         <template slot-scope="{row}">
-          <span>{{ row.Name }}</span>
+          <span>{{ row.name }}</span>
         </template>
       </el-table-column>
 
       <el-table-column label="Description" align="center" width="300px" style="word-wrap:break-word;">
         <template slot-scope="{row}">
-          <span style = "word-wrap:break-word;">{{ row.Description }}</span>
+          <span style = "word-wrap:break-word;">{{ row.description }}</span>
         </template>
       </el-table-column>
 
       <el-table-column label="Time" width="100px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.Time }}</span>
+          <span>{{ row.date }}</span>
         </template>
       </el-table-column>
       
       <el-table-column label="Size" align="center" width="80px">
         <template slot-scope="{row}">
-          <span>{{ row.Size }}</span>
+          <span>{{ row.size }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Source" align="center" width="120px">
         <template slot-scope="{row}">
-          <span>{{ row.Source }}</span>
+          <span>{{ row.source }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Actions" align="center" width="240" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button @click="directAddToCart(row.ID)" type="success">
+          <el-button @click="directAddToCart(row.id)" type="success">
             Add to Cart
           </el-button>
-          <el-button  @click="updateAndQuery(row.ID)" type = "primary">
+          <el-button  @click="updateAndQuery(row.id)" type = "primary">
             Query
           </el-button>
         </template>
@@ -214,7 +214,7 @@ export default {
             //   {ID: 11, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
             // ],
             listQuery: {
-                ID: undefined,
+                id: undefined,
                 page: 1,
                 limit: 10,
                 sort: '+id',
@@ -296,9 +296,9 @@ export default {
             this.addToCartTime = current_time.getTime()
             // console.warn(this.addToCartTime)
             var tmp_data = new Object() 
-            tmp_data.ID = tmpID
-            tmp_data.Query = this.query
-            tmp_data.Time = this.addToCartTime
+            tmp_data.id = tmpID
+            tmp_data.query = this.query
+            tmp_data.date = this.addToCartTime
             // console.warn(tmp_data)
             addtoCart(tmp_data)
         },
@@ -322,9 +322,9 @@ export default {
             var current_time = new Date()
             this.addToCartTime = current_time.getTime()
             var tmp_data = {
-                ID: tmpID,
-                Query: this.query1,
-                Time: this.addToCartTime
+                id: tmpID,
+                auery: this.query1,
+                date: this.addToCartTime
             }
             // console.warn(tmp_data)
             addtoCart(tmp_data)
@@ -334,9 +334,9 @@ export default {
             var current_time = new Date()
             this.addToCartTime = current_time.getTime()
             var tmp_data = {
-                ID: tmpID,
-                Query: this.query2,
-                Time: this.addToCartTime
+                id: tmpID,
+                query: this.query2,
+                date: this.addToCartTime
             }
             // console.warn(tmp_data)
             addtoCart(tmp_data)

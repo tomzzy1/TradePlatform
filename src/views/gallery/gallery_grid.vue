@@ -24,15 +24,15 @@
                 <el-col :xs="12" :sm="12" :md="8" :lg="4" :xl="4" :span="4" v-for="item in List" :key="item" >
                     <el-card shadow="hover" :body-style="{ padding: '10px' }">
                     <div>
-                        <span class="dataset_name">{{ item.Name }}</span>
+                        <span class="dataset_name">{{ item.name }}</span>
                         <br />
-                        <span class="dataset_info">{{ item.Description }}</span>
+                        <span class="dataset_info">{{ item.description }}</span>
                         <br />
-                        <span class="dataset_size">Size: {{ item.Size }}</span>
+                        <span class="dataset_size">Size: {{ item.size }}</span>
                         <br />
-                        <span class="dataset_source">Source: {{ item.Source }}</span>
+                        <span class="dataset_source">Source: {{ item.source }}</span>
                         <br />
-                        <span class="dataset_time">Time: {{ item.Time }}</span>
+                        <span class="dataset_time">Time: {{ item.date }}</span>
                         <div class="bottom clearfix">
                             <el-button type="text" class="button" @click="updateAndQuery(item.ID)">Query</el-button>
                         </div>
@@ -255,7 +255,7 @@ export default {
             //   {ID: 11, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
             // ],
             listQuery: {
-                ID: undefined,
+                id: undefined,
                 page: 1,
                 limit: 10,
                 sort: '+id',
@@ -331,9 +331,9 @@ export default {
             this.addToCartTime = current_time.getTime()
             // console.warn(this.addToCartTime)
             var tmp_data = new Object() 
-            tmp_data.ID = tmpID
-            tmp_data.Query = this.query
-            tmp_data.Time = this.addToCartTime
+            tmp_data.id = tmpID
+            tmp_data.query = this.query
+            tmp_data.date = this.addToCartTime
             // console.warn(tmp_data)
             addtoCart(tmp_data)
         },
@@ -357,9 +357,9 @@ export default {
             var current_time = new Date()
             this.addToCartTime = current_time.getTime()
             var tmp_data = {
-                ID: tmpID,
-                Query: this.query1,
-                Time: this.addToCartTime
+                id: tmpID,
+                query: this.query1,
+                date: this.addToCartTime
             }
             // console.warn(tmp_data)
             addtoCart(tmp_data)
@@ -369,9 +369,9 @@ export default {
             var current_time = new Date()
             this.addToCartTime = current_time.getTime()
             var tmp_data = {
-                ID: tmpID,
-                Query: this.query2,
-                Time: this.addToCartTime
+                id: tmpID,
+                query: this.query2,
+                time: this.addToCartTime
             }
             // console.warn(tmp_data)
             addtoCart(tmp_data)

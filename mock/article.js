@@ -81,12 +81,12 @@ count = 12
 
 for (let i = 0; i < count; i++) {
     List.push(Mock.mock({
-        ID: '@increment',
-        Description: 'This is a dataset. This is a dataset. This is a dataset. This is a dataset. This is a Dataset. This is a dataset. This is a dataset.',
-        Time: +Mock.Random.date('yyyy-MM-dd'),
-        Name: 'DataSet '+ (i+1),
-        Source: 'www.zju' + (i+1) + '.com',
-        Size: '@integer(1, 5)GB',
+        id: '@increment',
+        description: 'This is a dataset. This is a dataset. This is a dataset. This is a dataset. This is a Dataset. This is a dataset. This is a dataset.',
+        date: +Mock.Random.date('yyyy-MM-dd'),
+        name: 'DataSet '+ (i+1),
+        source: 'www.zju' + (i+1) + '.com',
+        size: '@integer(1, 5)GB',
     }))
 }
 

@@ -16,5 +16,13 @@ export function addtoCart(data) {
   })
 }
 
+export function displayDatasetInfo(data) {
+  return request({
+    url: '/vue-element-admin/gallery/datasetInfo',
+    method: 'get',
+    params: data
+  })
+}
+
 
 
