@@ -61,13 +61,9 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="240" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button  type="success"><router-link :to="{path: '/cart'}">
-            Add to Cart
-          </router-link></el-button>
-          <!-- <el-button  @click="updateAndQuery(row.id)" type = "primary">
-            Details
-          </el-button> -->
-          <el-button type="primary"><router-link :to="{path:'/detail/name/' + row.name ,query:{name:row.name}}" class="detail_link">Details</router-link></el-button>
+          <el-button  @click="updateAndQuery(row.id)" type = "primary" style="width: 200px;">
+            Set the Parameters
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -77,41 +73,23 @@
           :visible.sync="dialogVisible"
           width="50%"
           :before-close="handleClose">
-          <span class="notice">You can either select the query language or type it in by yourself.<br />Be sure the query is correct.<br /></span>
-          <el-card class="selectAndQuery">
-          <span class="query_language">SELECT&nbsp;</span> 
-          <el-select clearable class="columnSelection" v-model="columns" multiple placeholder="Name of Columns">
-              <el-option
-                v-for="item in columnOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-          </el-select>
-          <br />
-          <span class="query_language">FROM&nbsp;&nbsp;&nbsp;</span>
-          <el-select clearable class="tableSelection" v-model="tableName" placeholder="Name of Table">
-              <el-option
-                v-for="item in tableOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-          </el-select>
-          </el-card>
-          <el-card class="query_input_card">
-          <el-input class="query_input" v-model="query2" placeholder="Query Language" style="min-width: 50px;" />
+          <span class="notice">Please type in the parameters for the dataset.<br /></span>
+          <el-card class="param_class">
+              <span class="title">
+                  Price Coefficient
+              </span>
+              <el-input class="params_input" placeholder="Number between 0 to 1" v-model="price_coefficient"/>
+              <span class="title">
+                  Sensitivity Degree
+              </span>
+              <el-input class="params_input" placeholder="Number between 0 to 1" v-model="sensitivity_degree"/>
           </el-card>
           <div align="center">
-            <el-button v-waves @click="addToCart1(dialogID)" type="success" style="width:30%; height:50px;">
-              Add to Cart<br />with Query 1
-            </el-button>
-            <el-button v-waves @click="addToCart2(dialogID)" type="success" style="width:30%; height:50px;">
-              Add to Cart<br />with Query 2
+            <el-button v-waves @click="setParams(dialogID)" type="success" style="width:30%; height:50px;">
+              Confirm
             </el-button>
             <el-button v-waves type="danger" class="cancel_button" @click="Cancel" style="width:30%; height:50px;">
-              Cancel<br />
-              & Close
+              Cancel
             </el-button>
           </div>
         </el-dialog>
@@ -155,17 +133,19 @@
         /* margin-bottom: 20px; */
     }
 
-    /* .query_language {
-        width: 20%;
-        display: block;
-    } */
-
-    .selectAndQuery {
+    .param_class {
         margin-bottom: 20px;
     }
 
-    .query_input_card {
-        margin-bottom: 30px;
+    .title {
+        display: block;
+        font-size: 18px;
+        font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+    }
+
+    .params_input {
+        margin-top: 10px;
+        margin-bottom: 15px;
     }
   
 </style>
@@ -182,6 +162,8 @@ export default {
     directives: { waves },
     data() {
         return {
+            price_coefficient: undefined,
+            sensitivity_degree: undefined,
             tableKey: 0,
             total: 0,
             listLoading: true,
@@ -308,46 +290,11 @@ export default {
             // // console.warn(tmp_data)
             // addtoCart(tmp_data)
         },
-        addToCart1(tmpID) {
-            // console.warn(tmpID)
-            if ("*" in this.columns) {
-                var tmpCol = "*"
-            } else {
-                var tmpCol = ""
-                var cnt = 1
-                this.columns.forEach((item) => {
-                    if ((cnt !== 1) && (cnt !== this.columns.length)) {
-                        tmpCol += ","
-                    }
-                    tmpCol += item
-                    cnt += 1
-                })
-            }
-            var tmpTable = this.tableName
-            this.query1 = "SELECT " + tmpCol + " FROM " + tmpTable
-            var current_time = new Date()
-            this.addToCartTime = current_time.getTime()
-            var tmp_data = {
-                id: tmpID,
-                auery: this.query1,
-                date: this.addToCartTime
-            }
-            // console.warn(tmp_data)
-            addtoCart(tmp_data)
-        },
-        addToCart2(tmpID) {
-            // console.warn(tmpID)
-            var current_time = new Date()
-            this.addToCartTime = current_time.getTime()
-            var tmp_data = {
-                id: tmpID,
-                query: this.query2,
-                date: this.addToCartTime
-            }
-            // console.warn(tmp_data)
-            addtoCart(tmp_data)
-        },
         Cancel() {
+            this.dialogVisible = false
+            this.deleteDialogID()
+        },
+        setParams() {
             this.dialogVisible = false
             this.deleteDialogID()
         },

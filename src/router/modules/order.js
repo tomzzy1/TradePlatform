@@ -13,7 +13,7 @@ const orderRouter = {
             name: 'Order',
             meta: { title: 'Order',
                     icon: 'el-icon-sold-out',
-                    roles: ['buyer', 'admin']
+                    roles: ['buyer']
                   }
         }
     ]

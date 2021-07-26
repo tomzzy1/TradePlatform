@@ -84,8 +84,8 @@ const answerNumberOptions = [
 export default ({
     data() {
         return {
-            // info: "This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data.",
-            info: null,
+            info: "This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data. This is the information of missing data.",
+            // info: null,
             question: undefined,
             answer_number: undefined,
             answerNumberOptions,
@@ -121,12 +121,12 @@ export default ({
                 CorrectAnswer: this.correct_answer,
                 Point: this.point
             }
-            postQuestion(tmpData)
+            // postQuestion(tmpData)
         },
         getInfo() {
-            fetchInfo(this.listQuery).then(response => {
-                this.info = response.info
-            })
+            // fetchInfo(this.listQuery).then(response => {
+            //     this.info = response.info
+            // })
         }
     }
 })

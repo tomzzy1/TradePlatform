@@ -1,24 +1,27 @@
 <template>
     <div class="app-container">
         <div>
+        <span class="tip">
+            Please select the file of dataset and set up the base price as you wish.
+        </span>
         <el-card class="upload_bar" shadow="hover">
             <!-- <el-input v-model="time" placeholder="Time" class="time_input" /> -->
-            <div class="heading">Date: </div>
+            <!-- <div class="heading">Date: </div>
             <el-date-picker
                 class="date_picker"
                 v-model="params.time"
                 type="date"
                 placeholder="Please select the data"
             >
-            </el-date-picker>
+            </el-date-picker> -->
             <div class="heading">Base Price: </div><el-input class="base_price_input" v-model="params.base_price" placeholder="Base Price"  />
             <br />
-            <div class="heading">Price Coefficient: </div><el-input class="price_coefficient_input" v-model="params.price_coefficient" placeholder="Price Coefficient" />
+            <!-- <div class="heading">Price Coefficient: </div><el-input class="price_coefficient_input" v-model="params.price_coefficient" placeholder="Price Coefficient" />
             <br />
             <div class="heading">Sensitivity Degree: </div><el-input class="sensitivity_degree_input" v-model="params.sensitivity_degree" placeholder="Sensitivity Degree" />
-            <br />
-            <!--div class="heading">File Type: </div><el-select v-model="fileType" class="file_type_select" placeholder="File Type">
-                <el-option v-for="item in fileTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />-->
+            <br /> -->
+            <div class="heading">File Type: </div><el-select v-model="fileType" class="file_type_select" placeholder="File Type">
+                <el-option v-for="item in fileTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
             </el-select>
             <br />
             <div align="center">
@@ -36,7 +39,7 @@
                 <el-button slot="trigger" type="primary" class="el-upload_button">Select File</el-button>
                 <!-- <el-button class="upload_button" type="success" @click="submitUpload">Upload</el-button> -->
                 <el-button class="upload_button" type="success" @click="uploadFile">Upload</el-button>
-                <div slot="tip" class="el-upload_tip">Please upload the certain type of file.</div>
+                <div slot="tip" class="el-upload_tip">Make sure to upload the certain type of file.</div>
                 <!-- <el-button @click="testRequest">
                     Test
                 </el-button> -->
@@ -136,6 +139,15 @@
     .el-upload_tip {
         margin-bottom: 15px;
         margin-top: 10px;
+        font-style: italic;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .tip {
+        display: block;
+        margin-bottom: 10px;
+        font-style: italic;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
 </style>
@@ -146,21 +158,23 @@ import { upload_data } from '@/api/upload_item'
 const fileTypeOptions = [
     { key: 'CSV_file', display_name: 'CSV' },
     { key: 'TXT_file', display_name: 'TXT' },
-    { key: 'PNG_file', display_name: 'PNG' }
+    { key: 'ZIP_file', display_name: 'ZIP' }
 ]
 
 export default {
     data() {
         return {
+            fileTypeOptions,
+            fileType: undefined,
             params: 
             {
                 ID: undefined,
                 time: undefined,
-                //fileTypeOptions,
+                // fileTypeOptions,
                 base_price: undefined,
                 price_coefficient: undefined,
-                sensitivity_degree: undefined//,
-                //fileType: undefined
+                sensitivity_degree: undefined
+                // fileType: undefined
             },
             fileList: []
         }
@@ -178,7 +192,7 @@ export default {
             console.log(this.params)
             formData.append('params', JSON.stringify(this.params))
             console.warn("+++++ This is the data posted to the database +++++")
-            upload_data(formData)
+            // upload_data(formData)
             this.$message.success("Upload Successfully")
         },
         // submitUpload() {

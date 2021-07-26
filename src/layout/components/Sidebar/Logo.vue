@@ -24,8 +24,11 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Element Admin',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: 'Data Query & Trade Platform',
+      logo: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fassets.imedao.com%2Fimages%2Flogos%2Flogo_xueqiu_180%2Flogo_xueqiu_180-05.png&refer=http%3A%2F%2Fassets.imedao.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629625532&t=d3da211e881cd3cefaad820d09bfd62b'
+      // logo: 'el-icon-s-data'
+      // logo: '@/pics/test.jpg'
+      // logo: '/test.jpg'
     }
   }
 }
@@ -65,9 +68,9 @@ export default {
       display: inline-block;
       margin: 0;
       color: #fff;
-      font-weight: 600;
+      font-weight: 40;
       line-height: 50px;
-      font-size: 14px;
+      font-size: 11px;
       font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
       vertical-align: middle;
     }

@@ -1,15 +1,13 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-    <el-select v-model="listQuery.sort" style="width: 140px; margin-right: 10px;" class="filter-item" @change="handleFilter">
+    <div align="right">
+    <el-select style="width: 140px; margin-right: 10px;" class="filter-item" v-model="search">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
-      <el-input v-model="listQuery.name" placeholder="Name" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+      <el-input v-model="searching_content" placeholder="Search" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" v-model="searching_content">
         Search
-      </el-button>
-      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right">
-        Buy
       </el-button>
     </div>
 
@@ -41,7 +39,8 @@
       </el-table-column>
       <el-table-column label="Time" width="100px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <!-- <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span> -->
+          <span>{{ row.date }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Price" width="80px" align="center">
@@ -49,28 +48,37 @@
           <span>{{ row.price }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Number" align="center" width="95">
+      <el-table-column label="Query" align="center" min-width="200px">
         <template slot-scope="{row}">
-          <span>{{ row.number }}</span>
+          <span>{{ row.query }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="330" class-name="small-padding fixed-width">
+      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button v-waves type="primary" size="mini" @click="increaseNumber(row)">
+          <!-- <el-button v-waves type="primary" size="mini" @click="increaseNumber(row)">
             +
           </el-button>
           <el-button v-waves type="primary" size="mini" @click="decreaseNumber(row)">
             -
-          </el-button>
-          <el-button v-waves size='mini' type="success" @click="buyGood(row)">
+          </el-button> -->
+          <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
+          <el-button v-waves size='mini' type="success"><router-link :to="{path:'/order'}">
             Buy
-          </el-button>
+          </router-link></el-button>
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
             Delete
           </el-button>
         </template>
       </el-table-column>
     </el-table>
+
+    <div align="right" style="margin-top:20px;">
+      <!-- <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right"> -->
+      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;"><router-link :to="{path:'/order'}">
+        Buy
+      </router-link></el-button>
+      </div>
+    </div>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
@@ -90,27 +98,37 @@ export default {
     data() {
         return {
             tableKey: 0,
-            list: null,
-            total: 0,
-            listLoading: true,
+            // list: null,
+            search: 'Name',
+            searching_content: undefined,
+            list: [
+              {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
+              {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
+              {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"},
+              {name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7"},
+              {name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21"}
+            ],
+            total: 5,
+            listLoading: false,
             listQuery: {
                 page: 1,
                 limit: 20,
                 name: undefined,
-                number: undefined,
+                query: undefined,
                 price: undefined,
                 sort: '+id',
                 checked: false
             },
             sortOptions: [
-                { label: 'ID Ascending', key: '+id' },
-                { label: 'ID Descending', key: '-id' }
+                { label: 'Name', key: 'name' },
+                { label: 'Prize', key: 'prize' },
+                { label: 'Query', key: 'query'}
             ],
             temp: {
                 id: undefined,
                 timestamp: new Date(),
                 name: '',
-                number: '',
+                // number: '',
             },
             dialogFormVisible: false,
             dialogPvVisible: false,
@@ -124,16 +142,16 @@ export default {
     },
     methods: {
         getList() {
-            this.listLoading = true
-            fetchList(this.listQuery).then(response => {
-                this.list = response.data.items
-                this.total = response.data.total
+            // this.listLoading = true
+            // fetchList(this.listQuery).then(response => {
+            //     this.list = response.data.items
+            //     this.total = response.data.total
 
-                // simulation for timeout
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1.5 * 1000)
-            })
+            //     // simulation for timeout
+            //     setTimeout(() => {
+            //         this.listLoading = false
+            //     }, 1.5 * 1000)
+            // })
         },
         handleFilter() {
             this.listQuery.page = 1
@@ -182,7 +200,7 @@ export default {
             duration: 2000
           })
           this.list.splice(index, 1)
-          deleteCart(row.id)
+          // deleteCart(row.id)
         },
         // handleUpdate(row) {
         //     this.temp = Object.assign({}, row)

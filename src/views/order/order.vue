@@ -18,9 +18,9 @@
                 </template>
             </el-table-column>
 
-            <el-table-column label="Number" align="center" width="200px">
+            <el-table-column label="Query" align="center" min-width="400px">
                 <template slot-scope="{row}">
-                    <span>{{ row.number }}</span>
+                    <span>{{ row.query }}</span>
                 </template>
             </el-table-column>
 
@@ -41,9 +41,10 @@
                 <el-button v-waves class="order_button" type="success" icon="el-icon-check" @click="orderGoods">
                     Pay
                 </el-button>
-                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="orderCancel">
+                <!-- <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="orderCancel"> -->
+                <el-button v-waves class="order_button" type="danger" icon="el-icon-close"><router-link :to="{path:'/cart'}">
                     Cancel
-                </el-button>
+                </router-link></el-button>
             </el-card>
         </div>
 
@@ -54,6 +55,7 @@
 
     .operation_bar {
         text-align: center;
+        margin-top: 20px;
     }
 
     .total_price {
@@ -82,9 +84,14 @@ export default {
             tableKey: 0,
             total: 0,
             list: null,
+            list: [
+                {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
+                {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
+                {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"}
+            ],
             order_success: undefined,
-            total_price: 0,
-            listLoading: true,
+            total_price: 59,
+            listLoading: false,
             listQuery: {
                 // name: undefined,
                 // number: undefined,
@@ -99,17 +106,17 @@ export default {
     },
     methods: {
         getList() {
-            this.listLoading = true
-            fetchList(this.listQuery).then(response => {
-                this.list = response.data.items
-                this.total = response.data.total
-                this.total_price = response.data.total_prices
+            // this.listLoading = true
+            // fetchList(this.listQuery).then(response => {
+            //     this.list = response.data.items
+            //     this.total = response.data.total
+            //     this.total_price = response.data.total_prices
 
-                // simulation for timeout
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1.5 * 1000)
-            })
+            //     // simulation for timeout
+            //     setTimeout(() => {
+            //         this.listLoading = false
+            //     }, 1.5 * 1000)
+            // })
         }
         // orderGoods() {
         //     orderConfirm(total_price)

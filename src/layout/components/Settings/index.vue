@@ -3,10 +3,10 @@
     <div>
       <h3 class="drawer-title">Page style setting</h3>
 
-      <div class="drawer-item">
+      <!-- <div class="drawer-item">
         <span>Theme Color</span>
         <theme-picker style="float: right;height: 26px;margin: -3px 8px 0 0;" @change="themeChange" />
-      </div>
+      </div> -->
 
       <div class="drawer-item">
         <span>Open Tags-View</span>

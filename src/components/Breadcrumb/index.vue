@@ -27,6 +27,11 @@ export default {
       this.getBreadcrumb()
     }
   },
+  // beforeCreate() {
+  //   if (this.$route) {
+  //     this.$route.meta.title = this.$route.query.name
+  //   }
+  // },
   created() {
     this.getBreadcrumb()
   },
@@ -41,6 +46,8 @@ export default {
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+
+      // item.meta.breadcrumb = item.meta.title
     },
     isDashboard(route) {
       const name = route && route.name

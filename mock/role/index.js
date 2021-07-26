@@ -9,7 +9,7 @@ const roles = [
     key: 'admin',
     name: 'admin',
     description: 'Super Administrator. Have access to view all pages.',
-    routes: routes
+    routes: routes.filter(i => i.path !== '/permission')
   },
   {
     key: 'worker',
@@ -29,14 +29,14 @@ const roles = [
     description: 'Just a visitor. Can only see the home page and the document page', // TODO: change description
     routes: [{
       path: '',
-      redirect: 'dashboard',
-      children: [
-        {
-          path: 'dashboard',
-          name: 'Dashboard',
-          meta: { title: 'dashboard', icon: 'dashboard' }
-        }
-      ]
+      redirect: 'upload'
+      // children: [
+      //   {
+      //     path: 'dashboard',
+      //     name: 'Dashboard',
+      //     meta: { title: 'dashboard', icon: 'dashboard' }
+      //   }
+      // ]
     }]
   }
 ]

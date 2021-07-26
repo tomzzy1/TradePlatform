@@ -1,10 +1,11 @@
 <template>
     <div class="app-container">
         <div class="filter-container">
-            <el-select v-model="listQuery.sort" style="width: 140px; margin-right: 30px;" class="filter-item" @change="handleFilter">
+            <div align="right">
+            <el-select v-model="search" style="width: 140px;" class="filter-item" @change="handleFilter">
                 <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key"/>
             </el-select>
-            <el-select v-model="listQuery.importance" placeholder="Author" clearable style="width: 130px; margin-right: 5px;" class="filter-item">
+            <!-- <el-select v-model="listQuery.importance" placeholder="Author" clearable style="width: 130px; margin-right: 5px;" class="filter-item">
                 <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
             </el-select>
             <el-select v-model="listQuery.type" placeholder="Size" clearable class="filter-item" style="width: 130px; margin-right: 5px;">
@@ -12,11 +13,12 @@
             </el-select>
             <el-select v-model="listQuery.type" placeholder="Time" clearable class="filter-item" style="width: 130px">
                 <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-            </el-select>
-            <el-input placeholder="Name" style="width: 200px; margin-right: 5px; margin-left: 30px" class="filter-item" @keyup.enter.native="handleFilter" />
+            </el-select> -->
+            <el-input placeholder="Search" style="width: 200px; margin-right: 10px; margin-left: 10px" class="filter-item" v-model="searching_content" />
             <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="handleFilter">
                 Search
             </el-button>
+            </div>
         </div>
 
         <div class="app-grid">
@@ -34,11 +36,18 @@
                         <br />
                         <span class="dataset_time">Time: {{ item.date }}</span>
                         <div class="bottom clearfix">
-                            <el-button type="text" class="button" @click="updateAndQuery(item.ID)">Query</el-button>
+                            <!-- <el-button type="text"
+                             class="button"
+                             @click="$router-link.go(`/detail/id`)">Details</el-button> -->
+                            <router-link :to="{path:'/detail/name/' + item.name ,query:{name:item.name}}" class="detail_link">Details</router-link>
+                            <!-- <router-link :to='`/detail/name/`+ item.name' class="detail_link">Details</router-link> -->
+                        </div>
+                        <!-- <div class="bottom clearfix">
+                            <el-button type="text" class="button" @click="updateAndQuery(item.id)">Query</el-button>
                         </div>
                         <div class="bottom clearfix">
-                            <el-button type="text" class="button" @click="directAddToCart(item.ID)">Add To Cart</el-button>
-                        </div>
+                            <el-button type="text" class="button" @click="directAddToCart(item.id)">Add To Cart</el-button>
+                        </div> -->
                     </div>
                     </el-card>
                 </el-col>
@@ -206,6 +215,10 @@
         margin-bottom: 30px;
     }
 
+    .detail_link {
+        color: #337ab7;
+    }
+
 </style>
 
 <script>
@@ -224,10 +237,12 @@ export default {
             total: 0,
             listLoading: true,
             List: null,
+            search: 'Name',
             addToCartTime: null,
             query: null,
             query1: null,
             query2: null,
+            searching_content: undefined,
             columnOptions: [
                 {value: "*", label: "*"},
                 {value: "Column 1", label: "Column 1"},
@@ -261,8 +276,9 @@ export default {
                 sort: '+id',
             },
             sortOptions: [
-                { label: 'ID Ascending', key: '+id' },
-                { label: 'ID Descending', key: '-id' }
+                { label: 'Name', key: 'name' },
+                { label: 'Source', key: 'source' },
+                { label: 'Size', key: 'size'}
             ],
             temp: {
                 id: undefined,

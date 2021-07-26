@@ -13,7 +13,7 @@ const crowdsourcingRouter = {
             name: 'Crowdsourcing',
             meta: { title: 'Crowdsourcing',
                     icon: 'el-icon-edit-outline',
-                    roles: ['buyer', 'admin']
+                    roles: ['worker']
                   }
         }
     ]

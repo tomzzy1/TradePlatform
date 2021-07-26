@@ -13,7 +13,7 @@ const uploadRouter = {
             name: 'Upload',
             meta: { title: 'Upload',
                     icon: 'el-icon-upload',
-                    roles: ['buyer', 'seller', 'admin']
+                    roles: ['seller']
                   }
         }
     ]

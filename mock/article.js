@@ -83,9 +83,10 @@ for (let i = 0; i < count; i++) {
     List.push(Mock.mock({
         id: '@increment',
         description: 'This is a dataset. This is a dataset. This is a dataset. This is a dataset. This is a Dataset. This is a dataset. This is a dataset.',
-        date: +Mock.Random.date('yyyy-MM-dd'),
+        // date: +Mock.Random.date('yyyy-MM-dd'),
+        date: '2021/' + '@integer(1, 12)' + '/' + '@integer(1, 30)',
         name: 'DataSet '+ (i+1),
-        source: 'www.zju' + (i+1) + '.com',
+        source: 'www.ZJU.com',
         size: '@integer(1, 5)GB',
     }))
 }

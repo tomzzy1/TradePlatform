@@ -13,7 +13,7 @@ const cartRouter = {
             name: 'Cart',
             meta: { title: 'Cart',
                     icon: 'el-icon-goods',
-                    roles: ['buyer', 'admin']
+                    roles: ['buyer']
                   }
         }
     ]

@@ -13,7 +13,7 @@ const postQuestionRouter = {
             name: 'Post',
             meta: { title: 'Post',
                     icon: 'guide',
-                    roles: ['buyer', 'admin']
+                    roles: ['seller']
                   }
         }
     ]
