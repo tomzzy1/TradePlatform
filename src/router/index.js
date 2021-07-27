@@ -47,17 +47,17 @@ import settingRouter from './modules/setting'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  // {
-  //   path: '/redirect',
-  //   component: Layout,
-  //   hidden: true,
-  //   children: [
-  //     {
-  //       path: '/redirect/:path(.*)',
-  //       component: () => import('@/views/redirect/index')
-  //     }
-  //   ]
-  // },
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
   {
     path: '/login',
     component: () => import('@/views/login/index'),
@@ -79,17 +79,17 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/Gallery',
+    path: '/',
     component: Layout,
-    redirect: '/Gallery'
-    // children: [
-    //   {
-    //     path: 'dashboard',
-    //     component: () => import('@/views/dashboard/index'),
-    //     name: 'Dashboard',
-    //     meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-    //   }
-    // ]
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
   }/*,
   {
     path: '/documentation',
