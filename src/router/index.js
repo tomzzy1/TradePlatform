@@ -81,13 +81,13 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/homepage',
     children: [
       {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        path: 'homepage',
+        component: () => import('@/views/homepage/index'),
+        name: 'Homepage',
+        meta: { title: 'Homepage', icon: 'el-icon-s-custom', affix: true }
       }
     ]
   }/*,

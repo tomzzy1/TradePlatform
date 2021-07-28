@@ -29,12 +29,12 @@ const roles = [
     description: 'Just a visitor. Can only see the home page and the document page', // TODO: change description
     routes: [{
       path: '',
-      redirect: 'dashboard',
+      redirect: 'homepage',
       children: [
         {
-          path: 'dashboard',
-          name: 'Dashboard',
-          meta: { title: 'dashboard', icon: 'dashboard' }
+          path: 'homepage',
+          name: 'Homepage',
+          meta: { title: 'Homepage', icon: 'el-icon-s-custom' }
         }
       ]
     }]

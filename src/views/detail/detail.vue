@@ -116,14 +116,14 @@ export default {
         return {
             name: "Hello",
             id: undefined,
-            // description: undefined,
-            // table_info: undefined,
-            description: "The information of the dataset: Do not go gentle into that good night, Old age should burn and rave at close of day; Rage, rage against the dying of the light.Though wise men at their end know dark is right, Because their words had forked no lightning they Do not go gentle into that good night. Good men, the last wave by, crying how bright Their frail deeds might have danced in a green bay, Rage, rage against the dying of the light. Wild men who caught and sang the sun in flight, And learn, too late, they grieved it on its way, Do not go gentle into that good night. Grave men, near death, who see with blinding sight Blind eyes could blaze like meteors and be gay, Rage, rage against the dying of the light. And you, my father, there on the sad height, Curse, bless me now with your fierce tears, I pray. Do not go gentle into that good night. Rage, rage against the dying of the light.",
-            table_info: [
-                {columns: ["Column A", "Column B", "Column C"], table: "Table 1", types: ["number", "number", "string"]},
-                {columns: ["Column D", "Column E", "Column F"], table: "Table 2", types: ["string", "number", "number"]},
-                {columns: ["Column G", "Column H", "Column I"], table: "Table 3", types: ["string", "number", "number"]}   
-            ],
+            description: undefined,
+            table_info: undefined,
+            // description: "The information of the dataset: Do not go gentle into that good night, Old age should burn and rave at close of day; Rage, rage against the dying of the light.Though wise men at their end know dark is right, Because their words had forked no lightning they Do not go gentle into that good night. Good men, the last wave by, crying how bright Their frail deeds might have danced in a green bay, Rage, rage against the dying of the light. Wild men who caught and sang the sun in flight, And learn, too late, they grieved it on its way, Do not go gentle into that good night. Grave men, near death, who see with blinding sight Blind eyes could blaze like meteors and be gay, Rage, rage against the dying of the light. And you, my father, there on the sad height, Curse, bless me now with your fierce tears, I pray. Do not go gentle into that good night. Rage, rage against the dying of the light.",
+            // table_info: [
+            //     {columns: ["Column A", "Column B", "Column C"], table: "Table 1", types: ["number", "number", "string"]},
+            //     {columns: ["Column D", "Column E", "Column F"], table: "Table 2", types: ["string", "number", "number"]},
+            //     {columns: ["Column G", "Column H", "Column I"], table: "Table 3", types: ["string", "number", "number"]}   
+            // ],
             table_list: [],
             column_list: {},
             type_list: {},
@@ -157,10 +157,10 @@ export default {
     },
     methods: {
         getList() {
-            // fetchList(this.id).then(response => {
-            //     this.description = response.description
-            //     this.table_info = response.table_info
-            // })
+            fetchList(this.id).then(response => {
+                this.description = response.description
+                this.table_info = response.table_info
+            })
             this.table_info.forEach(element => this.table_list.push(element.table))
             // console.warn(this.table_list)
             this.table_info.forEach(element => {
@@ -197,12 +197,12 @@ export default {
         addToCart1(tmpID) {
             var tmpQuery = ""
             var tmpData = { id: tmpID, query: tmpQuery }
-            // addToCart(tmpData)
+            addToCart(tmpData)
         },
         addToCart2(tmpID) {
             var tmpQuery = this.query
             var tmpData = { id: tmpID, query: tmpQuery }
-            // addToCart(tmpData)
+            addToCart(tmpData)
         }
     }
 }

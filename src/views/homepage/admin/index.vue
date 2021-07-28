@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-editor-container">
+  <div class="homepage-editor-container">
     <github-corner class="github-corner" />
 
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
@@ -71,7 +71,7 @@ const lineChartData = {
 }
 
 export default {
-  name: 'DashboardAdmin',
+  name: 'HomepageAdmin',
   components: {
     GithubCorner,
     PanelGroup,
@@ -97,7 +97,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard-editor-container {
+
+  .homepage-editor-container {
   padding: 32px;
   background-color: rgb(240, 242, 245);
   position: relative;
