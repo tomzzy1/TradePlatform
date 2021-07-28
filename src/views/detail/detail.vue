@@ -179,9 +179,9 @@ export default {
                 // console.warn(response.data.description)
                 this.description = response.data.description
                 // console.warn(this.description)
-                console.warn(response.data.table_info)
+                // console.warn(response.data.table_info)
                 this.table_info = response.data.table_info
-                console.warn(this.table_info)
+                // console.warn(this.table_info)
                 setTimeout(() => {
                     this.listLoading = false
                 }, 1.5 * 1000)
