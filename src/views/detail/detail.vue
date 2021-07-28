@@ -162,7 +162,8 @@ export default {
     methods: {
         getList() {
             // console.warn(this.id)
-            fetchList({id: this.id}).then(response => {
+            var tmp_id = {id: this.id}
+            fetchList(tmp_id).then(response => {
                 this.description = response.data.description
                 this.table_info = response.data.table_info
             })
