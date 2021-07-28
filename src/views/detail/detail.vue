@@ -151,7 +151,7 @@ export default {
     },
     created() {
         var query = this.$route.query
-        console.warn(query)
+        // console.warn(query)
         if (query) {
             this.name = query.name
             this.id = query.id
@@ -161,8 +161,8 @@ export default {
     },
     methods: {
         getList() {
-            console.warn(this.id)
-            fetchList(this.id).then(response => {
+            // console.warn(this.id)
+            fetchList({id: this.id}).then(response => {
                 this.description = response.data.description
                 this.table_info = response.data.table_info
             })
