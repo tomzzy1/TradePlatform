@@ -43,15 +43,15 @@
         </el-card>
         <el-card>
             <el-input class="query_input" v-model="query" placeholder="Query"/>
-            <div align="center">
-            <!-- <el-button class="button" type="primary" @click="addToCart1(id)">Add Entire Dataset to Cart</el-button>
-            <el-button class="button" type="primary" @click="addToCart2(id)">Add Dataset with Query</el-button>
-            <el-button class="button" type="danger" @click="cancel">Cancel</el-button>
+            <!-- <div align="center">
+            <el-button class="button" type="primary" @click="addToCart1(id)"><router-link :to="{path:'/cart'}">Add Entire Dataset to Cart</router-link></el-button>
+            <el-button class="button" type="primary" @click="addToCart2(id)"><router-link :to="{path:'/cart'}">Add Dataset with Query</router-link></el-button>
+            <el-button class="button" type="danger" @click="cancel"><router-link :to="{path:'/gallery/gallery_table'}">Cancel</router-link></el-button>
             </div> -->
-            <el-button class="button" type="primary" ><router-link :to="{path:'/cart'}">Add Entire Dataset to Cart</router-link></el-button>
-            <el-button class="button" type="primary"><router-link :to="{path:'/cart'}">Add Dataset with Query</router-link></el-button>
-            <el-button class="button" type="danger" ><router-link :to="{path:'/gallery/gallery_table'}">Cancel</router-link></el-button>
-            </div>
+            <div align="center">
+            <el-button class="button" type="primary" @click="addToCart1(id)">Add Entire Dataset to Cart</el-button>
+            <el-button class="button" type="primary" @click="addToCart2(id)">Add Dataset with Query</el-button>
+            <el-button class="button" type="danger" @click="cancel"><router-link :to="{path:'/gallery/gallery_table'}">Cancel</router-link></el-button>
         </el-card>
         
 
@@ -108,7 +108,7 @@
 </style>
 
 <script>
-import { fetchList, addToCart } from '@/api/detail'
+import { fetchList, addToCart, checkQuery } from '@/api/detail'
 import waves from '@/directive/waves'
 
 export default {
@@ -134,7 +134,9 @@ export default {
                 "number": [">21", "<21"],
                 "string": ["='apple'", "='banana'"]
             },
-            query: undefined
+            query: undefined,
+            checkValid: true
+            // dialogVisible
             // number_condition: [">21", "<21"],
             // string_condition: ["='apple'", "='banana'"]
         }
@@ -197,12 +199,31 @@ export default {
         addToCart1(tmpID) {
             var tmpQuery = ""
             var tmpData = { id: tmpID, query: tmpQuery }
-            addToCart(tmpData)
+            this.check(tmpID)
+            // addToCart(tmpData)
+            if (this.checkValid == true){
+                window.location.href = "/cart"
+            }
         },
         addToCart2(tmpID) {
             var tmpQuery = this.query
             var tmpData = { id: tmpID, query: tmpQuery }
-            addToCart(tmpData)
+            this.check(tmpID)
+            // addToCart(tmpData)
+            if (this.checkValid == true){
+                window.location.href = "/cart"
+            }
+        },
+        cancel() {
+            this.query = undefined
+        },
+        check(tmpID) {
+            checkQuery(tmpID).then(response => {
+                this.checkValid = response.status
+            })
+            if (this.checkValid == false){
+                this.$message.error('Please type in the valid query language!')
+            }
         }
     }
 }

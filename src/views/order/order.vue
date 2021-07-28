@@ -84,11 +84,11 @@ export default {
             tableKey: 0,
             total: 0,
             list: null,
-            list: [
-                {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
-                {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
-                {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"}
-            ],
+            // list: [
+            //     {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
+            //     {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
+            //     {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"}
+            // ],
             order_success: undefined,
             total_price: 59,
             listLoading: false,
@@ -106,24 +106,24 @@ export default {
     },
     methods: {
         getList() {
-            // this.listLoading = true
-            // fetchList(this.listQuery).then(response => {
-            //     this.list = response.data.items
-            //     this.total = response.data.total
-            //     this.total_price = response.data.total_prices
+            this.listLoading = true
+            fetchList(this.listQuery).then(response => {
+                this.list = response.data.items
+                this.total = response.data.total
+                this.total_price = response.data.total_prices
 
-            //     // simulation for timeout
-            //     setTimeout(() => {
-            //         this.listLoading = false
-            //     }, 1.5 * 1000)
-            // })
+                // simulation for timeout
+                setTimeout(() => {
+                    this.listLoading = false
+                }, 1.5 * 1000)
+            })
+        },
+        orderGoods() {
+            orderConfirm(total_price)
+        },
+        orderCancel() {
+
         }
-        // orderGoods() {
-        //     orderConfirm(total_price)
-        // },
-        // orderCancel() {
-
-        // }
     }
 }
     
