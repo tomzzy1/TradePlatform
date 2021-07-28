@@ -32,10 +32,18 @@ export function addCart(data) {
   })
 }
 
-export function buyCart(id_array) {
+export function buyCart(data) {
   return request({
     url: '/vue-element-admin/cart/buy',
     method: 'post',
-    id_array
+    data
+  })
+}
+
+export function getOrderID(data) {
+  return request({
+    url: '/vue-element-admin/cart/get_order_id',
+    method: 'get',
+    params: data
   })
 }

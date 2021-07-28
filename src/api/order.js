@@ -16,6 +16,14 @@ export function orderConfirm(data) {
     })
 }
 
+export function orderCancel(data) {
+    return request({
+        url: '/vue-element-admin/order/cancel',
+        method: 'post',
+        data
+    })
+}
+
 export function orderCompleted(data) {
     return request({
         url: '/vue-element-admin/order/confirm',

@@ -226,7 +226,7 @@ export default {
                 query: this.query
             }
             checkQuery(tmpData).then(response => {
-                this.checkValid = response.status
+                this.checkValid = response.data.status
             })
             if (this.checkValid == false){
                 this.$message.error('Please type in the valid query language!')

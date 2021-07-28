@@ -39,7 +39,6 @@
       </el-table-column>
       <el-table-column label="Time" width="100px" align="center">
         <template slot-scope="{row}">
-          <!-- <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span> -->
           <span>{{ row.date }}</span>
         </template>
       </el-table-column>
@@ -62,7 +61,7 @@
             -
           </el-button> -->
           <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
-          <el-button v-waves size='mini' type="success"><router-link :to="{path:'/order'}">
+          <el-button v-waves size='mini' type="success" @click="buyGood(row)"><router-link :to="{path:'/order', params: {order_id: order_ID}}">
             Buy
           </router-link></el-button>
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
@@ -74,7 +73,7 @@
 
     <div align="right" style="margin-top:20px;">
       <!-- <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right"> -->
-      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;"><router-link :to="{path:'/order'}">
+      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;" @click="buyGoods"><router-link :to="{path:'/order', params: {order_id: order_ID}}">
         Buy
       </router-link></el-button>
       </div>
@@ -86,7 +85,7 @@
 </template>
 
 <script>
-import { fetchList, updateCart, deleteCart, buyCart } from '@/api/cart'
+import { fetchList, updateCart, deleteCart, buyCart, getOrderID } from '@/api/cart'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -130,11 +129,12 @@ export default {
                 name: '',
                 // number: '',
             },
+            order_ID: 123456,
             dialogFormVisible: false,
             dialogPvVisible: false,
             dialogStatus: '',
             dialogPvVisible: false,
-            pvData: [],
+            pvData: []
         }
     },
     created() {
@@ -200,7 +200,7 @@ export default {
             duration: 2000
           })
           this.list.splice(index, 1)
-          // deleteCart(row.id)
+          deleteCart(row.id)
         },
         // handleUpdate(row) {
         //     this.temp = Object.assign({}, row)
@@ -249,12 +249,20 @@ export default {
             }
           }
           buyCart(idArray)
+          this.getID()
         },
         buyGood(row) {
           var idArray = new Array()
           idArray.push(row.id)
           buyCart(idArray)
+          this.getID()
+        },
+        getID() {
+          getOrderID().this(response => {
+            this.order_ID = response.order_id
+          })
         }
+
     }
 }
 

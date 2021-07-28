@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
 
-        <!-- <span>Hello world!</span> -->
+        <span>{{ id }}</span>
         <el-table
             :key="tableKey"
             v-loading="listLoading"
@@ -41,8 +41,7 @@
                 <el-button v-waves class="order_button" type="success" icon="el-icon-check" @click="orderGoods">
                     Pay
                 </el-button>
-                <!-- <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="orderCancel"> -->
-                <el-button v-waves class="order_button" type="danger" icon="el-icon-close"><router-link :to="{path:'/cart'}">
+                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="orderCancel"><router-link :to="{path:'/cart'}">
                     Cancel
                 </router-link></el-button>
             </el-card>
@@ -76,14 +75,16 @@ import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 
 export default {
+    id: undefined,
     name: 'order',
     components: { Pagination },
     directives: { waves },
     data() {
         return {
+            id: undefined,
             tableKey: 0,
             total: 0,
-            list: null,
+            // list: null,
             // list: [
             //     {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
             //     {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
@@ -96,33 +97,39 @@ export default {
                 // name: undefined,
                 // number: undefined,
                 // price: undefined,
+                id: undefined,
                 page: 1,
                 limit: 20
             }
         }
     },
     created() {
+        var params = this.$route.params
+        if (params) {
+            this.listquery.id = params.order_id
+            this.id = params.order_id
+        }
         this.getList()
     },
     methods: {
         getList() {
-            this.listLoading = true
-            fetchList(this.listQuery).then(response => {
-                this.list = response.data.items
-                this.total = response.data.total
-                this.total_price = response.data.total_prices
+            // this.listLoading = true
+            // fetchList(this.listQuery).then(response => {
+            //     this.list = response.data.items
+            //     this.total = response.data.total
+            //     this.total_price = response.data.total_prices
 
-                // simulation for timeout
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1.5 * 1000)
-            })
+            //     // simulation for timeout
+            //     setTimeout(() => {
+            //         this.listLoading = false
+            //     }, 1.5 * 1000)
+            // })
         },
         orderGoods() {
-            orderConfirm(total_price)
+            // orderConfirm(total_price)
         },
         orderCancel() {
-
+            orderCancel()
         }
     }
 }
