@@ -43,6 +43,7 @@
         </el-card>
         <el-card>
             <el-input class="query_input" v-model="query" placeholder="Query"/>
+            <el-radio class="complement_checkbox" v-model="complement" label=true>Add up extra money for a complete dataset.</el-radio>
             <!-- <div align="center">
             <el-button class="button" type="primary" @click="addToCart1(id)"><router-link :to="{path:'/cart'}">Add Entire Dataset to Cart</router-link></el-button>
             <el-button class="button" type="primary" @click="addToCart2(id)"><router-link :to="{path:'/cart'}">Add Dataset with Query</router-link></el-button>
@@ -106,6 +107,14 @@
         height: 40px;
     }
 
+    .complement_checkbox {
+        display: block;
+        font-family: sans-serif;
+        font-size: 30px;
+        margin-bottom: 10px;
+        size: medium;
+    }
+
 </style>
 
 <script>
@@ -136,7 +145,8 @@ export default {
                 "string": ["='apple'", "='banana'"]
             },
             query: undefined,
-            checkValid: true
+            checkValid: true,
+            complement: false
             // dialogVisible
             // number_condition: [">21", "<21"],
             // string_condition: ["='apple'", "='banana'"]
@@ -202,17 +212,16 @@ export default {
         },
         addToCart1(tmpID) {
             var tmpQuery = ""
-            var tmpData = { id: tmpID, query: tmpQuery }
+            var tmpData = { id: tmpID, query: tmpQuery, complement: this.complement }
             this.check(tmpID)
             if (this.checkValid == true){
                 addToCart(tmpData)
                 window.location.href = "http://localhost:9527/#/cart"
-                
             }
         },
         addToCart2(tmpID) {
             var tmpQuery = this.query
-            var tmpData = { id: tmpID, query: tmpQuery }
+            var tmpData = { id: tmpID, query: tmpQuery, complement: this.complement }
             this.check(tmpID)
             addToCart(tmpData)
             if (this.checkValid == true){
