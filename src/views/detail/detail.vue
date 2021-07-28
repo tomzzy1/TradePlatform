@@ -124,6 +124,7 @@ import waves from '@/directive/waves'
 export default {
     data() {
         return {
+            listLoading: true,
             name: "Hello",
             id: undefined,
             description: undefined,
@@ -172,28 +173,37 @@ export default {
     methods: {
         getList() {
             // console.warn(this.id)
+            this.listLoading = true
             var tmp_id = {id: this.id}
             fetchList(tmp_id).then(response => {
+                // console.warn(response.data.description)
                 this.description = response.data.description
+                // console.warn(this.description)
+                console.warn(response.data.table_info)
                 this.table_info = response.data.table_info
-            })
-            this.table_info.forEach(element => this.table_list.push(element.table))
-            // console.warn(this.table_list)
-            this.table_info.forEach(element => {
-                // var tmp_name = element.table
-                // console.warn(tmp_name)
-                this.column_list[element.table] = element.columns
+                console.warn(this.table_info)
+                setTimeout(() => {
+                    this.listLoading = false
+                }, 1.5 * 1000)
+                this.table_info.forEach(element => this.table_list.push(element.table))
+                // console.warn(this.table_list)
+                this.table_info.forEach(element => {
+                    // var tmp_name = element.table
+                    // console.warn(tmp_name)
+                    this.column_list[element.table] = element.columns
+                    // console.warn(this.column_list)
+                    this.type_list[element.table] = {}
+                    for (let i = 0; i < element.columns.length; i++){
+                        this.type_list[element.table][element.columns[i]] = element.types[i]
+                    }
+                })
+                this.table_name = this.table_list[0]
+                this.column_name = this.column_list[this.table_name][0]
+                // console.warn(this.table_list)
                 // console.warn(this.column_list)
-                this.type_list[element.table] = {}
-                for (let i = 0; i < element.columns.length; i++){
-                    this.type_list[element.table][element.columns[i]] = element.types[i]
-                }
-            })
-            this.table_name = this.table_list[0]
-            this.column_name = this.column_list[this.table_name][0]
-            // console.warn(this.table_list)
-            // console.warn(this.column_list)
-            console.warn(this.type_list)
+                // console.warn(this.type_list)
+                })
+                // console.warn(this.description)          
         },
         Test() {
             console.warn(this.conditions[this.type_list[this.table_name][this.column_name]])

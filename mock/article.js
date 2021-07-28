@@ -75,21 +75,21 @@
 
 // for the test of gallery grid
 
-const Mock = require('mockjs')
-List = []
-count = 12
+// const Mock = require('mockjs')
+// List = []
+// count = 12
 
-for (let i = 0; i < count; i++) {
-    List.push(Mock.mock({
-        id: '@increment',
-        description: 'This is a dataset. This is a dataset. This is a dataset. This is a dataset. This is a Dataset. This is a dataset. This is a dataset.',
-        // date: +Mock.Random.date('yyyy-MM-dd'),
-        date: '2021/' + '@integer(1, 12)' + '/' + '@integer(1, 30)',
-        name: 'DataSet '+ (i+1),
-        source: 'www.ZJU.com',
-        size: '@integer(1, 5)GB',
-    }))
-}
+// for (let i = 0; i < count; i++) {
+//     List.push(Mock.mock({
+//         id: '@increment',
+//         description: 'This is a dataset. This is a dataset. This is a dataset. This is a dataset. This is a Dataset. This is a dataset. This is a dataset.',
+//         // date: +Mock.Random.date('yyyy-MM-dd'),
+//         date: '2021/' + '@integer(1, 12)' + '/' + '@integer(1, 30)',
+//         name: 'DataSet '+ (i+1),
+//         source: 'www.ZJU.com',
+//         size: '@integer(1, 5)GB',
+//     }))
+// }
 
 // List = [
 //   {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
@@ -106,47 +106,47 @@ for (let i = 0; i < count; i++) {
 // ]
 
 
-module.exports = [
-  {
-    url: '/vue-element-admin/gallery/list',
-    type: 'get',
-    response: config => {
-      const { ID, page = 1, limit = 6, sort } = config.query
+// module.exports = [
+//   {
+//     url: '/vue-element-admin/gallery/list',
+//     type: 'get',
+//     response: config => {
+//       const { ID, page = 1, limit = 6, sort } = config.query
 
-      let mockList = List
+//       let mockList = List
 
-      if (sort === '-id') {
-        mockList = mockList.reverse()
-      }
+//       if (sort === '-id') {
+//         mockList = mockList.reverse()
+//       }
 
-      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+//       const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
 
-      return {
-        code: 20000,
-        data: {
-          total: mockList.length,
-          items: pageList
-        }
-      }
-    }
-  },
+//       return {
+//         code: 20000,
+//         data: {
+//           total: mockList.length,
+//           items: pageList
+//         }
+//       }
+//     }
+//   },
 
-  {
-    url: '/vue-element-admin/gallery/cart',
-    type: 'post',
-    response: config => {
-      const { id } = config.query
-      for (const article of List) {
-        if (article.id === +id) {
-          return {
-            code: 20000,
-            data: article
-          }
-        }
-      }
-    }
-  }
-]
+//   {
+//     url: '/vue-element-admin/gallery/cart',
+//     type: 'post',
+//     response: config => {
+//       const { id } = config.query
+//       for (const article of List) {
+//         if (article.id === +id) {
+//           return {
+//             code: 20000,
+//             data: article
+//           }
+//         }
+//       }
+//     }
+//   }
+// ]
 
 // mock data for testing of order page
 
@@ -316,3 +316,41 @@ module.exports = [
 //         }
 //     }
 // ]
+
+// test for detail page
+
+const Mock = require('mockjs')
+// const List = []
+
+// List.push(Mock.mock({
+//   description: "Hello world.",
+//   table_info: [
+//         {columns: ["Column A", "Column B", "Column C"], table: "Table 1", types: ["number", "number", "string"]},
+//         {columns: ["Column D", "Column E", "Column F"], table: "Table 2", types: ["string", "number", "number"]},
+//         {columns: ["Column G", "Column H", "Column I"], table: "Table 3", types: ["string", "number", "number"]}   
+//     ]
+// }))
+
+tmp_description = Mock.mock("Hello")
+tmp_table_info = Mock.mock([
+          {columns: ["Column A", "Column B", "Column C"], table: "Table 1", types: ["number", "number", "string"]},
+          {columns: ["Column D", "Column E", "Column F"], table: "Table 2", types: ["string", "number", "number"]},
+          {columns: ["Column G", "Column H", "Column I"], table: "Table 3", types: ["string", "number", "number"]}   
+      ])
+
+
+module.exports = [
+      {
+          url: '/vue-element-admin/detail/list',
+          type: 'get',
+          response: config => {
+              return {
+                  code: 20000,
+                  data: {
+                      description: tmp_description,
+                      table_info: tmp_table_info
+                  }
+              }
+          }
+      }
+  ]
