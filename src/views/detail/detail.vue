@@ -201,27 +201,33 @@ export default {
             var tmpQuery = ""
             var tmpData = { id: tmpID, query: tmpQuery }
             this.check(tmpID)
-            // addToCart(tmpData)
             if (this.checkValid == true){
-                // window.location.href = "http://localhost:9527/#/cart"
+                addToCart(tmpData)
+                window.location.href = "http://localhost:9527/#/cart"
+                
             }
         },
         addToCart2(tmpID) {
             var tmpQuery = this.query
             var tmpData = { id: tmpID, query: tmpQuery }
             this.check(tmpID)
-            // addToCart(tmpData)
+            addToCart(tmpData)
             if (this.checkValid == true){
-                // window.location.href = "http://localhost:9527/#/cart"
+                addToCart(tmpData)
+                window.location.href = "http://localhost:9527/#/cart"
             }
         },
         cancel() {
             this.query = undefined
         },
         check(tmpID) {
-            // checkQuery(tmpID).then(response => {
-            //     this.checkValid = response.status
-            // })
+            var tmpData = {
+                id: tmpID,
+                query: this.query
+            }
+            checkQuery(tmpData).then(response => {
+                this.checkValid = response.status
+            })
             if (this.checkValid == false){
                 this.$message.error('Please type in the valid query language!')
             }
