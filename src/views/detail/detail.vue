@@ -52,6 +52,7 @@
             <el-button class="button" type="primary" @click="addToCart1(id)">Add Entire Dataset to Cart</el-button>
             <el-button class="button" type="primary" @click="addToCart2(id)">Add Dataset with Query</el-button>
             <el-button class="button" type="danger" @click="cancel"><router-link :to="{path:'/gallery/gallery_table'}">Cancel</router-link></el-button>
+            </div>
         </el-card>
         
 
@@ -202,7 +203,7 @@ export default {
             this.check(tmpID)
             // addToCart(tmpData)
             if (this.checkValid == true){
-                window.location.href = "/cart"
+                // window.location.href = "http://localhost:9527/#/cart"
             }
         },
         addToCart2(tmpID) {
@@ -211,16 +212,16 @@ export default {
             this.check(tmpID)
             // addToCart(tmpData)
             if (this.checkValid == true){
-                window.location.href = "/cart"
+                // window.location.href = "http://localhost:9527/#/cart"
             }
         },
         cancel() {
             this.query = undefined
         },
         check(tmpID) {
-            checkQuery(tmpID).then(response => {
-                this.checkValid = response.status
-            })
+            // checkQuery(tmpID).then(response => {
+            //     this.checkValid = response.status
+            // })
             if (this.checkValid == false){
                 this.$message.error('Please type in the valid query language!')
             }
