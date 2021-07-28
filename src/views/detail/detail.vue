@@ -151,6 +151,7 @@ export default {
     },
     created() {
         var query = this.$route.query
+        console.warn(query)
         if (query) {
             this.name = query.name
             this.id = query.id
@@ -160,9 +161,10 @@ export default {
     },
     methods: {
         getList() {
+            console.warn(this.id)
             fetchList(this.id).then(response => {
-                this.description = response.description
-                this.table_info = response.table_info
+                this.description = response.data.description
+                this.table_info = response.data.table_info
             })
             this.table_info.forEach(element => this.table_list.push(element.table))
             // console.warn(this.table_list)

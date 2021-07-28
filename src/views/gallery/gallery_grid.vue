@@ -39,7 +39,7 @@
                             <!-- <el-button type="text"
                              class="button"
                              @click="$router-link.go(`/detail/id`)">Details</el-button> -->
-                            <router-link :to="{path:'/detail/name/' + item.name ,query:{name:item.name}}" class="detail_link">Details</router-link>
+                            <router-link :to="{path:'/detail/name/' + item.name ,query:{name:item.name, id:item.id}}" class="detail_link">Details</router-link>
                             <!-- <router-link :to='`/detail/name/`+ item.name' class="detail_link">Details</router-link> -->
                         </div>
                         <!-- <div class="bottom clearfix">

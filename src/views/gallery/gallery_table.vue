@@ -67,7 +67,7 @@
           <!-- <el-button  @click="updateAndQuery(row.id)" type = "primary">
             Details
           </el-button> -->
-          <el-button type="primary"><router-link :to="{path:'/detail/name/' + row.name ,query:{name:row.name}}" class="detail_link">Details</router-link></el-button>
+          <el-button type="primary"><router-link :to="{path:'/detail/name/' + row.name ,query:{name:row.name, id:row.id}}" class="detail_link">Details</router-link></el-button>
         </template>
       </el-table-column>
     </el-table>
