@@ -104,11 +104,13 @@ export default {
         }
     },
     created() {
-        var params = this.$route.params
-        if (params) {
-            this.listquery.id = params.order_id
-            this.id = params.order_id
+        var query = this.$route.query
+        console.log(query)
+        if (query) {
+            this.listquery.id = query.order_id
+            this.id = query.order_id
         }
+        console.log(this.id)
         this.getList()
     },
     methods: {

@@ -249,10 +249,11 @@ export default {
             }
             checkQuery(tmpData).then(response => {
                 this.checkValid = response.data.status
+                if (this.checkValid == false){
+                    this.$message.error('Please type in the valid query language!')
+                }
             })
-            if (this.checkValid == false){
-                this.$message.error('Please type in the valid query language!')
-            }
+            
         }
     }
 }

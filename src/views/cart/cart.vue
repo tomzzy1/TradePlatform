@@ -61,7 +61,7 @@
             -
           </el-button> -->
           <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
-          <el-button v-waves size='mini' type="success" @click="buyGood(row)"><router-link :to="{path:'/order', params: {order_id: order_ID}}">
+          <el-button v-waves size='mini' type="success" @click="buyGood(row)"><router-link :to="{path:'/order', query: {order_id: order_ID}}">
             Buy
           </router-link></el-button>
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
@@ -73,7 +73,7 @@
 
     <div align="right" style="margin-top:20px;">
       <!-- <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right"> -->
-      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;" @click="buyGoods"><router-link :to="{path:'/order', params: {order_id: order_ID}}">
+      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;" @click="buyGoods"><router-link :to="{path:'/order', query: {order_id: order_ID}}">
         Buy
       </router-link></el-button>
       </div>
@@ -259,7 +259,7 @@ export default {
         },
         getID() {
           getOrderID().this(response => {
-            this.order_ID = response.order_id
+            this.order_ID = response.data.order_id
           })
         }
 
