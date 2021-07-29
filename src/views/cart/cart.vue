@@ -23,7 +23,9 @@
     >
 
       <el-table-column label="Selected" align="center" width="100px">
-        <el-checkbox v-model="checked"></el-checkbox>
+        <template slot-scope="{row}">
+          <el-checkbox v-model="row.checked"></el-checkbox>
+        </template>
       </el-table-column>
 
       <!-- <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
@@ -100,11 +102,11 @@ export default {
             list: null,
             // search: 'Name',
             // list: [
-            //   {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
-            //   {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
-            //   {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"},
-            //   {name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7"},
-            //   {name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21"}
+            //   {id: 1, name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
+            //   {id: 2, name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
+            //   {id: 3, name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"},
+            //   {id: 4, name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7"},
+            //   {id: 5, name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21"}
             // ],
             total: undefined,
             listLoading: false,
@@ -147,6 +149,10 @@ export default {
                 setTimeout(() => {
                     this.listLoading = false
                 }, 1.5 * 1000)
+
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].checked = false
+                }
             })
         },
         handleFilter() {
@@ -239,19 +245,26 @@ export default {
         },
         buyGoods() {
           var idArray = new Array()
-          for (i in row.list){
-            if (i.checked == true) {
-              idArray.push(i.id)
+          for (let i = 0; i < this.list.length; i++){
+            if (this.list[i].checked == true) {
+              idArray.push(this.list[i].id)
             }
           }
-          buyCart(idArray)
-          console.warn()
-          this.getID()
+          console.clear()
+          console.warn(idArray)
+          if (idArray.length == 0) {
+            this.$message.error('Please select the dataset you want for an order!')
+          } else {
+            buyCart(idArray)
+            this.getID()
+          }
         },
         buyGood(row) {
           var idArray = new Array()
           idArray.push(row.id)
           buyCart(idArray)
+          console.clear()
+          console.warn(idArray)
           this.getID()
         },
         getID() {

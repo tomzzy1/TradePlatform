@@ -105,13 +105,13 @@ export default {
     },
     created() {
         var query = this.$route.query
-        console.clear()
-        console.warn(query)
+        // console.clear()
+        // console.warn(query)
         if (query) {
             this.listQuery.id = query.order_id
             this.id = query.order_id
         }
-        console.warn(this.id)
+        // console.warn(this.id)
         this.getList()
     },
     methods: {
