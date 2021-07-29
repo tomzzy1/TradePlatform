@@ -221,7 +221,7 @@ export default {
             this.query = "SELECT " + this.column_name + " FROM " + this.table_name + " WHERE " + this.column_name + this.condition
         },
         addToCart1(tmpID) {
-            var tmpQuery = ""
+            var tmpQuery = "*"
             var tmpData = { id: tmpID, query: tmpQuery, complement: this.complement }
             this.check(tmpID)
             if (this.checkValid == true){

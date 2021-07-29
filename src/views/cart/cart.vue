@@ -97,15 +97,15 @@ export default {
     data() {
         return {
             tableKey: 0,
-            list: null,
+            // list: null,
             // search: 'Name',
-            // list: [
-            //   {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
-            //   {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
-            //   {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"},
-            //   {name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7"},
-            //   {name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21"}
-            // ],
+            list: [
+              {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
+              {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
+              {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"},
+              {name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7"},
+              {name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21"}
+            ],
             total: undefined,
             listLoading: false,
             listQuery: {
@@ -138,16 +138,16 @@ export default {
     },
     methods: {
         getList() {
-            this.listLoading = true
-            fetchList(this.listQuery).then(response => {
-                this.list = response.data.items
-                this.total = response.data.total
+            // this.listLoading = true
+            // fetchList(this.listQuery).then(response => {
+            //     this.list = response.data.items
+            //     this.total = response.data.total
 
-                // simulation for timeout
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1.5 * 1000)
-            })
+            //     // simulation for timeout
+            //     setTimeout(() => {
+            //         this.listLoading = false
+            //     }, 1.5 * 1000)
+            // })
         },
         handleFilter() {
             this.listQuery.page = 1
@@ -245,6 +245,7 @@ export default {
             }
           }
           buyCart(idArray)
+          console.warn()
           this.getID()
         },
         buyGood(row) {

@@ -329,7 +329,7 @@ export default {
             this.addToCartTime = current_time.getTime()
             var tmp_data = {
                 id: tmpID,
-                auery: this.query1,
+                query: this.query1,
                 date: this.addToCartTime
             }
             // console.warn(tmp_data)
