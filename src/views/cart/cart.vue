@@ -127,7 +127,7 @@ export default {
                 name: '',
                 // number: '',
             },
-            order_ID: 123456,
+            order_ID: undefined,
             dialogFormVisible: false,
             dialogPvVisible: false,
             dialogStatus: '',
@@ -250,12 +250,15 @@ export default {
               idArray.push(this.list[i].id)
             }
           }
-          console.clear()
-          console.warn(idArray)
+          // console.clear()
+          // console.warn(idArray)
           if (idArray.length == 0) {
             this.$message.error('Please select the dataset you want for an order!')
           } else {
             buyCart(idArray)
+            for (let i = 0; i < idArray.length; i++) {
+              deleteCart(idArray[i])
+            }
             this.getID()
           }
         },
@@ -263,8 +266,9 @@ export default {
           var idArray = new Array()
           idArray.push(row.id)
           buyCart(idArray)
-          console.clear()
-          console.warn(idArray)
+          // console.clear()
+          // console.warn(idArray)
+          deleteCart(row.id)
           this.getID()
         },
         getID() {
