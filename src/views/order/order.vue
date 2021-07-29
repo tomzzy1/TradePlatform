@@ -69,7 +69,7 @@
 </style>
 
 <script>
-import { fetchList } from '@/api/order'
+import { fetchList, orderCompleted, orderCancel, orderConfirm } from '@/api/order'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -139,9 +139,10 @@ export default {
         orderGoods() {
             // orderConfirm(total_price)
             // api for Ali Pay or Wechat Pay
+            orderCompleted(this.id)
         },
         orderCancel() {
-            orderCancel()
+            orderCancel(this.id)
         }
     }
 }
