@@ -71,17 +71,14 @@ const lineChartData = {
 }
 
 export default {
-  name: 'HomepageSeller',
+  name: 'sellerHomepage',
   components: {
-    GithubCorner,
     PanelGroup,
     LineChart,
     RaddarChart,
     PieChart,
     BarChart,
     TransactionTable,
-    TodoList,
-    BoxCard
   },
   data() {
     return {

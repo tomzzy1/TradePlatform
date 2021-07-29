@@ -6,7 +6,7 @@
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
       <el-input v-model="listQuery.searching_content" placeholder="Search" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" v-model="searching_content">
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" v-model="searching_content" @click="searching">
         Search
       </el-button>
     </div>
@@ -271,6 +271,9 @@ export default {
           getOrderID().this(response => {
             this.order_ID = response.data.order_id
           })
+        },
+        searching() {
+          this.getList()
         }
 
     }

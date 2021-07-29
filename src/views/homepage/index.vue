@@ -26,18 +26,18 @@ export default {
     ])
   },
   created() {
-    if (this.roles == ['buyer']) {
+    if (this.roles.includes('buyer')) {
       this.currentRole = "buyerHomepage"
-    } else if (this.roles == ['seller']) {
+    } else if (this.roles.includes('seller')) {
       this.currentRole = "sellerHomepage"
-    } else if (this.roles == ['buyer']) {
+    } else if (this.roles.includes('buyer')) {
       this.currentRole = "workerHomepage"
-    } else if (this.roles == ['admin']) {
+    } else if (this.roles.includes('admin')) {
       this.currentRole = "adminHomepage"
     } 
-    if (!this.roles.includes('admin')) {
-      this.currentRole = 'editorHomepage'
-    }
+    // if (!this.roles.includes('admin')) {
+    //   this.currentRole = 'buyerHomepage'
+    // }
   }
 }
 </script>

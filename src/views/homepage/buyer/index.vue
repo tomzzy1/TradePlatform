@@ -71,9 +71,8 @@ const lineChartData = {
 }
 
 export default {
-  name: 'HomepageBuyer',
+  name: 'buyerHomepage',
   components: {
-    GithubCorner,
     PanelGroup,
     LineChart,
     RaddarChart,
