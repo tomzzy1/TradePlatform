@@ -117,9 +117,9 @@ export default {
                 search: "name"
             },
             sortOptions: [
-                { label: 'Name', key: 'name' },
-                { label: 'Prize', key: 'prize' },
-                { label: 'Query', key: 'query'}
+                { label: 'name', key: 'name' },
+                { label: 'price', key: 'price' },
+                { label: 'query', key: 'query'}
             ],
             temp: {
                 id: undefined,
