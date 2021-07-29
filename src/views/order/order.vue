@@ -41,9 +41,9 @@
                 <el-button v-waves class="order_button" type="success" icon="el-icon-check" @click="orderGoods">
                     Pay
                 </el-button>
-                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder"><router-link :to="{path:'/cart'}">
+                <router-link class="router_link" :to="{path:'/cart'}"><el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder">
                     Cancel
-                </router-link></el-button>
+                </el-button></router-link>
             </el-card>
         </div>
 
@@ -64,6 +64,11 @@
     .order_button {
         width: 150px;
         text-align: center;
+        margin-left: 10px;
+    }
+
+    .router_link {
+        margin-right: 10px;
     }
 
 </style>
@@ -84,12 +89,12 @@ export default {
             id: undefined,
             tableKey: 0,
             total: 0,
-            // list: null,
-            list: [
-                {name: "Dataset 3", query: " - ", price: 13, date: "2021/2/21"},
-                {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: 34, date: "2021/9/2"},
-                {name: "Dataset 21", query: " - ", price: 13, date: "2021/3/4"}
-            ],
+            list: null,
+            // list: [
+            //     {name: "Dataset 3", query: " - ", price: 13, date: "2021/2/21"},
+            //     {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: 34, date: "2021/9/2"},
+            //     {name: "Dataset 21", query: " - ", price: 13, date: "2021/3/4"}
+            // ],
             order_success: undefined,
             total_price: undefined,
             listLoading: false,
@@ -137,7 +142,7 @@ export default {
             this.total_price = total_price
         },
         orderGoods() {
-            // orderConfirm(total_price)
+            // orderConfirm(this.total_price)
             // api for Ali Pay or Wechat Pay
             orderCompleted(this.id)
         },

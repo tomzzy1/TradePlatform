@@ -6,7 +6,7 @@
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
       <el-input v-model="listQuery.searching_content" placeholder="Search" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" v-model="searching_content" @click="searching">
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="searching">
         Search
       </el-button>
     </div>
@@ -63,10 +63,10 @@
             -
           </el-button> -->
           <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
-          <el-button v-waves size='mini' type="success" @click="buyGood(row)"><router-link :to="{path:'/order', query: {order_id: order_ID}}">
+          <router-link :to="{path:'/order', query: {order_id: order_ID}}" v-on:click.native="buyGood(row)"><el-button v-waves size='mini' type="success">
             Buy
-          </router-link></el-button>
-          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
+          </el-button></router-link>
+          <el-button v-if="row.status!='deleted'" size="mini" class="delete_button" type="danger" @click="handleDelete(row,$index)">
             Delete
           </el-button>
         </template>
@@ -75,9 +75,9 @@
 
     <div align="right" style="margin-top:20px;">
       <!-- <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right"> -->
-      <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;" @click="buyGoods"><router-link :to="{path:'/order', query: {order_id: order_ID}}">
+      <router-link :to="{path:'/order', query: {order_id: order_ID}}" v-on:click.native="buyGoods"><el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;">
         Buy
-      </router-link></el-button>
+      </el-button></router-link>
       </div>
     </div>
 
@@ -85,6 +85,12 @@
 
   </div>
 </template>
+
+<style>
+  .delete_button {
+    margin-left: 10px;
+  }
+</style>
 
 <script>
 import { fetchList, updateCart, deleteCart, buyCart, getOrderID } from '@/api/cart'
@@ -100,13 +106,13 @@ export default {
         return {
             tableKey: 0,
             list: null,
-            // search: 'Name',
+            search: 'Name',
             // list: [
-            //   {id: 1, name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
-            //   {id: 2, name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
-            //   {id: 3, name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"},
-            //   {id: 4, name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7"},
-            //   {id: 5, name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21"}
+            //   {id: 1, name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21", checked: false},
+            //   {id: 2, name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2", checked: false},
+            //   {id: 3, name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4", checked: false},
+            //   {id: 4, name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7", checked: false},
+            //   {id: 5, name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21", checked: false}
             // ],
             total: undefined,
             listLoading: false,
@@ -150,9 +156,11 @@ export default {
                     this.listLoading = false
                 }, 1.5 * 1000)
 
-                for (let i = 0; i < this.list.length; i++) {
-                  this.list[i].checked = false
-                }
+                // for (let i = 0; i < this.list.length; i++) {
+                //   this.list[i].checked = false
+                // }
+                // console.clear()
+                // console.warn(this.list)
             })
         },
         handleFilter() {
@@ -203,6 +211,11 @@ export default {
           })
           this.list.splice(index, 1)
           deleteCart(row.id)
+        },
+        testCheckbox(row) {
+          // console.clear()
+          // console.warn(this.list)
+          // row.checked = !(row.checked)
         },
         // handleUpdate(row) {
         //     this.temp = Object.assign({}, row)
@@ -255,24 +268,23 @@ export default {
           if (idArray.length == 0) {
             this.$message.error('Please select the dataset you want for an order!')
           } else {
-            buyCart(idArray)
-            for (let i = 0; i < idArray.length; i++) {
-              deleteCart(idArray[i])
-            }
-            this.getID()
+            buyCart(idArray).then(this.getList()).then(this.getID())
+            // for (let i = 0; i < idArray.length; i++) {
+            //   deleteCart(idArray[i])
+            // }
           }
         },
         buyGood(row) {
           var idArray = new Array()
           idArray.push(row.id)
-          buyCart(idArray)
           // console.clear()
           // console.warn(idArray)
-          deleteCart(row.id)
-          this.getID()
+          buyCart(idArray).then(this.getList()).then(this.getID())
+          // deleteCart(row.id)
+          
         },
         getID() {
-          getOrderID().this(response => {
+          getOrderID().then(response => {
             this.order_ID = response.data.order_id
           })
         },
