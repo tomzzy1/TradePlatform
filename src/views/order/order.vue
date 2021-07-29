@@ -41,7 +41,7 @@
                 <el-button v-waves class="order_button" type="success" icon="el-icon-check" @click="orderGoods">
                     Pay
                 </el-button>
-                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="orderCancel"><router-link :to="{path:'/cart'}">
+                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder"><router-link :to="{path:'/cart'}">
                     Cancel
                 </router-link></el-button>
             </el-card>
@@ -141,7 +141,7 @@ export default {
             // api for Ali Pay or Wechat Pay
             orderCompleted(this.id)
         },
-        orderCancel() {
+        cancelOrder() {
             orderCancel(this.id)
         }
     }
