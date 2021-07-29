@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
 
-        <span>{{ id }}</span>
+        <!-- <span>{{ id }}</span> -->
         <el-table
             :key="tableKey"
             v-loading="listLoading"
@@ -26,7 +26,7 @@
 
             <el-table-column label="Price" align="center" width="200px">
                 <template slot-scope="{row}">
-                    <span>{{ row.price }}</span>
+                    <span>${{ row.price }}</span>
                 </template>
             </el-table-column>
         </el-table>
@@ -85,13 +85,13 @@ export default {
             tableKey: 0,
             total: 0,
             // list: null,
-            // list: [
-            //     {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
-            //     {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
-            //     {name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4"}
-            // ],
+            list: [
+                {name: "Dataset 3", query: " - ", price: 13, date: "2021/2/21"},
+                {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: 34, date: "2021/9/2"},
+                {name: "Dataset 21", query: " - ", price: 13, date: "2021/3/4"}
+            ],
             order_success: undefined,
-            total_price: 59,
+            total_price: undefined,
             listLoading: false,
             listQuery: {
                 // name: undefined,
@@ -108,7 +108,7 @@ export default {
         console.clear()
         console.warn(query)
         if (query) {
-            this.listquery.id = query.order_id
+            this.listQuery.id = query.order_id
             this.id = query.order_id
         }
         console.warn(this.id)
@@ -116,20 +116,29 @@ export default {
     },
     methods: {
         getList() {
-            // this.listLoading = true
-            // fetchList(this.listQuery).then(response => {
-            //     this.list = response.data.items
-            //     this.total = response.data.total
-            //     this.total_price = response.data.total_prices
+            this.listLoading = true
+            fetchList(this.listQuery).then(response => {
+                this.list = response.data.items
+                this.total = response.data.total
+                this.total_price = response.data.total_prices
 
-            //     // simulation for timeout
-            //     setTimeout(() => {
-            //         this.listLoading = false
-            //     }, 1.5 * 1000)
-            // })
+                // simulation for timeout
+                setTimeout(() => {
+                    this.listLoading = false
+                }, 1.5 * 1000)
+            })
+            this.getPrice()
+        },
+        getPrice() {
+            var total_price = 0
+            for (let i = 0; i < this.list.length; i++) {
+                total_price += this.list[i].price
+            }
+            this.total_price = total_price
         },
         orderGoods() {
             // orderConfirm(total_price)
+            // api for Ali Pay or Wechat Pay
         },
         orderCancel() {
             orderCancel()

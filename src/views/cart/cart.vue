@@ -2,10 +2,10 @@
   <div class="app-container">
     <div class="filter-container">
     <div align="right">
-    <el-select style="width: 140px; margin-right: 10px;" class="filter-item" v-model="search">
+    <el-select style="width: 140px; margin-right: 10px;" class="filter-item" v-model="listQuery.search">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
-      <el-input v-model="searching_content" placeholder="Search" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.searching_content" placeholder="Search" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" v-model="searching_content">
         Search
       </el-button>
@@ -98,8 +98,7 @@ export default {
         return {
             tableKey: 0,
             list: null,
-            search: 'Name',
-            searching_content: undefined,
+            // search: 'Name',
             // list: [
             //   {name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21"},
             //   {name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2"},
@@ -107,16 +106,13 @@ export default {
             //   {name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7"},
             //   {name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21"}
             // ],
-            total: 5,
+            total: undefined,
             listLoading: false,
             listQuery: {
                 page: 1,
                 limit: 20,
-                name: undefined,
-                query: undefined,
-                price: undefined,
-                sort: '+id',
-                checked: false
+                searching_content: undefined,
+                search: "name"
             },
             sortOptions: [
                 { label: 'Name', key: 'name' },
@@ -258,9 +254,9 @@ export default {
           this.getID()
         },
         getID() {
-          getOrderID().this(response => {
-            this.order_ID = response.data.order_id
-          })
+          // getOrderID().this(response => {
+          //   this.order_ID = response.data.order_id
+          // })
         }
 
     }
