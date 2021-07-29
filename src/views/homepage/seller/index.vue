@@ -71,7 +71,7 @@ const lineChartData = {
 }
 
 export default {
-  name: 'HomepageAdmin',
+  name: 'HomepageSeller',
   components: {
     GithubCorner,
     PanelGroup,
