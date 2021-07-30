@@ -96,7 +96,7 @@ export default {
             //     {name: "Dataset 21", query: " - ", price: 13, date: "2021/3/4"}
             // ],
             order_success: undefined,
-            total_price: undefined,
+            total_price: 0,
             listLoading: false,
             listQuery: {
                 // name: undefined,
@@ -119,6 +119,9 @@ export default {
     //     // console.warn(this.id)
     // },
     created() {
+        // if (this.$route.query){
+        //     var query = this.$route.query
+        // }
         var query = this.$route.query
         // console.clear()
         // console.warn(query)
@@ -130,28 +133,34 @@ export default {
     },
     methods: {
         getList() {
-            this.listLoading = true
+            // this.listLoading = true
             // console.clear()
             // console.warn(this.listQuery)
-            fetchList(this.listQuery).then(response => {
-                this.list = response.data.items
-                this.total = response.data.total
-                this.total_price = response.data.total_prices
+            if (!(this.listQuery.id)) {
+                this.$message.error("There is no current order!")
+            } else {
+                fetchList(this.listQuery).then(response => {
+                    this.list = response.data.items
+                    this.total = response.data.total
+                    this.total_price = response.data.total_prices
 
-                // simulation for timeout
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1.5 * 1000)
+                    // simulation for timeout
+                    setTimeout(() => {
+                        this.listLoading = false
+                    }, 1.5 * 1000)
 
-                // console.clear()
-                // console.warn(this.listQuery)
-            })
-            this.getPrice()
+                    // console.clear()
+                    // console.warn(this.listQuery)
+                })
+                this.getPrice()
+            }
         },
         getPrice() {
             var total_price = 0
-            for (let i = 0; i < this.list.length; i++) {
-                total_price += this.list[i].price
+            if (this.list.length > 0) {
+                for (let i = 0; i < this.list.length; i++) {
+                    total_price += this.list[i].price
+                }
             }
             this.total_price = total_price
         },
@@ -161,6 +170,8 @@ export default {
             orderCompleted(this.id)
         },
         cancelOrder() {
+            this.listQuery.id = undefined
+            this.total_price = 0
             orderCancel(this.id)
         }
     }
