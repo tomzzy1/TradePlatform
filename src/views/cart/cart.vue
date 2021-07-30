@@ -274,7 +274,7 @@ export default {
           if (idArray.length == 0) {
             this.$message.error('Please select the dataset you want for an order!')
           } else {
-            buyCart(idArray).then(this.getList()).then(this.getID())
+            buyCart(idArray).then((response) => {this.getList()}).then((response) => {this.getID()})
             // for (let i = 0; i < idArray.length; i++) {
             //   deleteCart(idArray[i])
             // }
@@ -285,7 +285,7 @@ export default {
           idArray.push(row.id)
           // console.clear()
           // console.warn(idArray)
-          buyCart(idArray).then(this.getList()).then(this.getID())
+          buyCart(idArray).then((response) => {this.getList()}).then((response) => {this.getID()})
           // deleteCart(row.id)
           
         },
