@@ -136,10 +136,15 @@ export default {
             // this.listLoading = true
             // console.clear()
             // console.warn(this.listQuery)
-            if (!(this.listQuery.id)) {
+            var tmp_listQuery = {
+                id: this.listQuery.id,
+                page: this.listQuery.page,
+                limit: this.listQuery.limit
+            }
+            if (!(tmp_listQuery.id)) {
                 this.$message.error("There is no current order!")
             } else {
-                fetchList(this.listQuery).then(response => {
+                fetchList(tmp_listQuery).then(response => {
                     this.list = response.data.items
                     this.total = response.data.total
                     this.total_price = response.data.total_prices
@@ -152,7 +157,7 @@ export default {
                     // console.clear()
                     // console.warn(this.listQuery)
                 })
-                this.getPrice()
+                // this.getPrice()
             }
         },
         getPrice() {

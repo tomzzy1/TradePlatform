@@ -125,7 +125,7 @@ export default {
     data() {
         return {
             listLoading: true,
-            name: "Hello",
+            name: undefined,
             id: undefined,
             description: undefined,
             table_info: undefined,

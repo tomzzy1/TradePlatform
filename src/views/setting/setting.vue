@@ -166,8 +166,8 @@ export default {
             sensitivity_degree: undefined,
             tableKey: 0,
             total: 0,
-            listLoading: true,
-            List: null,
+            listLoading: false,
+            // List: null,
             addToCartTime: null,
             query: null,
             query1: null,
@@ -187,9 +187,9 @@ export default {
             ],
             columns: [],
             tableName: null,
-            // List: [
-            //   {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
-            //   {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
+            List: [
+              {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
+              {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"}],
             //   {ID: 3, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "3GB", Source: "www.zju.com", Time: "2002"},
             //   {ID: 4, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "4GB", Source: "www.zju.com", Time: "2003"},
             //   {ID: 5, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "5GB", Source: "www.zju.com", Time: "2004"},
@@ -226,16 +226,16 @@ export default {
     },
     methods: {
         getList() {
-            this.listLoading = true
-            fetchList(this.listQuery).then(response => {
-                this.List = response.data.items
-                this.total = response.data.total
+            // this.listLoading = true
+            // fetchList(this.listQuery).then(response => {
+            //     this.List = response.data.items
+            //     this.total = response.data.total
 
-                // simulation for timeout
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1.5 * 1000)
-            })
+            //     // simulation for timeout
+            //     setTimeout(() => {
+            //         this.listLoading = false
+            //     }, 1.5 * 1000)
+            // })
         },
         handleFilter() {
             this.listQuery.page = 1

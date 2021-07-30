@@ -19,6 +19,10 @@ import crowdsourcingRouter from './modules/crowdsourcing'
 import postQuestionRouter from './modules/post_question'
 import detailRouter from './modules/detail'
 import settingRouter from './modules/setting'
+import helpSellerRouter from './modules/help_seller'
+import helpAdminRouter from './modules/help_admin'
+import helpWorkerRouter from './modules/help_worker'
+import helpBuyerRouter from './modules/help_buyer'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
