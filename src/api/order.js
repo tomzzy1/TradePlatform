@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
-export function fetchList(data) {
+export function fetchList(query) {
     return request({
         url: '/vue-element-admin/order/list',
         method: 'get',
-        params: data
+        params: query
     })
 }
 

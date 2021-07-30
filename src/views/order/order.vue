@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
 
-        <span>{{ id }}</span>
+        <!-- <span>{{ listQuery.id }}</span> -->
         <el-table
             :key="tableKey"
             v-loading="listLoading"
@@ -108,6 +108,16 @@ export default {
             }
         }
     },
+    // beforeCreate() {
+    //     var query = this.$route.query
+    //     // console.clear()
+    //     // console.warn(query)
+    //     if (query) {
+    //         this.listQuery.id = query.order_id
+    //         this.id = query.order_id
+    //     }
+    //     // console.warn(this.id)
+    // },
     created() {
         var query = this.$route.query
         // console.clear()
@@ -116,12 +126,13 @@ export default {
             this.listQuery.id = query.order_id
             this.id = query.order_id
         }
-        // console.warn(this.id)
         this.getList()
     },
     methods: {
         getList() {
             this.listLoading = true
+            // console.clear()
+            // console.warn(this.listQuery)
             fetchList(this.listQuery).then(response => {
                 this.list = response.data.items
                 this.total = response.data.total
@@ -131,6 +142,9 @@ export default {
                 setTimeout(() => {
                     this.listLoading = false
                 }, 1.5 * 1000)
+
+                // console.clear()
+                // console.warn(this.listQuery)
             })
             this.getPrice()
         },
