@@ -143,7 +143,7 @@ export default {
             condition: undefined,
             conditions: {
                 "number": [">21", "<21"],
-                "string": ["='apple'", "='banana'"]
+                "string": [" = 'apple'", " = 'banana'"]
             },
             query: undefined,
             checkValid: true,

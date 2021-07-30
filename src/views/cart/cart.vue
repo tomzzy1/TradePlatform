@@ -6,9 +6,14 @@
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
       <el-input v-model="listQuery.searching_content" placeholder="Search" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="searching">
-        Search
-      </el-button>
+      <el-button-group>
+        <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="searching">
+          Search
+        </el-button>
+        <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch">
+          Clear
+        </el-button>
+      </el-button-group>
     </div>
 
     <el-table
@@ -105,15 +110,15 @@ export default {
     data() {
         return {
             tableKey: 0,
-            list: null,
+            // list: null,
             search: 'Name',
-            // list: [
-            //   {id: 1, name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21", checked: false},
-            //   {id: 2, name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2", checked: false},
-            //   {id: 3, name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4", checked: false},
-            //   {id: 4, name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7", checked: false},
-            //   {id: 5, name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21", checked: false}
-            // ],
+            list: [
+              {id: 1, name: "Dataset 3", query: " - ", price: "$13", date: "2021/2/21", checked: false},
+              {id: 2, name: "Dataset 7", query: "SELECT Column 1 FROM Table 2 WHERE Column > 21", price: "$34", date: "2021/9/2", checked: false},
+              {id: 3, name: "Dataset 21", query: " - ", price: "$12", date: "2021/3/4", checked: false},
+              {id: 4, name: "Dataset 4", query: " - ", price: "$43", date: "2021/5/7", checked: false},
+              {id: 5, name: "Dataset 6", query: " SELECT Column 3 FROM Table 4 WHERE Column < 21 ", price: "$14", date: "2021/12/21", checked: false}
+            ],
             total: undefined,
             listLoading: false,
             listQuery: {
@@ -146,22 +151,22 @@ export default {
     },
     methods: {
         getList() {
-            this.listLoading = true
-            fetchList(this.listQuery).then(response => {
-                this.list = response.data.items
-                this.total = response.data.total
+            // this.listLoading = true
+            // fetchList(this.listQuery).then(response => {
+            //     this.list = response.data.items
+            //     this.total = response.data.total
 
-                // simulation for timeout
-                setTimeout(() => {
-                    this.listLoading = false
-                }, 1.5 * 1000)
+            //     // simulation for timeout
+            //     setTimeout(() => {
+            //         this.listLoading = false
+            //     }, 1.5 * 1000)
 
-                // for (let i = 0; i < this.list.length; i++) {
-                //   this.list[i].checked = false
-                // }
-                // console.clear()
-                // console.warn(this.list)
-            })
+            //     // for (let i = 0; i < this.list.length; i++) {
+            //     //   this.list[i].checked = false
+            //     // }
+            //     // console.clear()
+            //     // console.warn(this.list)
+            // })
         },
         handleFilter() {
             this.listQuery.page = 1
@@ -289,6 +294,10 @@ export default {
           })
         },
         searching() {
+          this.getList()
+        },
+        clearSearch() {
+          this.listQuery.searching_content = undefined
           this.getList()
         }
 
