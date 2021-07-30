@@ -172,12 +172,12 @@ export default {
         orderGoods() {
             // orderConfirm(this.total_price)
             // api for Ali Pay or Wechat Pay
-            orderCompleted(this.id)
+            orderCompleted({id: this.id})
         },
         cancelOrder() {
             this.listQuery.id = undefined
             this.total_price = 0
-            orderCancel(this.id)
+            orderCancel({id: this.id})
         }
     }
 }
