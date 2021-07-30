@@ -210,6 +210,10 @@ export const asyncRoutes = [
   postQuestionRouter,
   detailRouter,
   settingRouter,
+  helpSellerRouter,
+  helpBuyerRouter,
+  helpAdminRouter,
+  helpWorkerRouter,
 
   // {
   //   path: '/example',

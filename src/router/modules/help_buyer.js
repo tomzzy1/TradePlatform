@@ -9,9 +9,10 @@ const helpBuyerRouter = {
     children: [
         {
             path: '/help_buyer',
-            component: () => import('@/views/help_buyer/help_buyer'),
-            name: 'Help',
+            component: () => import('@/views/help/help_buyer'),
+            title: 'Help',
             meta: {
+                    title: 'Help',
                     icon: 'el-icon-info',
                     roles: ['buyer']
                 },

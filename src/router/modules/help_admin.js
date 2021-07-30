@@ -9,9 +9,11 @@ const helpSellerRouter = {
     children: [
         {
             path: '/help_admin',
-            component: () => import('@/views/help_admin/help_admin'),
+            component: () => import('@/views/help/help_admin'),
+            title: 'Help',
             name: 'Help',
             meta: {
+                    title: 'Help',
                     icon: 'el-icon-info',
                     roles: ['admin']
                 },
