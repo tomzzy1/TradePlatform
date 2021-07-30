@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
 
-        <!-- <span>{{ id }}</span> -->
+        <span>{{ id }}</span>
         <el-table
             :key="tableKey"
             v-loading="listLoading"
