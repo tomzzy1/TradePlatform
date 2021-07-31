@@ -181,7 +181,6 @@ export default {
           this.listLoading = false
         }, 1.5 * 1000)
 
-<<<<<<< HEAD
                 // for (let i = 0; i < this.list.length; i++) {
                 //   this.list[i].checked = false
                 // }
@@ -320,113 +319,6 @@ export default {
         clearSearch() {
           this.listQuery.searching_content = undefined
           this.getList()
-=======
-        // for (let i = 0; i < this.list.length; i++) {
-        //   this.list[i].checked = false
-        // }
-        // console.clear()
-        // console.warn(this.list)
-      })
-    },
-    handleFilter() {
-      this.listQuery.page = 1
-      this.getList()
-    },
-    sortChange(data) {
-      const { prop, order } = data
-      if (prop === 'id') {
-        this.sortByID(order)
-      }
-    },
-    sortByID(order) {
-      if (order === 'ascending') {
-        this.listQuery.sort = '+id'
-      } else {
-        this.listQuery.sort = '-id'
-      }
-      this.handleFilter()
-    },
-    resetTemp() {
-      this.temp = {
-        id: undefined,
-        timestamp: new Date(),
-        name: '',
-        number: ''
-      }
-    },
-    increaseNumber(row) {
-      row.number += 1
-      this.changeNum(row, row.number)
-    },
-    decreaseNumber(row) {
-      if (row.number != 1) {
-        row.number -= 1
-        this.changeNum(row, row.number)
-      } else {
-        this.handleDelete(row)
-        this.changeNum(row, row.number)
-      }
-    },
-    handleDelete(row, index) {
-      this.$notify({
-        title: 'Success',
-        message: 'Delete Successfully',
-        type: 'success',
-        duration: 2000
-      })
-      this.list.splice(index, 1)
-      deleteCart(row.id)
-    },
-    testCheckbox(row) {
-      // console.clear()
-      // console.warn(this.list)
-      // row.checked = !(row.checked)
-    },
-    // handleUpdate(row) {
-    //     this.temp = Object.assign({}, row)
-    //     this.temp.timestamp = new Date(this.temp.timestamp)
-    //     this.dialogStatus = 'update'
-    //     this.dialogFormVisible = true
-    //     this.$nextTick(() => {
-    //         this.$refs['dataForm'].clearValidate()
-    //     })
-    // },
-    // updateData() {
-    //     this.$refs['dataForm'].validate((valid) => {
-    //         if (valid) {
-    //             const tempData = Object.assign({}, this.temp)
-    //             tempData.timestamp = +new Date(tempData.timestamp)
-    //             updateCart(tempData).then(() => {
-    //                 const index = this.list.findIndex(v => v.id === this.temp.id)
-    //                 this.list.splice(index, 1, this.temp)
-    //                 this.dialogFormVisible = false
-    //                 this.$notify({
-    //                     title: 'Success',
-    //                     message: 'Update Successfully',
-    //                     type: 'success',
-    //                     duration: 2000
-    //                 })
-    //             })
-    //         }
-    //     })
-    // },
-    changeNum(row, new_num) {
-      var tempItem = {
-        id: row.id,
-        num: new_num
-      }
-      updateCart(tempItem)
-    },
-    getSortClass: function(key) {
-      const sort = this.listQuery.sort
-      return sort === `+${key}` ? 'ascending' : 'descending'
-    },
-    buyGoods() {
-      var idArray = new Array()
-      for (let i = 0; i < this.list.length; i++) {
-        if (this.list[i].checked == true) {
-          idArray.push(this.list[i].id)
->>>>>>> 37599c2c3497459b793dc31cd0169bd9a40f5944
         }
       }
       // console.clear()
