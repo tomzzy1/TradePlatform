@@ -67,7 +67,6 @@
           <el-button v-waves type="primary" size="mini" @click="decreaseNumber(row)">
             -
           </el-button> -->
-<<<<<<< HEAD
           <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
           <router-link :to="{path:'/order'}" v-on:click.native="buyGood(row)"><el-button v-waves size='mini' type="success">
             Buy
@@ -84,24 +83,6 @@
       <router-link :to="{path:'/order'}" v-on:click.native="buyGoods"><el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;">
         Buy
       </el-button></router-link>
-=======
-            <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
-            <el-button v-waves size="mini" type="success" @click="buyGood(row)">
-              Buy
-            </el-button>
-            <el-button v-if="row.status!='deleted'" size="mini" class="delete_button" type="danger" @click="handleDelete(row,$index)">
-              Delete
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-
-      <div align="right" style="margin-top:20px;">
-        <!-- <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right"> -->
-        <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;" @click="buyGoods">
-          Buy
-        </el-button>
->>>>>>> 37599c2c3497459b793dc31cd0169bd9a40f5944
       </div>
     </div>
 
