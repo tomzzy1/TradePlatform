@@ -40,10 +40,10 @@ export function buyCart(data) {
   })
 }
 
-export function getOrderID(data) {
-  return request({
-    url: '/vue-element-admin/cart/get_order_id',
-    method: 'get',
-    params: data
-  })
-}
+// export function getOrderID(data) {
+//   return request({
+//     url: '/vue-element-admin/cart/get_order_id',
+//     method: 'get',
+//     params: data
+//   })
+// }

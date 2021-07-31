@@ -68,7 +68,7 @@
             -
           </el-button> -->
           <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
-          <router-link :to="{path:'/order', query: {order_id: order_ID}}" v-on:click.native="buyGood(row)"><el-button v-waves size='mini' type="success">
+          <router-link :to="{path:'/order'}" v-on:click.native="buyGood(row)"><el-button v-waves size='mini' type="success">
             Buy
           </el-button></router-link>
           <el-button v-if="row.status!='deleted'" size="mini" class="delete_button" type="danger" @click="handleDelete(row,$index)">
@@ -80,7 +80,7 @@
 
     <div align="right" style="margin-top:20px;">
       <!-- <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right"> -->
-      <router-link :to="{path:'/order', query: {order_id: order_ID}}" v-on:click.native="buyGoods"><el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;">
+      <router-link :to="{path:'/order'}" v-on:click.native="buyGoods"><el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;">
         Buy
       </el-button></router-link>
       </div>
@@ -98,7 +98,7 @@
 </style>
 
 <script>
-import { fetchList, updateCart, deleteCart, buyCart, getOrderID } from '@/api/cart'
+import { fetchList, updateCart, deleteCart, buyCart } from '@/api/cart'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -274,7 +274,7 @@ export default {
           if (idArray.length == 0) {
             this.$message.error('Please select the dataset you want for an order!')
           } else {
-            buyCart(idArray).then((response) => {this.getList()}).then((response) => {this.getID()})
+            buyCart(idArray).then((response) => {this.getList()})
             // for (let i = 0; i < idArray.length; i++) {
             //   deleteCart(idArray[i])
             // }
@@ -285,15 +285,15 @@ export default {
           idArray.push(row.id)
           // console.clear()
           // console.warn(idArray)
-          buyCart(idArray).then((response) => {this.getList()}).then((response) => {this.getID()})
+          buyCart(idArray).then((response) => {this.getList()})
           // deleteCart(row.id)
           
         },
-        getID() {
-          getOrderID().then(response => {
-            this.order_ID = response.data.order_id
-          })
-        },
+        // getID() {
+        //   getOrderID().then(response => {
+        //     this.order_ID = response.data.order_id
+        //   })
+        // },
         searching() {
           this.getList()
         },

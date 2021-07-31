@@ -14,7 +14,8 @@ const orderRouter = {
             meta: { title: 'Order',
                     icon: 'el-icon-sold-out',
                     roles: ['buyer']
-                  }
+                  },
+            hidden: true
         }
     ]
 }

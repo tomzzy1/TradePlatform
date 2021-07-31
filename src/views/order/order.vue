@@ -102,7 +102,7 @@ export default {
                 // name: undefined,
                 // number: undefined,
                 // price: undefined,
-                id: undefined,
+                // id: undefined,s
                 page: 1,
                 limit: 20
             }
@@ -122,13 +122,13 @@ export default {
         // if (this.$route.query){
         //     var query = this.$route.query
         // }
-        var query = this.$route.query
-        // console.clear()
-        // console.warn(query)
-        if (query) {
-            this.listQuery.id = query.order_id
-            this.id = query.order_id
-        }
+        // var query = this.$route.query
+        // // console.clear()
+        // // console.warn(query)
+        // if (query) {
+        //     this.listQuery.id = query.order_id
+        //     this.id = query.order_id
+        // }
         this.getList()
     },
     methods: {
@@ -141,9 +141,9 @@ export default {
             //     page: this.listQuery.page,
             //     limit: this.listQuery.limit
             // }
-            if (!(this.listQuery.id)) {
-                this.$message.error("There is no current order!")
-            } else {
+            // if (!(this.listQuery.id)) {
+            //     this.$message.error("There is no current order!")
+            // } else {
                 fetchList(this.listQuery).then(response => {
                     this.list = response.data.items
                     this.total = response.data.total
@@ -175,7 +175,7 @@ export default {
             orderCompleted(this.id)
         },
         cancelOrder() {
-            this.listQuery.id = undefined
+            // this.listQuery.id = undefined
             this.total_price = 0
             orderCancel(this.id)
         }
