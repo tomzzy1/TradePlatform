@@ -1,8 +1,9 @@
 <template>
     <div class="app-container">
-        <el-card class="help_cards">
-            Hello
-        </el-card>
+        <el-collapse v-model="active_names">
+            <el-collapse-item>
+            </el-collapse-item>
+        </el-collapse>
     </div>
 </template>
 

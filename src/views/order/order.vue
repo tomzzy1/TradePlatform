@@ -41,9 +41,12 @@
                 <el-button v-waves class="order_button" type="success" icon="el-icon-check" @click="orderGoods">
                     Pay
                 </el-button>
-                <router-link class="router_link" :to="{path:'/cart'}"><el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder">
+                <!-- <router-link class="router_link" :to="{path:'/cart'}"><el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder">
                     Cancel
-                </el-button></router-link>
+                </el-button></router-link> -->
+                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder">
+                    Cancel
+                </el-button>
             </el-card>
         </div>
 
@@ -102,7 +105,7 @@ export default {
                 // name: undefined,
                 // number: undefined,
                 // price: undefined,
-                // id: undefined,s
+                // id: undefined,
                 page: 1,
                 limit: 20
             }
@@ -158,7 +161,6 @@ export default {
                     // console.warn(this.listQuery)
                 })
                 // this.getPrice()
-            }
         },
         getPrice() {
             var total_price = 0
@@ -172,12 +174,15 @@ export default {
         orderGoods() {
             // orderConfirm(this.total_price)
             // api for Ali Pay or Wechat Pay
-            orderCompleted({id: this.id})
+            orderCompleted()
         },
         cancelOrder() {
             // this.listQuery.id = undefined
             this.total_price = 0
-            orderCancel({id: this.id})
+            orderCancel()
+            this.$router.replace({path:'/cart'})
+            // window.opener = null
+            // window.close()
         }
     }
 }

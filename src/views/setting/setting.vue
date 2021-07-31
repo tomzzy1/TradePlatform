@@ -69,7 +69,7 @@
     </el-table>
 
     <el-dialog
-          title="Query"
+          title="Setting"
           :visible.sync="dialogVisible"
           width="50%"
           :before-close="handleClose">
