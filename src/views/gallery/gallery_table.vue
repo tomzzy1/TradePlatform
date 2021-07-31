@@ -2,22 +2,18 @@
     <div class="app-container">
         <div class="filter-container">
             <div align="right">
-            <el-select v-model="search" style="width: 140px;" class="filter-item" @change="handleFilter">
+            <el-select v-model="listQuery.search" style="width: 140px;" class="filter-item" @change="handleFilter">
                 <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key"/>
             </el-select>
-            <!-- <el-select v-model="listQuery.importance" placeholder="Author" clearable style="width: 130px; margin-right: 5px;" class="filter-item">
-                <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-            </el-select>
-            <el-select v-model="listQuery.type" placeholder="Size" clearable class="filter-item" style="width: 130px; margin-right: 5px;">
-                <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-            </el-select>
-            <el-select v-model="listQuery.type" placeholder="Time" clearable class="filter-item" style="width: 130px"> -->
-                <!-- <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-            </el-select> -->
-            <el-input placeholder="Search" style="width: 200px; margin-right: 10px; margin-left: 10px" class="filter-item" v-model="searching_content" />
-            <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="handleFilter">
-              Search
+            <el-input placeholder="Search" style="width: 200px; margin-right: 10px; margin-left: 10px" class="filter-item" v-model="listQuery.searching_content" />
+            <el-button-group>
+            <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="searching">
+                Search
             </el-button>
+            <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch">
+                Clear
+            </el-button>
+            </el-button-group>
             </div>
         </div>
 
@@ -61,9 +57,9 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="240" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button  type="success"><router-link :to="{path: '/cart'}">
+          <el-button type="success" @click="directAddToCart(row.id)">
             Add to Cart
-          </router-link></el-button>
+          </el-button>
           <!-- <el-button  @click="updateAndQuery(row.id)" type = "primary">
             Details
           </el-button> -->
@@ -171,7 +167,8 @@
 </style>
 
 <script>
-import { fetchList, addtoCart } from '@/api/gallery'
+import { fetchList } from '@/api/gallery'
+import { addToCart } from '@/api/detail'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -219,15 +216,17 @@ export default {
             //   {ID: 11, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "11GB", Source: "www.zju.com", Time: "2011"}
             // ],
             listQuery: {
-                id: undefined,
+                // id: undefined,
                 page: 1,
                 limit: 10,
-                sort: '+id',
+                // sort: '+id',
+                search: 'name',
+                searching_content: undefined
             },
             sortOptions: [
-                { label: 'Name', key: 'name' },
-                { label: 'Source', key: 'source' },
-                { label: 'Size', key: 'size'}
+                { label: 'name', key: 'name' },
+                { label: 'source', key: 'source' },
+                { label: 'size', key: 'size'}
             ],
             temp: {
                 id: undefined,
@@ -296,17 +295,9 @@ export default {
             console.warn("Attention!")
         },
         directAddToCart(tmpID) {
-            // // console.warn(tmpID)
-            // this.query = ""
-            // var current_time = new Date()
-            // this.addToCartTime = current_time.getTime()
-            // // console.warn(this.addToCartTime)
-            // var tmp_data = new Object() 
-            // tmp_data.id = tmpID
-            // tmp_data.query = this.query
-            // tmp_data.date = this.addToCartTime
-            // // console.warn(tmp_data)
-            // addtoCart(tmp_data)
+            var tmpData = { id: tmpID, query: "*", complement: false }
+            addToCart(tmpData)
+            window.location.href = "http://localhost:9527/#/cart"
         },
         addToCart1(tmpID) {
             // console.warn(tmpID)
@@ -354,6 +345,13 @@ export default {
         updateAndQuery(tmpID) {
             this.dialogVisible = true
             this.updateDialogID(tmpID)
+        },
+        searching() {
+            this.getList()
+        },
+        clearSearch() {
+            this.listQuery.searching_content = undefined
+            this.getList()
         }
     }
 }

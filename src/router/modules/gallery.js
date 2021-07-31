@@ -11,7 +11,7 @@ const galleryRouter = {
     meta: {
         title: 'Gallery',
         icon: 'table',
-        roles: ['buyer', 'admin']
+        roles: ['buyer']
     },
     children: [
         {
