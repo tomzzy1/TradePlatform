@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+export function fetchList(query) {
+  return request({
+      url: '/vue-element-admin/post_question/list',
+      method: 'get',
+      params: query
+  })
+}
+
 export function fetchInfo(data) {
   return request({
       url: '/vue-element-admin/post_question/info',

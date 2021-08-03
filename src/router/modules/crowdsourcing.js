@@ -12,7 +12,7 @@ const crowdsourcingRouter = {
             component: () => import('@/views/crowdsourcing/crowdsourcing'),
             name: 'Crowdsourcing',
             meta: { title: 'Crowdsourcing',
-                    icon: 'el-icon-edit-outline',
+                    icon: 'el-icon-document-copy',
                     roles: ['worker']
                   }
         }

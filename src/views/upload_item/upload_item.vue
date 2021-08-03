@@ -14,8 +14,10 @@
                 placeholder="Please select the data"
             >
             </el-date-picker> -->
+            <div class="heading">Name: </div><el-input class="base_price_input" v-model="params.name" placeholder="Name"  />
             <div class="heading">Base Price: </div><el-input class="base_price_input" v-model="params.base_price" placeholder="Base Price"  />
-            <br />
+            <div class="heading">Source: </div><el-input class="base_price_input" v-model="params.source" placeholder="Source"  />
+            <div class="heading">Description: </div><el-input class="base_price_input" v-model="params.description" placeholder="Description"  />
             <!-- <div class="heading">Price Coefficient: </div><el-input class="price_coefficient_input" v-model="params.price_coefficient" placeholder="Price Coefficient" />
             <br />
             <div class="heading">Sensitivity Degree: </div><el-input class="sensitivity_degree_input" v-model="params.sensitivity_degree" placeholder="Sensitivity Degree" />
@@ -154,11 +156,12 @@
 
 <script>
 import { upload_data } from '@/api/upload_item'
+// import { description } from 'plop-templates/view/prompt'
 
 const fileTypeOptions = [
-    { key: 'CSV_file', display_name: 'CSV' },
-    { key: 'TXT_file', display_name: 'TXT' },
-    { key: 'ZIP_file', display_name: 'ZIP' }
+    { key: 'csv', display_name: 'CSV' },
+    { key: 'txt', display_name: 'TXT' },
+    { key: 'zip', display_name: 'ZIP' }
 ]
 
 export default {
@@ -166,14 +169,19 @@ export default {
         return {
             fileTypeOptions,
             fileType: undefined,
+            tmp_size: 0,
             params: 
             {
-                ID: undefined,
-                time: undefined,
+                // ID: undefined,
+                // time: undefined,
                 // fileTypeOptions,
+                name: undefined,
                 base_price: undefined,
-                price_coefficient: undefined,
-                sensitivity_degree: undefined
+                // price_coefficient: undefined,
+                // sensitivity_degree: undefined,
+                description: undefined,
+                source: undefined,
+                size: undefined
                 // fileType: undefined
             },
             fileList: []
@@ -182,8 +190,8 @@ export default {
     methods: {
         uploadFile() {
             const formData = new FormData()
-            console.warn("This is the fileList before formData.")
-            console.warn(this.fileList)
+            // console.warn("This is the fileList before formData.")
+            // console.warn(this.fileList)
             if (this.fileList) {
                 this.fileList.forEach((file, index) => {
                     formData.append(index, file.raw, file.raw.name)
@@ -191,7 +199,7 @@ export default {
             }
             console.log(this.params)
             formData.append('params', JSON.stringify(this.params))
-            console.warn("+++++ This is the data posted to the database +++++")
+            // console.warn("+++++ This is the data posted to the database +++++")
             // upload_data(formData)
             this.$message.success("Upload Successfully")
         },
@@ -208,11 +216,21 @@ export default {
             }*/
         },
         beforeUpload(file) {
-            const isCorrect = file.type == this.fileType
-            if(!isCorrect){
-                this.$message.error('Please upload the correct type of file!')
-                return false
-            }
+            // const isCorrect = file.type == this.fileType
+            // if(!isCorrect){
+            //     this.$message.error('Please upload the correct type of file!')
+            //     return false
+            // }
+            // console.clear()
+            // console.warn(this.fileType)
+            // var testmsg = file.name.substring(file.name.lastIndexOf('.') + 1)
+            // console.warn(testmsg)
+            // const extension = testmsg === this.fileType
+            // if (!extension) {
+            //     this.$message.error("Please upload the correct type of file!")
+            //     console.warn("Error")
+            // }
+            // return false
         },
         uploadSuccess(res, file, fileList) {
             if (res.code == '200') {
@@ -222,14 +240,28 @@ export default {
             }
         },
         onChange(file, fileList) {
-            console.warn('file list changed')
+            // console.warn('file list changed')
             console.log(fileList)
             let existFile = fileList.slice(0, fileList.length - 1).find(f => f.name === file.name)
 　　         if (existFile) {
-　　　　        this.$message.error('current file has been existed!')
-　　　　        fileList.pop()
-　　        }
-　　        this.fileList = fileList
+                this.$message.error('current file has been existed!')
+                fileList.pop()
+　　         }
+            // console.clear()
+            // console.warn(this.fileType)
+            var testmsg = file.name.substring(file.name.lastIndexOf('.') + 1)
+            console.warn(testmsg)
+            const extension = testmsg === this.fileType
+            if (!extension) {
+                this.$message.error("Please upload the correct type of file!")
+                console.warn("Error")
+                fileList.pop()
+            } else {
+                this.fileList = fileList
+                this.tmp_size += file.size
+                this.params.size = this.tmp_size
+                // console.warn(this.params.size)
+            }
         },
         testRequest() {
             // var tmpParams = {
@@ -245,6 +277,10 @@ export default {
             // ]
             // upload_data(tmpData)
             this.submitUpload()
+        },
+        testFileTypeChange() {
+            console.clear()
+            console.warn(this.fileType)
         }
     }
 }    

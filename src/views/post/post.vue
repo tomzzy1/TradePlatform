@@ -24,10 +24,10 @@
                     <div>
                         <span class="dataset_name">{{ item.name }}</span>
                         <br />
-                        <span class="dataset_info">{{ item.question }}</span>
+                        <span class="dataset_info">{{ item.description }}</span>
                         <br />
                         <div class="bottom clearfix">
-                            <router-link :to="{path:'/answer/id/' + item.id ,query:{name:item.name, id:item.id}}" class="detail_link">Answer</router-link>
+                            <router-link :to="{path:'/post_question/id/' + item.id ,query:{name:item.name, id:item.id}}" class="detail_link">Post Question</router-link>
                         </div>
                     </div>
                     </el-card>
@@ -154,7 +154,7 @@
 </style>
 
 <script>
-import { fetchList } from '@/api/crowdsourcing'
+import { fetchList } from '@/api/post_question'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -174,8 +174,8 @@ export default {
             columns: [],
             tableName: null,
             // List: [
-            //     {id: 1, name: "Question Set 1", question: "This is a question."},
-            //     {id: 1, name: "Question Set 2", question: "This is a question."}
+            //     {id: 1, name: "Dataset 1", description: "This is the description of Dataset 1."},
+            //     {id: 2, name: "Dataset 2", description: "This is the description of Dataset 2."}
             // ],
             listQuery: {
                 // id: undefined,
@@ -187,7 +187,7 @@ export default {
             },
             sortOptions: [
                 { label: 'name', key: 'name' },
-                { label: 'question', key: 'source' },
+                { label: 'description', key: 'source' },
             ]
         }
     },

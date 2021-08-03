@@ -8,13 +8,14 @@ const postQuestionRouter = {
     component: Layout,
     children: [
         {
-            path: '/post_question',
+            path: '/post_question/id/:id',
             component: () => import('@/views/post_question/post_question'),
             name: 'Post',
             meta: { title: 'Post',
                     icon: 'guide',
                     roles: ['seller']
-                  }
+                  },
+            hidden: true
         }
     ]
 }

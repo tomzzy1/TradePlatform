@@ -23,6 +23,8 @@ import helpSellerRouter from './modules/help_seller'
 import helpAdminRouter from './modules/help_admin'
 import helpWorkerRouter from './modules/help_worker'
 import helpBuyerRouter from './modules/help_buyer'
+import answerRouter from './modules/answer'
+import postRouter from './modules/post'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -207,6 +209,8 @@ export const asyncRoutes = [
   cartRouter,
   orderRouter,
   crowdsourcingRouter,
+  answerRouter,
+  postRouter,
   postQuestionRouter,
   detailRouter,
   settingRouter,
