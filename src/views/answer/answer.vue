@@ -90,9 +90,9 @@
                 //         point: 1 },
                 //     {   id: '121',
                 //         question: 'Question 2: Please select the correct answer.',
-            //             answers: ["This is incorrect.", "This is incorrect.", "This is correct."],
-            //             correctAnswer: 3,
-            //             point: 1 },
+                //         answers: ["This is incorrect.", "This is incorrect.", "This is correct."],
+                //         correctAnswer: 3,
+                //         point: 1 }]
             //         {   id: '113',
             //             question: 'Question 3: Please select the correct answer.',
             //             answers: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect."],
@@ -159,7 +159,13 @@
             Submit() {
                 // console.clear()
                 // console.warn(this.Answers)
-                submitAnswers(this.Answers)
+                var tmpData = []
+                for (var key in this.Answers) {
+                    tmpData.push({ id: key, answer: this.Answers[key]})
+                }
+                // console.clear()
+                // console.warn(tmpData)
+                submitAnswers(tmpData)
             },
             Cancel() {
                 this.Answers = {}
