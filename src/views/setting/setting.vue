@@ -58,7 +58,7 @@
       <el-table-column label="Actions" align="center" width="240" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button  @click="updateAndQuery(row.id)" type = "primary" style="width: 200px;">
-            Set the Parameters
+            Set Parameters
           </el-button>
         </template>
       </el-table-column>
@@ -91,7 +91,7 @@
         </el-dialog>
 
         <el-dialog
-          title="Select Pricing Strategies"
+          title="Select Pricing Algorithms"
           :visible.sync="dialogVisible2"
           width="80%">
           <span class="notice">Please type in the query.<br /></span>
@@ -101,7 +101,7 @@
               </span>
               <el-input class="params_input" placeholder="Query Language" v-model="strategyQuery.query"/>
               <div align="right">
-              <el-button style="primary" @click="getRes">Test</el-button>
+              <el-button type="primary" @click="getRes">Test</el-button>
               </div>
           </el-card>
           <el-card class="formula_class"
@@ -272,6 +272,7 @@ export default {
     },
     methods: {
         getList() {
+            // this.listLoading = false
             this.listLoading = true
             fetchList(this.listQuery).then(response => {
                 this.List = response.data.items
