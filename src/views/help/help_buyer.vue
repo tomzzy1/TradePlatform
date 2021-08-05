@@ -7,6 +7,7 @@
                 </template>
                 <span class="introduction">
                     <ul>
+                        <li>Check personal information and order history in the "Homepage"</li> 
                         <li>Browse different datasets through the "Gallery" page</li>
                         <li>Find out their detailed information through the "Details" page</li>
                         <li>Add the dataset you want into the cart through the "Cart" page</li>

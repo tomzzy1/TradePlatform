@@ -200,7 +200,7 @@ export default {
             console.log(this.params)
             formData.append('params', JSON.stringify(this.params))
             // console.warn("+++++ This is the data posted to the database +++++")
-            // upload_data(formData)
+            upload_data(formData)
             this.$message.success("Upload Successfully")
         },
         // submitUpload() {
