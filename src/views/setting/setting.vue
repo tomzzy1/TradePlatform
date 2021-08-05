@@ -330,8 +330,9 @@ export default {
             var tmpData = {
               id: tmpID,
               price_coefficient: this.price_coefficient,
-              sensitivity_degree: this.sensitivity_degree,
+              sensitivity_degree: this.sensitivity_degree
             }
+            postParams(tmpData)
             this.dialogVisible = false
             this.deleteDialogID()
             this.dialogVisible2 = true
