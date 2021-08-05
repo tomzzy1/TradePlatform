@@ -24,7 +24,7 @@
                     <div>
                         <span class="dataset_name">{{ item.name }}</span>
                         <br />
-                        <span class="dataset_info">{{ item.question }}</span>
+                        <span class="dataset_info">{{ item.description }}</span>
                         <br />
                         <div class="bottom clearfix">
                             <router-link :to="{path:'/answer/id/' + item.id ,query:{name:item.name, id:item.id}}" class="detail_link">Answer</router-link>
@@ -174,8 +174,8 @@ export default {
             columns: [],
             tableName: null,
             // List: [
-            //     {id: 1, name: "Question Set 1", question: "This is a question."},
-            //     {id: 1, name: "Question Set 2", question: "This is a question."}
+            //     {id: 1, name: "Question Set 1", description: "This is a question."},
+            //     {id: 1, name: "Question Set 2", description: "This is a question."}
             // ],
             listQuery: {
                 // id: undefined,
@@ -186,8 +186,8 @@ export default {
                 searching_content: undefined
             },
             sortOptions: [
-                { label: 'name', key: 'name' },
-                { label: 'question', key: 'source' },
+                { label: 'name', key: 'name' }
+                // { label: 'description', key: 'source' },
             ]
         }
     },
