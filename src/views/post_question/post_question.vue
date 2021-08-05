@@ -11,6 +11,8 @@
         <el-card shadow="hover" class="question_posting">
             <div class="heading">Please type in the question:</div>
             <el-input class="question_input" v-model="question" placeholder="Question"/>
+            <div class="heading">Please type in the description of the question:</div>
+            <el-input class="question_input" v-model="description" placeholder="Description"/>
             <div class="heading">Please select the number of potential answers:</div>
             <el-select class="answer_number_select" v-model="answer_number" placeholder="Number" @change="updateCorrectAnswerOptions">
                 <el-option v-for="item in answerNumberOptions" :key="item.key" :label="item.display_name" :value="item.key" />
@@ -130,6 +132,7 @@ export default ({
             //     { id: 3, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/03, Score: 31", column_info: "China, America, Japan" },
             // ],
             question: undefined,
+            description: undefined,
             answer_number: undefined,
             answerNumberOptions,
             answers: [],
@@ -186,6 +189,7 @@ export default ({
             var tmpData = {
                 id: this.current_question.id,
                 question: this.question,
+                description: this.description,
                 answerNumber: this.answer_number,
                 answers: modified_answers,
                 correctAnswer: this.correct_answer,
@@ -201,6 +205,7 @@ export default ({
             }
             this.all_question.push(tmpData)
             this.question = undefined
+            this.description = undefined
             this.answer_number = undefined
             this.answers = []
             this.correct_answer = undefined

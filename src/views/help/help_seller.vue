@@ -52,7 +52,7 @@
                     <span class="intro_title">Post Question</span>
                 </template>
                 <span class="introduction">
-                    Cart is the page where you can browse the datasets added to the cart by you.
+                    Post question is the page where you post crowdsourcing questions for dataset to be completed.
                 <ul>
                     <li>
                         <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name", "price" and "query". Search with the keyword typed in and clear the previous search.
