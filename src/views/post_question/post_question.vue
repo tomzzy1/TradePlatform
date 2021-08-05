@@ -6,7 +6,7 @@
             <br />
             <span class="description_header">Row of Missing Data:</span> {{ current_question.row_info }}
             <br />
-            <span class="description_header">Potential Data:</span> {{ current_question.column_info }}
+            <span class="description_header">Potential Data:</span> {{ current_question.col_info }}
         </el-card>
         <el-card shadow="hover" class="question_posting">
             <div class="heading">Please type in the question:</div>
@@ -127,9 +127,9 @@ export default ({
             current_question: {},
             list: null,
             // list: [
-            //     { id: 1, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/01, Score: 31", column_info: "China, America, Japan" },
-            //     { id: 2, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/02, Score: 31", column_info: "China, America, Japan" },
-            //     { id: 3, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/03, Score: 31", column_info: "China, America, Japan" },
+            //     { id: 1, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/01, Score: 31", col_info: "China, America, Japan" },
+            //     { id: 2, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/02, Score: 31", col_info: "China, America, Japan" },
+            //     { id: 3, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/03, Score: 31", col_info: "China, America, Japan" },
             // ],
             question: undefined,
             description: undefined,
@@ -188,6 +188,7 @@ export default ({
             }
             var tmpData = {
                 id: this.current_question.id,
+                dataset_id: this.dataset_id,
                 question: this.question,
                 description: this.description,
                 answerNumber: this.answer_number,

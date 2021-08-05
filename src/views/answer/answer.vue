@@ -11,7 +11,7 @@
                         <span class="hint">Description: {{ item.description }}</span>
                         <el-radio-group v-model="Answers[item.id]">
                             <div class="options">
-                            <el-radio class = "option" v-for="i in (item.answer.length)" :key="i" :label="i">{{ item.answer[i-1] }}</el-radio>
+                            <el-radio class = "option" v-for="i in (item.answers.length)" :key="i" :label="i">{{ item.answers[i-1] }}</el-radio>
                             </div>
                         </el-radio-group>
                     </div>
@@ -85,23 +85,23 @@
                 // list: [
                 //     {   id: '120',
                 //         question: 'Question 1: Please select the correct answer.',
-                //         answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
-                //         correct_answer: 3,
+                //         answers: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
+                //         correctAnswer: 3,
                 //         point: 1 },
                 //     {   id: '121',
                 //         question: 'Question 2: Please select the correct answer.',
-            //             answer: ["This is incorrect.", "This is incorrect.", "This is correct."],
-            //             correct_answer: 3,
+            //             answers: ["This is incorrect.", "This is incorrect.", "This is correct."],
+            //             correctAnswer: 3,
             //             point: 1 },
             //         {   id: '113',
             //             question: 'Question 3: Please select the correct answer.',
-            //             answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect."],
-            //             correct_answer: 3,
+            //             answers: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect."],
+            //             correctAnswer: 3,
             //             point: 1 },
             //         {   id: '234',
             //             question: 'Question 4:   Please select the correct answer.',
-            //             answer: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect.", "This is incorrect."],
-            //             correct_answer: 3,
+            //             answers: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect.", "This is incorrect.", "This is incorrect."],
+            //             correctAnswer: 3,
             //             point: 1 }
             // ]
             //     listQuery: {
@@ -130,20 +130,20 @@
             getList() {
                 this.listLoading = true
                 var tmp_id = {id: this.id}
-                fetchList(tmp_id).then(response =>{
+                fetchAnswerList(tmp_id).then(response =>{
                     this.list = response.data.items
                     // console.warn(this.list)
                     for (var i = 0; i < this.list.length; i++)
                     {
-                        var tmpList = this.list[i].answer.split(";")
+                        var tmpList = this.list[i].answers.split(";")
                         // console.warn(tmpList)
-                        // this.List[i].answer = new Array()
+                        // this.List[i].answers = new Array()
                         // for (var j = 0; j < tmpList.length; j++){
-                        //     this.List[i].answer.push(tmpList[j])
+                        //     this.List[i].answers.push(tmpList[j])
                         // }
-                        this.list[i].answer = tmpList
+                        this.list[i].answers = tmpList
                     }
-                    for (var i = 0; i < this.list.answer.length; i++)
+                    for (var i = 0; i < this.list.answers.length; i++)
                     {
                         var tmp = this.list.id
                         this.Answers.tmp = -1
