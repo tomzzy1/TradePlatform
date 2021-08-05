@@ -52,7 +52,7 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['Industries', 'Technology', 'Forex', 'Gold', 'Forecasts']
+          data: ['QUCA', 'UP', 'UCP']
         },
         series: [
           {
@@ -62,11 +62,9 @@ export default {
             radius: [15, 95],
             center: ['50%', '38%'],
             data: [
-              { value: 320, name: 'Industries' },
-              { value: 240, name: 'Technology' },
-              { value: 149, name: 'Forex' },
-              { value: 100, name: 'Gold' },
-              { value: 59, name: 'Forecasts' }
+              { value: 320, name: 'QUCA' },
+              { value: 240, name: 'UP' },
+              { value: 149, name: 'UCP' },
             ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600
