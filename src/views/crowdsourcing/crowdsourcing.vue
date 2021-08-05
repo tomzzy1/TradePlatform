@@ -174,8 +174,8 @@ export default {
             columns: [],
             tableName: null,
             // List: [
-            //     {id: 1, name: "Question Set 1", description: "This is a question."},
-            //     {id: 1, name: "Question Set 2", description: "This is a question."}
+            //     {id: 1, name: "Dataset 1", description: "This is a dataset."},
+            //     {id: 1, name: "Dataset 2", description: "This is a dataset"}
             // ],
             listQuery: {
                 // id: undefined,
