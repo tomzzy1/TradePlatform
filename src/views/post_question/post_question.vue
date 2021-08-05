@@ -47,7 +47,7 @@
             @current-change="handleCurrentChange"
             layout="prev, pager, next, jumper"
             :page-size="1"
-            :total="3"
+            :total="total_number"
             :current-page.sync="curret_question_number">
             </el-pagination>
         </div>
@@ -173,8 +173,8 @@ export default ({
         },
         postOneQuestion() {
             var modified_answers = ""
-            console.clear()
-            console.warn(this.answers)
+            // console.clear()
+            // console.warn(this.answers)
             for (let i = 0; i < this.answers.length; i++) {
                 if (i != 0) {
                     modified_answers += ";"
@@ -205,8 +205,8 @@ export default ({
             this.answers = []
             this.correct_answer = undefined
             this.point = undefined
-            console.clear()
-            console.warn(this.all_question)
+            // console.clear()
+            // console.warn(this.all_question)
         },
         getInfo() {
             fetchInfo(this.listQuery).then(response => {
@@ -214,14 +214,14 @@ export default ({
                 this.total_number = this.list.length
                 this.current_question = this.list[0]
             })
-            // console.clear()
-            // console.warn(this.total_number)
         },
         handleCurrentChange() {
             this.current_question = this.list[this.curret_question_number - 1]
         },
         Submit() {
             if (this.total_number == this.all_question.length) {
+                // console.clear()
+                // console.warn(this.all_question)
                 postQuestion(this.all_question)
             } else {
                 this.$message.error("Please fill in questions for all missing data!")
