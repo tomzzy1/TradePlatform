@@ -141,7 +141,7 @@ export default ({
             correctAnswerOptions: undefined,
             listQuery: {
                 id: undefined,
-                info: undefined
+                // info: undefined
             },
             total_number: 0,
             curret_question_number: 1,
