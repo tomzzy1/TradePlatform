@@ -33,26 +33,23 @@
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Detail</span>
+                    <span class="intro_title">Post</span>
                 </template>
                 <span class="introduction">
-                    Detail is the page for you to find out more detailed information for each dataset.
+                    Detail is the page for you to browse different datasets which are required to be completed.
                 <ul>
                     <li>
-                        <span class="intro_title_2">Query</span>: Select or type in the query language while buying the dataset
+                        <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name" and "description". Search with the keyword typed in or clear the previous search.
                     </li>
                     <li>
-                        <span class="intro_title_2">Complete the Dataset</span>: Check the box if you want to pay more for a more complete dataset
-                    </li>
-                    <li>
-                        <span class="intro_title_2">Buy</span>: Buy the entire dataset or it with query
+                        <span class="intro_title_2">Post Question</span>: Post crowdsourcing questions for the specific dataset.
                     </li>
                 </ul>
                 </span>
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Cart</span>
+                    <span class="intro_title">Post Question</span>
                 </template>
                 <span class="introduction">
                     Cart is the page where you can browse the datasets added to the cart by you.
@@ -68,14 +65,6 @@
                     </li>
                 </ul>
                 </span>    
-            </el-collapse-item>
-            <el-collapse-item>
-                <template slot="title" class="intro_title">
-                    <span class="intro_title">Order</span>
-                </template>
-                <span class="introduction">
-                    Order is the page where you can deliver an order with the datasets you want.
-                </span>
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title" class="intro_title">

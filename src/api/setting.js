@@ -23,3 +23,11 @@ export function postData(data) {
       data
     })
 }
+
+export function postParams(data) {
+  return request({
+    url: '/vue-element-admin/setting/post_params',
+    method: 'post',
+    data
+  })
+}

@@ -35,7 +35,7 @@
                             <span class="intro_title_2">Types of View</span>: Table View & Grid View
                         </li>
                         <li>
-                            <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name", "price" and "query". Search with the keyword typed in and clear the previous search.
+                            <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name", "price" and "query". Search with the keyword typed in or clear the previous search.
                         </li>
                         <li>
                             <span class="intro_title_2">View Details</span>: Find out more detailed information of certain dataset

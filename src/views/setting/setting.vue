@@ -108,8 +108,7 @@
           >
             <span class="formula">Method 1: xxxxxxxx</span>
             <span class="formula">Method 2: xxxxxxxx</span>
-            <span class="formula">Method 3: xxxxxxxx</span>
-            <span class="formula_last">Method 4: xxxxxxxx</span>
+            <span class="formula_last">Method 3: xxxxxxxx</span>
           </el-card>
           <bar-chart :chart-data="barChartData" />
           <br />
@@ -118,7 +117,6 @@
             <el-radio-button label=1>Method 1</el-radio-button>
             <el-radio-button label=2>Method 2</el-radio-button>
             <el-radio-button label=3>Method 3</el-radio-button>
-            <el-radio-button label=4>Method 4</el-radio-button>
           </el-radio-group>
           </div>
           <div align="center">
@@ -209,7 +207,7 @@
 <script>
 import LineChart from './components/LineChart'
 import BarChart from './components/BarChart'
-import { fetchList, postData, postQuery } from '@/api/setting'
+import { fetchList, postData, postQuery, postParams } from '@/api/setting'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
@@ -239,9 +237,8 @@ export default {
             // methods: [
             //   { name: "Method 1", time: 10, price: 50, param1: 1, param2: 2, param3: 3 },
             //   { name: "Method 2", time: 30, price: 60, param1: 1, param2: 2, param3: 3 },
-            //   { name: "Method 3", time: 20, price: 20, param1: 1, param2: 2, param3: 3 },
-            //   { name: "Method 4", time: 40, price: 90, param1: 1, param2: 2, param3: 3 }
-            // ],
+            //   { name: "Method 3", time: 20, price: 20, param1: 1, param2: 2, param3: 3 }
+            // ]
             search: 'Name',
             searching_content: undefined,
             // List: [
@@ -330,6 +327,11 @@ export default {
         setParams(tmpID) {
             // console.clear()
             // console.warn(tmpID)
+            var tmpData = {
+              id: tmpID,
+              price_coefficient: this.price_coefficient,
+              sensitivity_degree: this.sensitivity_degree,
+            }
             this.dialogVisible = false
             this.deleteDialogID()
             this.dialogVisible2 = true
@@ -351,8 +353,8 @@ export default {
           this.dialogVisible2 = false
           var tmpData = {
             id: this.currentID,
-            price_coefficient: this.price_coefficient,
-            sensitivity_degree: this.sensitivity_degree,
+            // price_coefficient: this.price_coefficient,
+            // sensitivity_degree: this.sensitivity_degree,
             pricing_strategy: this.strategy
           }
           // console.clear()
