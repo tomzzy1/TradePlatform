@@ -27,7 +27,7 @@
                         <span class="dataset_info">{{ item.description }}</span>
                         <br />
                         <div class="bottom clearfix">
-                            <router-link :to="{path:'/post_question/id/' + item.id ,query:{name:item.name, id:item.id}}" class="detail_link">Post Question</router-link>
+                            <router-link :to="{path:'/post_question/id/' + item.id, query:{name:item.name, id:item.id}}" class="detail_link">Post Question</router-link>
                         </div>
                     </div>
                     </el-card>

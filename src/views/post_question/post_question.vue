@@ -111,6 +111,7 @@
 
 <script>
 import { postQuestion, fetchInfo } from '@/api/post_question'
+import waves from '@/directive/waves'
 
 const answerNumberOptions = [
     { key: 2, display_name: '2'},
@@ -129,7 +130,7 @@ export default ({
             // list: [
             //     { id: 1, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/01, Score: 31", col_info: "China, America, Japan" },
             //     { id: 2, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/02, Score: 31", col_info: "China, America, Japan" },
-            //     { id: 3, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/03, Score: 31", col_info: "China, America, Japan" },
+            //     { id: 3, pos: "Country", row_info: "Team: Miami Heat, Player: Jimmy Butler, Date: 2021/08/03, Score: 31", col_info: "China, America, Japan" }
             // ],
             question: undefined,
             description: undefined,
@@ -157,10 +158,17 @@ export default ({
     },
     created() {
         var query = this.$route.query
+        // console.clear()
+        // console.warn(query)
         if (query) {
             this.name = query.name
             this.dataset_id = query.id
+            this.listQuery.id = query.id
+            // console.clear()
+            // console.warn(this.dataset_id)
         }
+        // console.clear()
+        // console.warn(this.dataset_id)
         this.getInfo()
     },
     methods: {
@@ -226,8 +234,8 @@ export default ({
         },
         Submit() {
             if (this.total_number == this.all_question.length) {
-                // console.clear()
-                // console.warn(this.all_question)
+                console.clear()
+                console.warn(this.all_question)
                 postQuestion(this.all_question)
             } else {
                 this.$message.error("Please fill in questions for all missing data!")
