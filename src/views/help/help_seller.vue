@@ -55,13 +55,24 @@
                     Post question is the page where you post crowdsourcing questions for dataset to be completed.
                 <ul>
                     <li>
-                        <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name", "price" and "query". Search with the keyword typed in and clear the previous search.
+                        <span class="intro_title_2">Information</span>: There are three types of information from the original dataset to help the seller post appropriate questions, which are "Column of Missing Data", "Row of Missing Data" and "Potential Data".
+                            <ul>
+                                <li>
+                                   <span class="intro_title_2">Column of Missing Data</span>: The column that the missing data belongs to
+                                </li>
+                                <li>
+                                    <span class="intro_title_2">Row of Missing Data</span>: The entire row that the missing data belongs to
+                                </li>
+                                <li>
+                                    <span class="intro_title_2">Potential Data</span>: Potential data options for the missing data based on the nearby data in the same column
+                                </li>
+                            </ul>     
                     </li>
                     <li>
-                        <span class="intro_title_2">Buy</span>: Buy one specific dataset with the button inside the row. Select several dataset and buy them all with the button in the bottom.
+                        <span class="intro_title_2">Selection</span>: Select each piece of missing data to post the question separately.
                     </li>
                     <li>
-                        <span class="intro_title_2">Edit</span>: Delete the certain dataset from the cart
+                        <span class="intro_title_2">Post Question</span>: Post the question with optional numbers of potential answers, question description, correct answer and point for the question.
                     </li>
                 </ul>
                 </span>    
