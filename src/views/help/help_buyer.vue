@@ -20,7 +20,7 @@
                     <span class="intro_title">Homepage</span>
                 </template>
                 <span class="introduction">
-                    Homepage is the page displaying your information, including basic info, statistics, order history and so on.
+                    Homepage is the page displaying your information, including basic info, business statistics, order history and so on.
                 </span>
                 
             </el-collapse-item>

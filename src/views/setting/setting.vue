@@ -255,6 +255,7 @@ export default {
                 searching_content: undefined
             },
             strategyQuery: {
+              id: undefined,
               query: undefined,
             },
             sortOptions: [
@@ -324,6 +325,7 @@ export default {
             this.dialogVisible2 = false
             this.deleteDialogID()
             this.currentID = undefined
+            this.strategyQuery.id = undefined
         },
         setParams(tmpID) {
             // console.clear()
@@ -332,6 +334,7 @@ export default {
             this.deleteDialogID()
             this.dialogVisible2 = true
             this.currentID = tmpID
+            this.strategyQuery.id = this.currentID
         },
         updateAndQuery(tmpID) {
             this.dialogVisible = true

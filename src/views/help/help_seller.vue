@@ -8,7 +8,7 @@
                 <span class="introduction">
                     <ul>
                         <li>Check personal information, order history and business statistics in the "Homepage"</li> 
-                        <li>Uplaod the dataset file along with its associated parameters in the "Upload" page</li>
+                        <li>Uplaod the dataset file along with its associated information in the "Upload" page</li>
                         <li>Browse different datasets which are required to be completed in the "Post" page</li>
                         <li>Post the crowdsourcing questions in the "Post Question" page</li>
                     </ul>
@@ -19,30 +19,16 @@
                     <span class="intro_title">Homepage</span>
                 </template>
                 <span class="introduction">
-                    Homepage is the page displaying your information, including basic info, statistics, order history and so on.
+                    Homepage is the page displaying your information, including basic info, business statistics, order history and so on.
                 </span>
                 
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Gallery</span>
+                    <span class="intro_title">Upload</span>
                 </template>
                 <span class="introduction">
-                    Gallery is the page for you to browse different datasets with basic informations. 
-                    <ul>
-                        <li>
-                            <span class="intro_title_2">Types of View</span>: Table View & Grid View
-                        </li>
-                        <li>
-                            <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name", "price" and "query". Search with the keyword typed in and clear the previous search.
-                        </li>
-                        <li>
-                            <span class="intro_title_2">View Details</span>: Find out more detailed information of certain dataset
-                        </li>
-                        <li>
-                            <span class="intro_title_2">Add to Cart</span>: In table view, add the entire dataset into the cart
-                        </li>
-                    </ul>
+                    Upload is the page for you to upload the dataset file with certain type, along with the corresponding information, including "Name", "Base Price", "Source" and "Description".
                 </span>
             </el-collapse-item>
             <el-collapse-item>
