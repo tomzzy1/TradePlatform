@@ -67,13 +67,6 @@ export default {
     },
     setOptions({ nameData, timeData, priceData, param1Data} = {}){
       this.chart.setOption({
-        legend: {
-          left: 'center',
-          top: 0,
-          formatter: function(name) {
-            return name
-          }
-        },
         xAxis: [{
           type: 'category',
           // data: ['Method 1', 'Method 2', 'Method 3', 'Method 4'],
@@ -97,43 +90,24 @@ export default {
         },
         yAxis: [{
           type: 'value',
-          name: 'Time(ms)',
           axisTick: {
             show: false
-          },
-          axisLabel: {
-            show: true
-          },
-          position: 'left'
-        },
-        {
-          show: true,
-          type: 'value',
-          name: 'Price($)',
-          axisTick: {
-            show: false
-          },
-          axisLabel: {
-            show: true
-          },
-          position: 'right'
+          }
         }],
         series: [{
-          name: 'Time',
-          type: 'bar',
-          stack: 'Time',
-          barWidth: '30%',
-          data: timeData,
-          animationDuration,
-          yAxisIndex: 0
-        }, {
+        //   name: 'Time',
+        //   type: 'bar',
+        //   stack: 'vistors',
+        //   barWidth: '60%',
+        //   data: timeData,
+        //   animationDuration
+        // }, {
           name: 'Price',
           type: 'bar',
-          stack: 'Price',
-          barWidth: '30%',
+          stack: 'vistors',
+          barWidth: '60%',
           data: priceData,
-          animationDuration,
-          yAxisIndex: 1
+          animationDuration
         // }, {
         //   name: 'Param 1',
         //   type: 'bar',

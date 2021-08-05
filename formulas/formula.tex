@@ -1,0 +1,55 @@
+% test
+\documentclass{article}
+
+% packages
+% \usepackage{titling}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+
+% information
+\title{Formula}
+\author{Alex Chen}
+\date{\today}
+\geometry{left=2.54cm, right=2.54cm, top=3cm, bottom=3cm}
+
+% settings of page head
+
+% begin
+\begin{document}
+\maketitle
+
+
+\newpage
+
+QUCA: $\Phi_e(Q, D) = \frac{1}{n} * \Delta * \kappa(Q, D) * \Phi(Q, D)$\\
+\\$\Phi_e(Q, D)$: Price
+\\$Q$: query
+\\$D$: Dataset
+\\$n$: Size of Result Tuples
+\\$\Delta$: Price Coefficient
+\\
+\\
+
+UP: $\Phi_e(Q, D) = \sum_{t_i \in M(Q, D)} * \rho(t_i)$\\
+\\$\Phi_e(Q, D)$: Price
+\\$Q$: query
+\\$D$: Dataset
+\\$\rho(t_i)$: Base Price
+\\$M(Q, D)$: A Lineage Set of Query $Q$
+\\
+\\
+
+UCP: $\Phi_e(Q, D) = \sum_{t_i \in M(Q, D)} \eta_i * \rho(t_i)$\\
+\\$\Phi_e(Q, D)$: Price
+\\$Q$: query
+\\$D$: Dataset
+\\$\eta_i$: Complete Rate
+\\$\rho(t_i)$: Base Price
+\\$M(Q, D)$: A Lineage Set of Query $Q$
+
+
+
+
+	
+\end{document}

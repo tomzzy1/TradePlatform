@@ -1,3 +1,6 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <template>
     <div class="app-container">
         <div class="filter-container">
@@ -106,11 +109,10 @@
           </el-card>
           <el-card class="formula_class"
           >
-            <span class="formula">Method 1: xxxxxxxx</span>
-            <span class="formula">Method 2: xxxxxxxx</span>
-            <span class="formula_last">Method 3: xxxxxxxx</span>
+            <img src="@/pics/formula.jpg" class="image">
           </el-card>
           <bar-chart :chart-data="barChartData" />
+          <!-- <bar-chart2 :chart-data="barChartData" /> -->
           <br />
           <div align="center">
           <el-radio-group class="el_radio" v-model="strategy" size="medium">
@@ -201,29 +203,37 @@
     .el_radio {
       margin-bottom: 20px;
     }
+
+    .image {
+      width: 80%;
+      /* height: 50%; */
+    }
   
 </style>
 
 <script>
 import LineChart from './components/LineChart'
 import BarChart from './components/BarChart'
+import BarChart2 from './components/BarChart2'
 import { fetchList, postData, postQuery, postParams } from '@/api/setting'
 import waves from '@/directive/waves'
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination'
 
-const barChartData = {
-    nameData: [1, 2, 3, 4],
-    priceData: [100, 120, 161, 134],
-    timeData: [120, 82, 91, 154],
-    param1Data: [180, 160, 151, 106]
-}
+// const barChartData = {
+//     nameData: [1, 2, 3, 4],
+//     priceData: [100, 120, 161, 134],
+//     timeData: [1, 2, 9, 4],
+//     param1Data: [180, 160, 151, 106]
+// }
 
 export default {
     name: 'gallery_table',
     components: { Pagination,
                   LineChart,
-                  BarChart },
+                  BarChart,
+                  BarChart2
+                },
     directives: { waves },
     data() {
         return {
@@ -235,10 +245,10 @@ export default {
             List: null,
             methods: undefined,
             // methods: [
-            //   { name: "Method 1", time: 10, price: 50, param1: 1, param2: 2, param3: 3 },
-            //   { name: "Method 2", time: 30, price: 60, param1: 1, param2: 2, param3: 3 },
-            //   { name: "Method 3", time: 20, price: 20, param1: 1, param2: 2, param3: 3 }
-            // ]
+            //   { name: "Method 1", time: 25, price: 50 },
+            //   { name: "Method 2", time: 10, price: 25 },
+            //   { name: "Method 3", time: 20, price: 20 }
+            // ],
             search: 'Name',
             searching_content: undefined,
             // List: [
@@ -264,7 +274,13 @@ export default {
             dialogVisible2: false,
             dialogID: null,
             currentID: undefined,
-            strategy: undefined
+            strategy: undefined,
+            // barChartData
+            barChartData: {
+              nameData: [],
+              timeData: [],
+              priceData: []
+            }
         }
     },
     created() {
@@ -366,6 +382,16 @@ export default {
         getRes() {
           postQuery(this.strategyQuery).then(response => {
             this.methods = response.data.items
+            this.barChartData = {
+              nameData: [],
+              timeData: [],
+              priceData: []
+            }
+            for (let i = 0; i < this.methods.length; i++){
+              this.barChartData.nameData.push(this.methods[i].name)
+              this.barChartData.timeData.push(this.methods[i].time)
+              this.barChartData.priceData.push(this.methods[i].price)
+            } 
           })
         }
     }
