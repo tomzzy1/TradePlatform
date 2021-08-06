@@ -227,8 +227,8 @@ export default {
             var tmpData = { id: tmpID, query: tmpQuery, complement: this.complement }
             this.check(tmpID)
             if (this.checkValid == true){
-                addToCart(tmpData)
-                window.location.href = "http://localhost:9527/#/cart"
+                addToCart(tmpData).then((response) => {
+                window.location.href = "http://localhost:9527/#/cart"})
             }
         },
         addToCart2(tmpID) {
@@ -236,8 +236,8 @@ export default {
             var tmpData = { id: tmpID, query: tmpQuery, complement: this.complement }
             this.check(tmpID)
             if (this.checkValid == true){
-                addToCart(tmpData)
-                window.location.href = "http://localhost:9527/#/cart"
+                addToCart(tmpData).then((response) => {
+                window.location.href = "http://localhost:9527/#/cart"})
             }
         },
         cancel() {
