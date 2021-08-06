@@ -1,16 +1,16 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 15px;">
-    <el-table-column align="center" label="Buyer" width=250%>
+    <el-table-column align="center" label="Buyer" width="30%">
       <template slot-scope="scope">
         {{ scope.row.order_no | orderNoFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="Price" width=250% align="center">
+    <el-table-column label="Price" width="30%" align="center">
       <template slot-scope="scope">
         ${{ scope.row.price | toThousandFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="Status" width=250% align="center">
+    <el-table-column label="Status" width="30%" align="center">
       <template slot-scope="{row}">
         <el-tag :type="row.status | statusFilter">
           {{ row.status }}
