@@ -68,12 +68,14 @@
             -
           </el-button> -->
             <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
-            <el-button v-waves size="mini" type="success" @click="buyGood(row)">
+            <el-button-group>
+            <el-button v-waves type="success" @click="buyGood(row)">
               Buy
             </el-button>
-            <el-button v-if="row.status!='deleted'" size="mini" class="delete_button" type="danger" @click="handleDelete(row,$index)">
+            <el-button v-if="row.status!='deleted'" class="delete_button" type="danger" @click="handleDelete(row,$index)">
               Delete
             </el-button>
+            </el-button-group>
           </template>
         </el-table-column>
       </el-table>

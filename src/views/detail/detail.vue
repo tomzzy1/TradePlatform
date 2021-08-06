@@ -50,9 +50,11 @@
             <el-button class="button" type="danger" @click="cancel"><router-link :to="{path:'/gallery/gallery_table'}">Cancel</router-link></el-button>
             </div> -->
             <div align="center">
+            <el-button-group>
             <el-button class="button" type="primary" @click="addToCart1(id)">Add Entire Dataset to Cart</el-button>
             <el-button class="button" type="primary" @click="addToCart2(id)">Add Dataset with Query</el-button>
-            <el-button class="button" type="danger" @click="cancel"><router-link :to="{path:'/gallery/gallery_table'}">Cancel</router-link></el-button>
+            <el-button class="button" type="danger" @click="cancel">cancel</el-button>
+            </el-button-group>
             </div>
         </el-card>
         
@@ -103,7 +105,7 @@
     }
 
     .button {
-        width: 32%;
+        width: 250px;
         height: 40px;
     }
 
@@ -241,6 +243,7 @@ export default {
         },
         cancel() {
             this.query = undefined
+            window.location.href = "http://localhost:9527/#/gallery/gallery_grid"
         },
         check(tmpID) {
             var tmpData = {
