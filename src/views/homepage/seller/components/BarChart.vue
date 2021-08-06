@@ -74,26 +74,26 @@ export default {
           }
         }],
         series: [{
-          name: 'pageA',
+          name: 'Completed',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [79, 52, 200, 334, 390, 330, 220],
+          data: [7, 5, 2, 3, 3, 2, 5],
           animationDuration
         }, {
-          name: 'pageB',
+          name: 'Original',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [80, 52, 200, 334, 390, 330, 220],
+          data: [8, 5, 2, 4, 3, 3, 2],
           animationDuration
-        }, {
-          name: 'pageC',
-          type: 'bar',
-          stack: 'vistors',
-          barWidth: '60%',
-          data: [30, 52, 200, 334, 390, 330, 220],
-          animationDuration
+        // }, {
+        //   name: 'pageC',
+        //   type: 'bar',
+        //   stack: 'vistors',
+        //   barWidth: '60%',
+        //   data: [30, 52, 200, 334, 390, 330, 220],
+        //   animationDuration
         }]
       })
     }

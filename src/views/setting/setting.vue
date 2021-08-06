@@ -109,7 +109,7 @@
           </el-card>
           <el-card class="formula_class"
           >
-            <img loading="lazy" src="@/pics/formula.jpg" class="image">
+            <img loading="lazy" src="@/pics/formula.jpg" class="image" alt="Formulae of Pricing Algorithms">
             <!-- <el-image :src="@/pics/formula.jpg" style="width:80%" lazy></el-image> -->
           </el-card>
           <bar-chart :chart-data="barChartData" />

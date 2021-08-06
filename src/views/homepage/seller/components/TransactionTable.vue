@@ -1,16 +1,16 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 15px;">
-    <el-table-column align="center" label="Buyer ID" width="150">
+    <el-table-column align="center" label="Buyer" width=250%>
       <template slot-scope="scope">
         {{ scope.row.order_no | orderNoFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="Price" width="150" align="center">
+    <el-table-column label="Price" width=250% align="center">
       <template slot-scope="scope">
         ${{ scope.row.price | toThousandFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="Status" width="100" align="center">
+    <el-table-column label="Status" width=250% align="center">
       <template slot-scope="{row}">
         <el-tag :type="row.status | statusFilter">
           {{ row.status }}
@@ -28,12 +28,14 @@ export default {
     statusFilter(status) {
       const statusMap = {
         success: 'success',
+        fail: 'danger',
         pending: 'danger'
       }
       return statusMap[status]
     },
     orderNoFilter(str) {
-      return Math.floor(Math.random()*999999)
+      // return Math.floor(Math.random()*999999)
+      return "buyer"
     }
   },
   data() {
