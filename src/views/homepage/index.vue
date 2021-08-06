@@ -30,7 +30,7 @@ export default {
       this.currentRole = "buyerHomepage"
     } else if (this.roles.includes('seller')) {
       this.currentRole = "sellerHomepage"
-    } else if (this.roles.includes('buyer')) {
+    } else if (this.roles.includes('worker')) {
       this.currentRole = "workerHomepage"
     } else if (this.roles.includes('admin')) {
       this.currentRole = "adminHomepage"

@@ -26,7 +26,8 @@ export default {
   data() {
     return {
       title: 'Data Query & Trade Platform',
-      logo: 'https://images.weserv.nl/?url=https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fassets.imedao.com%2Fimages%2Flogos%2Flogo_xueqiu_180%2Flogo_xueqiu_180-05.png&refer=http%3A%2F%2Fassets.imedao.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629625532&t=d3da211e881cd3cefaad820d09bfd62b'
+      // logo: 'https://images.weserv.nl/?url=https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fassets.imedao.com%2Fimages%2Flogos%2Flogo_xueqiu_180%2Flogo_xueqiu_180-05.png&refer=http%3A%2F%2Fassets.imedao.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629625532&t=d3da211e881cd3cefaad820d09bfd62b'
+      logo: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fassets.imedao.com%2Fimages%2Flogos%2Flogo_xueqiu_180%2Flogo_xueqiu_180-05.png&refer=http%3A%2F%2Fassets.imedao.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629625532&t=d3da211e881cd3cefaad820d09bfd62b'
       // logo: 'el-icon-s-data'
       // logo: '@/pics/test.jpg'
       // logo: '/test.jpg'
