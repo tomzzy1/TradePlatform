@@ -233,13 +233,14 @@ export default ({
             this.current_question = this.list[this.curret_question_number - 1]
         },
         Submit() {
-            if (this.total_number == this.all_question.length) {
-                console.clear()
-                console.warn(this.all_question)
-                postQuestion(this.all_question)
-            } else {
-                this.$message.error("Please fill in questions for all missing data!")
-            }
+            // if (this.total_number == this.all_question.length) {
+            //     console.clear()
+            //     console.warn(this.all_question)
+            //     postQuestion(this.all_question)
+            // } else {
+            //     this.$message.error("Please fill in questions for all missing data!")
+            // }
+            postQuestion(this.all_question)
         },
         Cancel() {
             this.all_question = []
