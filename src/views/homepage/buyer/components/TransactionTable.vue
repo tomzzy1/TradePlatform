@@ -7,7 +7,7 @@
     </el-table-column>
     <el-table-column label="Price" width="200" align="center">
       <template slot-scope="scope">
-        ${{ scope.row.price | toThousandFilter }}
+        ${{ scope.row.price | priceFilter }}
       </template>
     </el-table-column>
     <el-table-column label="Status" width="200" align="center">
@@ -33,7 +33,10 @@ export default {
       return statusMap[status]
     },
     orderNoFilter(str) {
-      return str.substring(0, 30)
+      return "NBA"
+    },
+    priceFilter() {
+      return Math.round(1000*Math.random())
     }
   },
   data() {
@@ -47,7 +50,7 @@ export default {
   methods: {
     fetchData() {
       transactionList().then(response => {
-        this.list = response.data.items.slice(0, 8)
+        this.list = response.data.items.slice(0, 2)
       })
     }
   }
