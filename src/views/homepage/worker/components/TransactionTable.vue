@@ -1,22 +1,22 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 15px;">
-    <el-table-column label="Order_No" min-width="200">
+    <el-table-column label="Dataset" align="center" min-width="200">
       <template slot-scope="scope">
         {{ scope.row.order_no | orderNoFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="Price" width="195" align="center">
+    <el-table-column label="Point" width="195" align="center">
       <template slot-scope="scope">
-        ¥{{ scope.row.price | toThousandFilter }}
+        {{ scope.row.price | priceFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="Status" width="100" align="center">
+    <!-- <el-table-column label="Status" width="100" align="center">
       <template slot-scope="{row}">
         <el-tag :type="row.status | statusFilter">
           {{ row.status }}
         </el-tag>
       </template>
-    </el-table-column>
+    </el-table-column> -->
   </el-table>
 </template>
 
@@ -33,7 +33,10 @@ export default {
       return statusMap[status]
     },
     orderNoFilter(str) {
-      return str.substring(0, 30)
+      return "NBA"
+    },
+    priceFilter() {
+      return Math.round(100*Math.random())
     }
   },
   data() {
@@ -47,7 +50,7 @@ export default {
   methods: {
     fetchData() {
       transactionList().then(response => {
-        this.list = response.data.items.slice(0, 8)
+        this.list = response.data.items.slice(0, 2)
       })
     }
   }
