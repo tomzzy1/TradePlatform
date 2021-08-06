@@ -90,7 +90,7 @@ export const constantRoutes = [
     redirect: '/homepage',
     children: [
       {
-        path: 'homepage',
+        path: '/homepage',
         component: () => import('@/views/homepage/index'),
         name: 'Homepage',
         meta: { title: 'Homepage', icon: 'el-icon-s-custom', affix: true }
