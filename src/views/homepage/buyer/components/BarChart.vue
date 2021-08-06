@@ -74,26 +74,26 @@ export default {
           }
         }],
         series: [{
-          name: 'pageA',
+          name: 'Datasets Visited',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [79, 52, 200, 334, 390, 330, 220],
+          data: [13, 24, 22, 10, 5, 1, 5],
           animationDuration
         }, {
-          name: 'pageB',
+          name: 'Dataset Ordered',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [80, 52, 200, 334, 390, 330, 220],
+          data: [3, 2, 0, 1, 3, 1, 3],
           animationDuration
-        }, {
-          name: 'pageC',
-          type: 'bar',
-          stack: 'vistors',
-          barWidth: '60%',
-          data: [30, 52, 200, 334, 390, 330, 220],
-          animationDuration
+        // }, {
+        //   name: 'pageC',
+        //   type: 'bar',
+        //   stack: 'vistors',
+        //   barWidth: '60%',
+        //   data: [30, 52, 200, 334, 390, 330, 220],
+        //   animationDuration
         }]
       })
     }

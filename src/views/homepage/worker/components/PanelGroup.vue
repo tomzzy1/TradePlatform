@@ -3,13 +3,13 @@
     <el-col :xs="12" :sm="12" :lg="12" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
         <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+          <svg-icon icon-class="message" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            New Visits
+            Questions Answered
           </div>
-          <count-to :start-val="0" :end-val="102" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="32" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -20,9 +20,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Question Answered
+            Questions Unanswered
           </div>
-          <count-to :start-val="0" :end-val="32" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="20" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
