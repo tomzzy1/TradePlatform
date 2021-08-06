@@ -109,7 +109,8 @@
           </el-card>
           <el-card class="formula_class"
           >
-            <img src="@/pics/formula.jpg" class="image">
+            <img loading="lazy" src="@/pics/formula.jpg" class="image">
+            <!-- <el-image :src="@/pics/formula.jpg" style="width:80%" lazy></el-image> -->
           </el-card>
           <bar-chart :chart-data="barChartData" />
           <!-- <bar-chart2 :chart-data="barChartData" /> -->
