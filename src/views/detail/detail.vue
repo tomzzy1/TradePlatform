@@ -235,7 +235,6 @@ export default {
             var tmpQuery = this.query
             var tmpData = { id: tmpID, query: tmpQuery, complement: this.complement }
             this.check(tmpID)
-            addToCart(tmpData)
             if (this.checkValid == true){
                 addToCart(tmpData)
                 window.location.href = "http://localhost:9527/#/cart"
