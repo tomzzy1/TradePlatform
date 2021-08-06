@@ -118,9 +118,9 @@
           <br />
           <div align="center">
           <el-radio-group class="el_radio" v-model="strategy" size="medium">
-            <el-radio-button label=1>Method 1</el-radio-button>
-            <el-radio-button label=2>Method 2</el-radio-button>
-            <el-radio-button label=3>Method 3</el-radio-button>
+            <el-radio-button label=0>Method 1</el-radio-button>
+            <el-radio-button label=1>Method 2</el-radio-button>
+            <el-radio-button label=2>Method 3</el-radio-button>
           </el-radio-group>
           </div>
           <div align="center">
