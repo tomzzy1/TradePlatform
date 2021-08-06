@@ -225,11 +225,13 @@ export default {
         addToCart1(tmpID) {
             var tmpQuery = "*"
             var tmpData = { id: tmpID, query: tmpQuery, complement: this.complement }
-            this.check(tmpID)
-            if (this.checkValid == true){
-                addToCart(tmpData).then((response) => {
+            // this.check(tmpID)
+            // if (this.checkValid == true){
+            //     addToCart(tmpData).then((response) => {
+            //     window.location.href = "http://localhost:9527/#/cart"})
+            // }
+            addToCart(tmpData).then((response) => {
                 window.location.href = "http://localhost:9527/#/cart"})
-            }
         },
         addToCart2(tmpID) {
             var tmpQuery = this.query

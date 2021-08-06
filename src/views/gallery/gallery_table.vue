@@ -296,8 +296,8 @@ export default {
         },
         directAddToCart(tmpID) {
             var tmpData = { id: tmpID, query: "*", complement: false }
-            addToCart(tmpData)
-            window.location.href = "http://localhost:9527/#/cart"
+            addToCart(tmpData).then((response) => {
+              window.location.href = "http://localhost:9527/#/cart"})
         },
         addToCart1(tmpID) {
             // console.warn(tmpID)
