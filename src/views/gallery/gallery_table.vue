@@ -57,6 +57,7 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="240" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
+          <el-button-group>
           <el-button type="success" @click="directAddToCart(row.id)">
             Add to Cart
           </el-button>
@@ -64,6 +65,7 @@
             Details
           </el-button> -->
           <el-button type="primary"><router-link :to="{path:'/detail/name/' + row.name ,query:{name:row.name, id:row.id}}" class="detail_link">Details</router-link></el-button>
+          </el-button-group>
         </template>
       </el-table-column>
     </el-table>
@@ -181,7 +183,7 @@ export default {
         return {
             tableKey: 0,
             total: 0,
-            listLoading: true,
+            listLoading: false,
             List: null,
             addToCartTime: null,
             query: null,
@@ -204,7 +206,7 @@ export default {
             tableName: null,
             // List: [
             //   {ID: 1, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "1GB", Source: "www.zju.com", Time: "2000"},
-            //   {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"},
+            //   {ID: 2, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "2GB", Source: "www.zju.com", Time: "2001"}],
             //   {ID: 3, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "3GB", Source: "www.zju.com", Time: "2002"},
             //   {ID: 4, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "4GB", Source: "www.zju.com", Time: "2003"},
             //   {ID: 5, Name: "Dataset", Description: "This is a DataSet. This is a DataSet. This is a DataSet. This is a DataSet.This is a DataSet. This is a DataSet. This is a DataSet.", Size: "5GB", Source: "www.zju.com", Time: "2004"},

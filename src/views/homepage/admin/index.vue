@@ -33,7 +33,7 @@
       </el-col>
       <el-col :xs="24" :sm="24" :lg="12">
         <div class="chart-wrapper">
-          <bar-chart />
+          <bar-chart :chart-data="barChartData"/>
         </div>
       </el-col>
     </el-row>
@@ -64,25 +64,7 @@ import TodoList from './components/TodoList'
 import BoxCard from './components/BoxCard'
 import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
-
-const lineChartData = {
-  newVisitis: {
-    expectedData: [10, 12, 16, 13, 10, 16, 16],
-    actualData: [12, 8, 9, 15, 12, 14, 14]
-  },
-  messages: {
-    expectedData: [20, 19, 12, 14, 16, 13, 14],
-    actualData: [18, 16, 15, 10, 14, 15, 13]
-  },
-  purchases: {
-    expectedData: [8, 10, 12, 10, 10, 9, 10],
-    actualData: [12, 9, 10, 13, 14, 13, 13]
-  },
-  shoppings: {
-    expectedData: [130, 140, 141, 142, 145, 150, 160],
-    actualData: [120, 82, 91, 154, 162, 140, 130]
-  }
-}
+import { fetchListAdmin } from '@/api/homepage'
 
 export default {
   name: 'adminHomepage',
@@ -100,12 +82,52 @@ export default {
   },
   data() {
     return {
-      lineChartData: lineChartData.newVisitis
+      // homepageData: undefind,
+      homepageData: {
+        visits: 1,
+        datasets: 2,
+        purchases: 3,
+        shoppings: 4,
+        strategies: {UP: 5, UCP: 6, QUCA: 7},
+        barchart: [
+          {buyer: 8, seller: 9, worker: 10},
+          {buyer: 11, seller: 12, worker: 13},
+          {buyer: 14, seller: 15, worker: 16},
+          {buyer: 17, seller: 18, worker: 19},
+          {buyer: 20, seller: 21, worker: 22},
+          {buyer: 23, seller: 24, worker: 25},
+          {buyer: 26, seller: 27, worker: 28}
+        ]
+      },
+      barChartData: {
+        buyerData: [],
+        sellerData: [],
+        workerData: []
+      }
     }
   },
+  created() {
+      this.getList()
+  },
   methods: {
-    handleSetLineChartData(type) {
-      this.lineChartData = lineChartData[type]
+    getList() {
+      // fetchListAdmin().then(response => {
+      //   this.homepageData = response.data.items
+        // console.clear()
+        // console.warn(this.barChartData)
+        this.barChartData = {
+          buyerData: [],
+          sellerData: [],
+          workerData: []
+        }
+        for (let i = 0; i < this.homepageData.barchart.length; i++) {
+          this.barChartData.buyerData.push(this.homepageData.barchart[i].buyer)
+          this.barChartData.sellerData.push(this.homepageData.barchart[i].seller)
+          this.barChartData.workerData.push(this.homepageData.barchart[i].worker)
+        }
+        console.clear()
+        console.warn(this.barChartData)
+      // })
     }
   }
 }
