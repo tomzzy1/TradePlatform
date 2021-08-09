@@ -93,9 +93,8 @@
                     <span class="intro_title_3">Top Bar Features</span>
                     <ul>
                         <li>Search for the page by its name</li>
+                        <li>Display the page in full screen mode</li>
                         <li>Log out by clicking your profile photo</li>
-                        <li>Add the dataset you want into the cart through the "Cart" page</li>
-                        <li>Place an order through the "Order" page</li>
                     </ul>
                     <span class="intro_title_3">Settings</span>
                     <ul>
