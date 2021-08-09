@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     getList() {
-      fetchListSeller().then(response => {
+      fetchListBuyer().then(response => {
         this.homepageData = response.data.items
         this.barChartData = {
           visitedData: [],

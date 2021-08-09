@@ -20,12 +20,24 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '350px'
+    },
+    chartData: {
+      type: Object,
+      required: true
     }
   },
   data() {
     return {
       chart: null
+    }
+  },
+  watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      }
     }
   },
   mounted() {
@@ -43,7 +55,9 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-
+      this.setOptions(this.chartData)
+    },
+    setOptions({ answered, unanswered} = {}){
       this.chart.setOption({
         tooltip: {
           trigger: 'item',
@@ -52,18 +66,18 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['Question Answered', 'Question Unanswered']
+          data: ['Questions Answered', 'Questions Unanswered']
         },
         series: [
           {
-            name: 'Number',
+            name: 'WEEKLY WRITE ARTICLES',
             type: 'pie',
             roseType: 'radius',
             radius: [15, 95],
             center: ['50%', '38%'],
             data: [
-              { value: 32, name: 'Question Answered' },
-              { value: 20, name: 'Question Unanswered' }
+              { value: answered, name: 'Questions Answered' },
+              { value: unanswered, name: 'Questions Unanswered' }
             ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600

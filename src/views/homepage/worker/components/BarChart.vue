@@ -23,11 +23,23 @@ export default {
     height: {
       type: String,
       default: '300px'
+    },
+    chartData: {
+      type: Object,
+      required: true
     }
   },
   data() {
     return {
       chart: null
+    }
+  },
+  watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      }
     }
   },
   mounted() {
@@ -45,14 +57,24 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-
+      this.setOptions(this.chartData)
+    },
+    setOptions({ answeredData } = {}){
       this.chart.setOption({
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+        legend: {
+          left: 'center',
+          top: 0,
+          formatter: function(name) {
+            return name
           }
         },
+        xAxis: [{
+          type: 'category',
+          data: ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+          axisTick: {
+            alignWithLabel: true
+          }
+        }],
         grid: {
           top: 10,
           left: '2%',
@@ -60,13 +82,12 @@ export default {
           bottom: '3%',
           containLabel: true
         },
-        xAxis: [{
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          axisTick: {
-            alignWithLabel: true
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
           }
-        }],
+        },
         yAxis: [{
           type: 'value',
           axisTick: {
@@ -74,26 +95,12 @@ export default {
           }
         }],
         series: [{
-          name: 'Question Answered',
+          name: 'Questions Answered',
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [7, 5, 2, 3, 9, 3, 2],
+          data: answeredData,
           animationDuration
-        // }, {
-        //   name: 'pageB',
-        //   type: 'bar',
-        //   stack: 'vistors',
-        //   barWidth: '60%',
-        //   data: [80, 52, 200, 334, 390, 330, 220],
-        //   animationDuration
-        // }, {
-        //   name: 'pageC',
-        //   type: 'bar',
-        //   stack: 'vistors',
-        //   barWidth: '60%',
-        //   data: [30, 52, 200, 334, 390, 330, 220],
-        //   animationDuration
         }]
       })
     }
