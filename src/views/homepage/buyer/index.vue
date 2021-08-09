@@ -66,25 +66,25 @@ export default {
   },
   data() {
     return {
-      // homepageData: undefined,
-      homepageData: {
-        visits: 1,
-        orders: 2,
-        barchart: [
-          {visited: 3, ordered: 4},
-          {visited: 5, ordered: 6},
-          {visited: 7, ordered: 8},
-          {visited: 9, ordered: 10},
-          {visited: 11, ordered: 12},
-          {visited: 13, ordered: 14},
-          {visited: 15, ordered: 16},
-        ],
-        table: [
-          {dataset: "NBA 2K20", price: 17, status: 0},
-          {dataset: "NBA 2K21", price: 18, status: 1},
-          {dataset: "NBA 2K22", price: 19, status: 2},
-        ]
-      },
+      homepageData: undefined,
+      // homepageData: {
+      //   visits: 1,
+      //   orders: 2,
+      //   barchart: [
+      //     {visited: 3, ordered: 4},
+      //     {visited: 5, ordered: 6},
+      //     {visited: 7, ordered: 8},
+      //     {visited: 9, ordered: 10},
+      //     {visited: 11, ordered: 12},
+      //     {visited: 13, ordered: 14},
+      //     {visited: 15, ordered: 16},
+      //   ],
+      //   table: [
+      //     {dataset: "NBA 2K20", price: 17, status: 0},
+      //     {dataset: "NBA 2K21", price: 18, status: 1},
+      //     {dataset: "NBA 2K22", price: 19, status: 2},
+      //   ]
+      // },
       barChartData: {
         visitedData: [],
         orderedData: []
@@ -101,8 +101,8 @@ export default {
   },
   methods: {
     getList() {
-      // fetchListSeller().then(response => {
-      //   this.homepageData = response.data.items
+      fetchListSeller().then(response => {
+        this.homepageData = response.data.items
         this.barChartData = {
           visitedData: [],
           orderedData: []
@@ -124,11 +124,11 @@ export default {
             this.tableData[j].status = 'success'
           }
         }
-        console.clear()
-        console.warn(this.barChartData)
-        console.warn(this.panelData)
-        console.warn(this.tableData)
-      // })
+        // console.clear()
+        // console.warn(this.barChartData)
+        // console.warn(this.panelData)
+        // console.warn(this.tableData)
+      })
     }
   }
 }
