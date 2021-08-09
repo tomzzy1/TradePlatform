@@ -14,7 +14,10 @@
     </div>
     </div> -->
 
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+    <panel-group :groupData="panelData" />
+    <!-- <panel-group v-blind:visits="homepageData.visits" /> -->
+    <!-- <panel-group :testString="testString" /> -->
+    <!-- <panel-group v-blind:testNumber="testNumber" /> -->
 
     <!-- <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
@@ -28,7 +31,7 @@
       </el-col> -->
       <el-col :xs="24" :sm="24" :lg="12">
         <div class="chart-wrapper">
-          <pie-chart />
+          <pie-chart :chart-data="pieChartData"/>
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="12">
@@ -82,27 +85,40 @@ export default {
   },
   data() {
     return {
-      // homepageData: undefind,
-      homepageData: {
-        visits: 1,
-        datasets: 2,
-        purchases: 3,
-        shoppings: 4,
-        strategies: {UP: 5, UCP: 6, QUCA: 7},
-        barchart: [
-          {buyer: 8, seller: 9, worker: 10},
-          {buyer: 11, seller: 12, worker: 13},
-          {buyer: 14, seller: 15, worker: 16},
-          {buyer: 17, seller: 18, worker: 19},
-          {buyer: 20, seller: 21, worker: 22},
-          {buyer: 23, seller: 24, worker: 25},
-          {buyer: 26, seller: 27, worker: 28}
-        ]
-      },
+      // testString: "Test",
+      // testNumber: 666,
+      homepageData: undefind,
+      // homepageData: {
+      //   visits: 1,
+      //   datasets: 2,
+      //   purchases: 3,
+      //   shoppings: 4,
+      //   strategies: {UP: 5, UCP: 6, QUCA: 7},
+      //   barchart: [
+      //     {buyer: 8, seller: 9, worker: 10},
+      //     {buyer: 11, seller: 12, worker: 13},
+      //     {buyer: 14, seller: 15, worker: 16},
+      //     {buyer: 17, seller: 18, worker: 19},
+      //     {buyer: 20, seller: 21, worker: 22},
+      //     {buyer: 23, seller: 24, worker: 25},
+      //     {buyer: 26, seller: 27, worker: 28}
+      //   ]
+      // },
       barChartData: {
         buyerData: [],
         sellerData: [],
         workerData: []
+      },
+      pieChartData: {
+        UP: 0,
+        UCP: 0,
+        QUCA: 0
+      },
+      panelData: {
+        visits: 0,
+        datasets: 0,
+        purchases: 0,
+        shoppings: 0,
       }
     }
   },
@@ -111,8 +127,8 @@ export default {
   },
   methods: {
     getList() {
-      // fetchListAdmin().then(response => {
-      //   this.homepageData = response.data.items
+      fetchListAdmin().then(response => {
+        this.homepageData = response.data.items
         // console.clear()
         // console.warn(this.barChartData)
         this.barChartData = {
@@ -125,9 +141,20 @@ export default {
           this.barChartData.sellerData.push(this.homepageData.barchart[i].seller)
           this.barChartData.workerData.push(this.homepageData.barchart[i].worker)
         }
-        console.clear()
-        console.warn(this.barChartData)
-      // })
+        this.pieChartData.UP = this.homepageData.strategies.UP
+        this.pieChartData.UCP = this.homepageData.strategies.UCP
+        this.pieChartData.QUCA = this.homepageData.strategies.QUCA
+        this.panelData.visits = this.homepageData.visits
+        this.panelData.datasets = this.homepageData.datasets
+        this.panelData.purchases = this.homepageData.purchases
+        this.panelData.shoppings = this.homepageData.shoppings
+        // console.clear()
+        // console.warn(this.barChartData)
+        // console.clear()
+        // console.warn(this.pieChartData)
+        // console.clear()
+        // console.warn(this.panelData)
+      })
     }
   }
 }

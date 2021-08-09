@@ -23,7 +23,7 @@
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Setting</span>
+                    <span class="intro_title">Crowdsourcing</span>
                 </template>
                 <span class="introduction">
                     Crowdsourcing is the page where you can browse different datasets with crowdsourcing questions.

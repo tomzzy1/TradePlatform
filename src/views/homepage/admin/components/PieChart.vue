@@ -21,11 +21,23 @@ export default {
     height: {
       type: String,
       default: '350px'
+    },
+    chartData: {
+      type: Object,
+      required: true
     }
   },
   data() {
     return {
       chart: null
+    }
+  },
+  watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      }
     }
   },
   mounted() {
@@ -43,7 +55,9 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-
+      this.setOptions(this.chartData)
+    },
+    setOptions({ UP, UCP, QUCA } = {}){
       this.chart.setOption({
         tooltip: {
           trigger: 'item',
@@ -62,9 +76,9 @@ export default {
             radius: [15, 95],
             center: ['50%', '38%'],
             data: [
-              { value: 320, name: 'QUCA' },
-              { value: 240, name: 'UP' },
-              { value: 149, name: 'UCP' },
+              { value: QUCA, name: 'QUCA' },
+              { value: UP, name: 'UP' },
+              { value: UCP, name: 'UCP' },
             ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600

@@ -29,7 +29,7 @@
                     <span class="intro_title">Gallery</span>
                 </template>
                 <span class="introduction">
-                    Gallery is the page for you to browse different datasets with basic informations. 
+                    Gallery is the page for you to browse different datasets with basic information. 
                     <ul>
                         <li>
                             <span class="intro_title_2">Types of View</span>: Table View & Grid View
@@ -76,7 +76,7 @@
                         <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name", "price" and "query". Search with the keyword typed in and clear the previous search.
                     </li>
                     <li>
-                        <span class="intro_title_2">Buy</span>: Buy one specific dataset with the button inside the row. Select several dataset and buy them all with the button in the bottom.
+                        <span class="intro_title_2">Buy</span>: Buy one specific dataset with the button inside the row. Select several datasets and buy them all with the button in the bottom.
                     </li>
                     <li>
                         <span class="intro_title_2">Edit</span>: Delete the certain dataset from the cart

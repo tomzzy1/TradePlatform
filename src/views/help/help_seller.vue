@@ -8,7 +8,7 @@
                 <span class="introduction">
                     <ul>
                         <li>Check personal information, order history and business statistics in the "Homepage"</li> 
-                        <li>Uplaod the dataset file along with its associated information in the "Upload" page</li>
+                        <li>Upload the dataset file along with its associated information in the "Upload" page</li>
                         <li>Browse different datasets which are required to be completed in the "Post" page</li>
                         <li>Post the crowdsourcing questions in the "Post Question" page</li>
                     </ul>
@@ -36,7 +36,7 @@
                     <span class="intro_title">Post</span>
                 </template>
                 <span class="introduction">
-                    Detail is the page for you to browse different datasets which are required to be completed.
+                    Post is the page for you to browse different datasets which are required to be completed.
                 <ul>
                     <li>
                         <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name" and "description". Search with the keyword typed in or clear the previous search.
