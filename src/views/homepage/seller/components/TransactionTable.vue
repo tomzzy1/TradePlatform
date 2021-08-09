@@ -27,8 +27,8 @@ export default {
     statusFilter(status) {
       const statusMap = {
         success: 'success',
-        fail: 'danger',
-        pending: 'danger'
+        cancel: 'danger',
+        pending: 'warning'
       }
       return statusMap[status]
     },

@@ -64,27 +64,27 @@ export default {
   },
   data() {
     return {
-      // homepageData: undefind,
-      homepageData: {
-        visits: 1,
-        datasets: 2,
-        purchases: 3,
-        shoppings: 4,
-        barchart: [
-          {completed: 5, original: 6},
-          {completed: 7, original: 8},
-          {completed: 9, original: 10},
-          {completed: 11, original: 12},
-          {completed: 13, original: 14},
-          {completed: 15, original: 16},
-          {completed: 17, original: 18}
-        ],
-        table: [
-          {buyer: "buyer", price: 19, status: 0},
-          {buyer: "buyer", price: 19, status: 2},
-          {buyer: "buyer", price: 19, status: 2},
-        ]
-      },
+      homepageData: undefind,
+      // homepageData: {
+      //   visits: 1,
+      //   datasets: 2,
+      //   purchases: 3,
+      //   shoppings: 4,
+      //   barchart: [
+      //     {completed: 5, original: 6},
+      //     {completed: 7, original: 8},
+      //     {completed: 9, original: 10},
+      //     {completed: 11, original: 12},
+      //     {completed: 13, original: 14},
+      //     {completed: 15, original: 16},
+      //     {completed: 17, original: 18}
+      //   ],
+      //   table: [
+      //     {buyer: "buyer", price: 19, status: 0},
+      //     {buyer: "buyer", price: 20, status: 1},
+      //     {buyer: "buyer", price: 21, status: 2},
+      //   ]
+      // },
       barChartData: {
         completedData: [],
         originalData: []
@@ -103,8 +103,8 @@ export default {
   },
   methods: {
     getList() {
-      // fetchListSeller().then(response => {
-      //   this.homepageData = response.data.items
+      fetchListSeller().then(response => {
+        this.homepageData = response.data.items
         this.barChartData = {
           completedData: [],
           originalData: []
@@ -123,16 +123,16 @@ export default {
           if (this.homepageData.table[j].status == 0) {
             this.tableData[j].status = 'pending'
           } else if (this.homepageData.table[j].status == 1) {
-            this.tableData[j].status = 'fail'
+            this.tableData[j].status = 'cancel'
           } else if (this.homepageData.table[j].status == 2) {
             this.tableData[j].status = 'success'
           }
         }
-        console.clear()
+        // console.clear()
         // console.warn(this.barChartData)
         // console.warn(this.panelData)
-        console.warn(this.tableData)
-      // })
+        // console.warn(this.tableData)
+      })
     }
   }
 }
