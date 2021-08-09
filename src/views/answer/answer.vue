@@ -83,6 +83,12 @@
                 list: null,
                 Answers: {},
                 // list: [
+                //     { id: 120, question: "Q1: WTF", answers: "Option 1;Option 2;Option 3", correctAnswer: -1, point: 1 },
+                //     { id: 121, question: "Q2: WTH", answers: "Option 1;Option 2;Option 3", correctAnswer: 2, point: 2 },
+                // ],
+                correctAnsweredList: [],
+                pointList: []
+                // list: [
                 //     {   id: '120',
                 //         question: 'Question 1: Please select the correct answer.',
                 //         answers: ["This is incorrect.", "This is incorrect.", "This is correct.", "This is incorrect."],
@@ -133,15 +139,21 @@
                 fetchAnswerList(tmp_id).then(response =>{
                     this.list = response.data.items
                     // console.warn(this.list)
+                    this.correctAnsweredList = []
+                    this.pointList = []
                     for (var i = 0; i < this.list.length; i++)
                     {
                         var tmpList = this.list[i].answers.split(";")
+                        // console.clear()
+                        // console.warn(tmpList)
                         // console.warn(tmpList)
                         // this.List[i].answers = new Array()
                         // for (var j = 0; j < tmpList.length; j++){
                         //     this.List[i].answers.push(tmpList[j])
                         // }
                         this.list[i].answers = tmpList
+                        this.correctAnsweredList.push(this.list[i].correctAnswer)
+                        this.pointList.push(this.list[i].point)
                     }
                     for (var i = 0; i < this.list.answers.length; i++)
                     {
@@ -159,13 +171,29 @@
             Submit() {
                 // console.clear()
                 // console.warn(this.Answers)
+                var finalPoint = 0
+                var tmpAnswerList = []
                 var tmpData = []
                 for (var key in this.Answers) {
                     tmpData.push({ id: key, answer: this.Answers[key]})
+                    tmpAnswerList.push(this.Answers[key])
                 }
                 // console.clear()
                 // console.warn(tmpData)
-                submitAnswers(tmpData)
+                for (let i = 0; i < tmpAnswerList.length; i++) {
+                    if (tmpAnswerList[i] == this.correctAnsweredList[i]) {
+                        finalPoint += this.pointList[i]
+                    }
+                }
+                // console.clear()
+                // console.warn(finalPoint)
+                var res = {
+                    data: tmpData,
+                    point: finalPoint
+                }
+                console.clear()
+                console.warn(res)
+                submitAnswers(res)
             },
             Cancel() {
                 this.Answers = {}
