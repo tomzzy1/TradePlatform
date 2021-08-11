@@ -80,9 +80,9 @@ export default {
       //     {visited: 15, ordered: 16},
       //   ],
       //   table: [
-      //     {dataset: "NBA 2K20", price: 17, status: 0},
-      //     {dataset: "NBA 2K21", price: 18, status: 1},
-      //     {dataset: "NBA 2K22", price: 19, status: 2},
+      //     {dataset: "NBA 2K20", price: 17, query: "SELECT A FROM B WHERE C"},
+      //     {dataset: "NBA 2K21", price: 18, query: "SELECT D FROM E WHERE F"},
+      //     {dataset: "NBA 2K22", price: 19, query: "*"},
       //   ]
       // },
       barChartData: {
@@ -116,13 +116,16 @@ export default {
         this.tableData = []
         for (let j = 0; j < this.homepageData.table.length; j++) {
           this.tableData.push(this.homepageData.table[j])
-          if (this.homepageData.table[j].status == 0) {
-            this.tableData[j].status = 'pending'
-          } else if (this.homepageData.table[j].status == 1) {
-            this.tableData[j].status = 'cancel'
-          } else if (this.homepageData.table[j].status == 2) {
-            this.tableData[j].status = 'success'
+          if (this.homepageData.table[j].query == "*") {
+            this.tableData[j].query = "No Query"
           }
+        //   if (this.homepageData.table[j].status == 0) {
+        //     this.tableData[j].status = 'pending'
+        //   } else if (this.homepageData.table[j].status == 1) {
+        //     this.tableData[j].status = 'cancel'
+        //   } else if (this.homepageData.table[j].status == 2) {
+        //     this.tableData[j].status = 'success'
+        //   }
         }
         // console.clear()
         // console.warn(this.barChartData)

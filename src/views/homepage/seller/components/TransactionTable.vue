@@ -10,9 +10,11 @@
         ${{ row.price }}
       </template>
     </el-table-column>
-    <el-table-column label="Query" width="200px" align="center">
+    <el-table-column label="Status" width="200px" align="center">
       <template slot-scope="{row}">
-          {{ row.query }}
+        <el-tag :type="row.status | statusFilter">
+          {{ row.status }}
+        </el-tag>
       </template>
     </el-table-column>
   </el-table>
@@ -22,6 +24,14 @@
 
 export default {
   filters: {
+    statusFilter(status) {
+      const statusMap = {
+        success: 'success',
+        cancel: 'danger',
+        pending: 'warning'
+      }
+      return statusMap[status]
+    },
     orderNoFilter(str) {
       // return Math.floor(Math.random()*999999)
       return "buyer"
