@@ -64,7 +64,7 @@ export default {
   },
   data() {
     return {
-      homepageData: undefind,
+      homepageData: undefined,
       // homepageData: {
       //   visits: 1,
       //   datasets: 2,
@@ -80,9 +80,9 @@ export default {
       //     {completed: 17, original: 18}
       //   ],
       //   table: [
-      //     {buyer: "buyer", price: 19, status: 0},
-      //     {buyer: "buyer", price: 20, status: 1},
-      //     {buyer: "buyer", price: 21, status: 2},
+      //     {buyer: "buyer", price: 19, query: "SELECT A FROM B WHERE C"},
+      //     {buyer: "buyer", price: 20, query: "SELECT D FROM E WHERE F"},
+      //     {buyer: "buyer", price: 21, query: "*"},
       //   ]
       // },
       barChartData: {
@@ -120,12 +120,8 @@ export default {
         this.tableData = []
         for (let j = 0; j < this.homepageData.table.length; j++) {
           this.tableData.push(this.homepageData.table[j])
-          if (this.homepageData.table[j].status == 0) {
-            this.tableData[j].status = 'pending'
-          } else if (this.homepageData.table[j].status == 1) {
-            this.tableData[j].status = 'cancel'
-          } else if (this.homepageData.table[j].status == 2) {
-            this.tableData[j].status = 'success'
+          if (this.homepageData.table[j].query == "*") {
+            this.tableData[j].query = "No Query"
           }
         }
         // console.clear()

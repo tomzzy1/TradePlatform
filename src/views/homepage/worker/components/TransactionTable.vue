@@ -1,11 +1,11 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 5px;">
-    <el-table-column align="center" label="Buyer" min-width="200px">
+    <el-table-column align="center" label="Dataset" min-width="200px">
       <template slot-scope="{row}">
         {{ row.dataset }}
       </template>
     </el-table-column>
-    <el-table-column label="Price" min-width="200px" align="center">
+    <el-table-column label="Point" min-width="200px" align="center">
       <template slot-scope="{row}">
         {{ row.point }}
       </template>

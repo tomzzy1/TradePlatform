@@ -87,7 +87,7 @@ export default {
     return {
       // testString: "Test",
       // testNumber: 666,
-      homepageData: undefind,
+      homepageData: undefined,
       // homepageData: {
       //   visits: 1,
       //   datasets: 2,
