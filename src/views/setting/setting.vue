@@ -268,9 +268,9 @@ export default {
               query: undefined,
             },
             sortOptions: [
-                { label: 'name', key: 'name' },
-                { label: 'source', key: 'source' },
-                { label: 'size', key: 'size'}
+                { label: 'Name', key: 'name' },
+                { label: 'Source', key: 'source' },
+                { label: 'Size', key: 'size'}
             ],
             dialogVisible: false,
             dialogVisible2: false,

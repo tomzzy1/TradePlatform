@@ -186,7 +186,7 @@ export default {
                 searching_content: undefined
             },
             sortOptions: [
-                { label: 'name', key: 'name' }
+                { label: 'Name', key: 'name' }
                 // { label: 'description', key: 'source' },
             ]
         }

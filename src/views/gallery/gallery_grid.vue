@@ -275,9 +275,9 @@ export default {
                 searching_content: undefined
             },
             sortOptions: [
-                { label: 'name', key: 'name' },
-                { label: 'source', key: 'source' },
-                { label: 'size', key: 'size'}
+                { label: 'Name', key: 'name' },
+                { label: 'Source', key: 'source' },
+                { label: 'Size', key: 'size'}
             ],
             temp: {
                 id: undefined,
