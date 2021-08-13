@@ -6,102 +6,66 @@
                     <span class="intro_title">Overall</span>
                 </template>
                 <span class="introduction">
+                    The data query and trading platform is a platform for upload, demonstrate, browse, trade, and optimize the datasets. There are designate functions for four types of people with different purposes, including the seller, buyer, worker, and platform administrator. 
                     <ul>
-                        <li>Check personal information, order history and business statistics in the "Homepage"</li> 
-                        <li>Upload the dataset file along with its associated information in the "Upload" page</li>
-                        <li>Browse different datasets which are required to be completed in the "Post" page</li>
-                        <li>Post the crowdsourcing questions in the "Post Question" page</li>
+                        <li>The sellers are the one that would like to upload his datasets to the platform for trading to obtain the revenue. He can upload the dataset and set the basic price as he wants. In addition, he can choose to employ the workers in the platform to optimize his dataset for higher revenue, as the data quality plays an important role when trading data.</li> 
+                        <li>The buyers are the one interested in the datasets on the platform. He can browse the information of datasets and choose different ways of placing an order. In particular, he can buy the whole dataset or obtain the subset of one dataset through the <span class="emphasize">SQL query</span>. He can also post the requirements on the data quality to inform sellers optimize their datasets.</li>
+                        <li>The platform administrator is the one administrates the platform. He can check out the business statistics of the platform. He can also browse all the datasets uploaded by the seller. In particular, he can set up the price coefficient and sensitivity degree for the datasets uploaded by the seller. In addition, he can select the pricing algorithm for the datasets uploaded by the seller based on different time and price with different algorithms.</li>
+                        <li>The worker is the one who comes to the platform to answer the questions for optimizing the datasets of the platform to get paid. He can browse different datasets which are required to optimize. In particular, he can answer the crowdsourcing questions posted by the seller to accelerate the development of the platform.</li>
                     </ul>
                 </span>
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Homepage</span>
+                    <span class="intro_title">What can I do in the platform as a seller?</span>
                 </template>
                 <span class="introduction">
-                    Homepage is the page displaying your information, including basic info, business statistics, order history and so on.
-                </span>
-                
-            </el-collapse-item>
-            <el-collapse-item>
-                <template slot="title">
-                    <span class="intro_title">Upload</span>
-                </template>
-                <span class="introduction">
-                    Upload is the page for you to upload the dataset file with certain type, along with the corresponding information, including "Name", "Base Price", "Source" and "Description".
+                    <ul>
+                        <li>Check out personal statistics</li>
+                        <li>Upload datasets with associated information</li>
+                        <li>Browse datasets to be optimized</li>
+                        <li>Post crowdsourcing questions</li>
+                    </ul>
                 </span>
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Post</span>
+                    <span class="intro_title">How to check out the business statistics as a seller?</span>
                 </template>
                 <span class="introduction">
-                    Post is the page for you to browse different datasets which are required to be completed.
-                <ul>
-                    <li>
-                        <span class="intro_title_2">Search</span>: Select the attribute for searching, including "name" and "description". Search with the keyword typed in or clear the previous search.
-                    </li>
-                    <li>
-                        <span class="intro_title_2">Post Question</span>: Post crowdsourcing questions for the specific dataset.
-                    </li>
-                </ul>
+                    In the “Homepage”, you can check out the personal statistics of the platform. You can find out the numbers of visits, datasets uploaded, orders, and datasets traded since the platform is online in the panel on the top of the page. You can also check out the number of requirements to optimize the datasets in a week in the bar chart below. In addition, the table in the bottom shows the history orders. For more detailed information, you can hover the cursor over the graph.
                 </span>
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Post Question</span>
+                    <span class="intro_title">How to upload a dataset?</span>
                 </template>
                 <span class="introduction">
-                    Post question is the page where you post crowdsourcing questions for dataset to be completed.
-                <ul>
-                    <li>
-                        <span class="intro_title_2">Information</span>: There are three types of information from the original dataset to help the seller post appropriate questions, which are "Column of Missing Data", "Row of Missing Data" and "Potential Data".
-                            <ul>
-                                <li>
-                                   <span class="intro_title_2">Column of Missing Data</span>: The column that the missing data belongs to
-                                </li>
-                                <li>
-                                    <span class="intro_title_2">Row of Missing Data</span>: The entire row that the missing data belongs to
-                                </li>
-                                <li>
-                                    <span class="intro_title_2">Potential Data</span>: Potential data options for the missing data based on the nearby data in the same column
-                                </li>
-                            </ul>     
-                    </li>
-                    <li>
-                        <span class="intro_title_2">Selection</span>: Select each piece of missing data to post the question separately.
-                    </li>
-                    <li>
-                        <span class="intro_title_2">Post Question</span>: Post the question with optional numbers of potential answers, question description, correct answer and point for the question.
-                    </li>
-                </ul>
+                    For someone with a dataset, to upload a dataset, at first you need to fill in its corresponding information, including “Name”, “Base Price”, “Source” and “Description”. Then, you can choose the file type of the dataset you are about to upload, including “CSV”, “TXT” and “ZIP”. For the file upload system, it supports multiple file uploading, which composes the dataset as multiple data sheets.
+                </span>
+            </el-collapse-item>
+            <el-collapse-item>
+                <template slot="title">
+                    <span class="intro_title">How to browse and search among datasets required to optimize?</span>
+                </template>
+                <span class="introduction">
+                    When you receive the request of optimization from the buyer, the datasets uploaded required to optimize are listed in the “Post” page, which includes the “Name” and “Description” of the dataset. You can also filter the required datasets in the search bar. Specifically, one can search the datasets with keywords while restricting the “Name” or “Description”. Use “Clear” button to clear all previous searching results.
                 </span>    
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title" class="intro_title">
-                    <span class="intro_title">Help</span>
+                    <span class="intro_title">How to post crowdsourcing questions?</span>
                 </template>
                 <span class="introduction">
-                    Help is the page where you can seek for help about the functionalities and methods to use the platform. It is classified based on functionalities of different sub-pages.
+                    In the “Post” page, click the “Post Questions” on the dataset you want. Then the system will search for all the places with missing data and provide information from the original datasets to help you post the questions properly. The information includes “Column of Missing Data”, which is the column that the missing data belongs to, “Row of Missing Data”, which is the entire row that the missing data belongs to and “Potential Data”, which is potential data options for the missing data based on the nearby data in the same column. For each piece of missing data, you can post a question, while the number of potential answers is optional. In addition, you can select the correct option and the points of the question, for a further credibility test for the worker.
                 </span>
             </el-collapse-item>
             <el-collapse-item>
                 <template slot="title">
-                    <span class="intro_title">Others</span>
+                    <span class="intro_title">How to adjust the view of the page?</span>
                 </template>
                 <span class="introduction">
-                    <span class="intro_title_3">Top Bar Features</span>
-                    <ul>
-                        <li>Search for the page by its name</li>
-                        <li>Display the page in full screen mode</li>
-                        <li>Log out by clicking your profile photo</li>
-                    </ul>
-                    <span class="intro_title_3">Settings</span>
-                    <ul>
-                        <li>Open the tag view or not</li>
-                        <li>Fix the header or not</li>
-                        <li>Display the sidebar logo or not</li>
-                    </ul>
+                    In the top bar, you can search for the page by its name, display the page in full screen mode or log out by clicking your profile photo. In the settings tag, you can open the tag view, fix the header, or display the sidebar logo.
                 </span>
             </el-collapse-item>
         </el-collapse>
@@ -139,6 +103,13 @@
         font-size: 15px;
         font-weight: normal;
         margin-left: 20px;
+    }
+
+    .emphasize {
+        font-family: sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        font-style: italic;
     }
 
 </style>
