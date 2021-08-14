@@ -102,7 +102,7 @@ export default {
   .card-panel {
     height: 108px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 20px;
     position: relative;
     overflow: hidden;
     color: #666;
@@ -168,9 +168,9 @@ export default {
       margin-left: 0px;
 
       .card-panel-text {
-        line-height: 18px;
+        line-height: 20px;
         color: rgba(0, 0, 0, 0.45);
-        font-size: 16px;
+        font-size: 20px;
         margin-bottom: 12px;
       }
 

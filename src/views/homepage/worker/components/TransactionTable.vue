@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="list" style="width: 100%;padding-top: 5px;">
+  <el-table :data="list" style="width: 100%;padding-top: 5px; font-size:20px;">
     <el-table-column align="center" label="Dataset" min-width="200px">
       <template slot-scope="{row}">
         {{ row.dataset }}

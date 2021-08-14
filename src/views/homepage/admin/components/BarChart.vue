@@ -66,14 +66,19 @@ export default {
           top: 0,
           formatter: function(name) {
             return name
+          },
+          textStyle: {
+            fontSize: 20
           }
         },
         xAxis: [{
           type: 'category',
           data: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
           // data: nameData,
-          axisTick: {
-            alignWithLabel: true
+          axisLabel:{
+            textStyle: {
+              fontSize: 20
+            }
           }
         }],
         grid: {

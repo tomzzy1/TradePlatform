@@ -5,16 +5,16 @@
     <div class="app-container">
         <div class="filter-container">
             <div align="right">
-            <el-select v-model="listQuery.search" style="width: 140px;" class="filter-item">
-                <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key"/>
+            <el-select v-model="listQuery.search" style="width: 140px; font-size: 20px;" class="filter-item">
+                <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" style="font-size:20px;"/>
             </el-select>
-            <el-input placeholder="Search" style="width: 200px; margin-right: 10px; margin-left: 10px" class="filter-item" v-model="listQuery.searching_content" />
+            <el-input placeholder="Search" style="width: 200px; margin-right: 10px; margin-left: 10px; font-size:20px;" class="filter-item" v-model="listQuery.searching_content" />
             <el-button-group>
-            <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="Search">
+            <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="Search" style="font-size: 20px;">
               Search
             </el-button>
-            <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch">
-                Clear
+            <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch" style="font-size: 20px">
+              Clear
             </el-button>
             </el-button-group>
             </div>
@@ -27,7 +27,7 @@
       border
       fit
       highlight-current-row
-      style="width: 100%;"
+      style="width: 100%; font-size: 20px;"
       @sort-change="sortChange"
     >
       <el-table-column label="Name" align="center" width="150px">
@@ -60,7 +60,7 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="240" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button  @click="updateAndQuery(row.id)" type = "primary" style="width: 200px;">
+          <el-button  @click="updateAndQuery(row.id)" type = "primary" style="width: 200px; font-size: 20px;">
             Set Parameters
           </el-button>
         </template>
@@ -68,10 +68,13 @@
     </el-table>
 
     <el-dialog
-          title="Setting"
           :visible.sync="dialogVisible"
           width="50%"
-          :before-close="handleClose">
+          :before-close="handleClose"
+          >
+          <div slot="title" class="cusom-title" style="font-size:30px;">
+            Setting
+          </div>
           <span class="notice">Please type in the parameters for the dataset.<br /></span>
           <el-card class="param_class">
               <span class="title">
@@ -84,19 +87,21 @@
               <el-input class="params_input" placeholder="Number between 0 to 1" v-model="sensitivity_degree"/>
           </el-card>
           <div align="center">
-            <el-button v-waves @click="setParams(dialogID)" type="success" style="width:30%; height:50px;">
+            <el-button v-waves @click="setParams(dialogID)" type="success" style="width:30%; height:50px; font-size:20px;">
               Confirm
             </el-button>
-            <el-button v-waves type="danger" class="cancel_button" @click="Cancel" style="width:30%; height:50px;">
+            <el-button v-waves type="danger" class="cancel_button" @click="Cancel" style="width:30%; height:50px; font-size:20px;">
               Cancel
             </el-button>
           </div>
         </el-dialog>
 
         <el-dialog
-          title="Select Pricing Algorithms"
           :visible.sync="dialogVisible2"
           width="80%">
+          <div slot="title" class="cusom-title" style="font-size:30px;">
+            Select Pricing Algorithms
+          </div>
           <span class="notice">Please type in the query.<br /></span>
           <el-card class="param_class">
               <span class="title">
@@ -104,7 +109,7 @@
               </span>
               <el-input class="params_input" placeholder="Query Language" v-model="strategyQuery.query"/>
               <div align="right">
-              <el-button type="primary" @click="getRes">Test</el-button>
+              <el-button type="primary" @click="getRes" style="font-size:20px;">Test</el-button>
               </div>
           </el-card>
           <el-card class="formula_class"
@@ -117,17 +122,17 @@
           <!-- <bar-chart2 :chart-data="barChartData" /> -->
           <br />
           <div align="center">
-          <el-radio-group class="el_radio" v-model="strategy" size="medium">
+          <el-radio-group class="el_radio" v-model="strategy" style="font-size:20px;">
             <el-radio-button label=0>Method 1</el-radio-button>
             <el-radio-button label=1>Method 2</el-radio-button>
             <el-radio-button label=2>Method 3</el-radio-button>
           </el-radio-group>
           </div>
           <div align="center">
-            <el-button v-waves @click="Confirm" type="success" style="width:30%; height:50px;">
+            <el-button v-waves @click="Confirm" type="success" style="width:30%; height:50px; font-size:20px;">
               Confirm
             </el-button>
-            <el-button v-waves type="danger" class="cancel_button" @click="Cancel" style="width:30%; height:50px;">
+            <el-button v-waves type="danger" class="cancel_button" @click="Cancel" style="width:30%; height:50px; font-size:20px;">
               Cancel
             </el-button>
           </div>
@@ -142,7 +147,7 @@
 
   .notice {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 15px;
+      font-size: 20px;
       margin-bottom: 30px;
       display: block;
       font-style: italic;
@@ -178,13 +183,14 @@
 
     .title {
         display: block;
-        font-size: 18px;
+        font-size: 20px;
         font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
     }
 
     .params_input {
         margin-top: 10px;
         margin-bottom: 15px;
+        font-size: 20px;
     }
 
     .formula_class {
@@ -290,7 +296,7 @@ export default {
     },
     methods: {
         getList() {
-            // this.listLoading = false
+            this.listLoading = false
             this.listLoading = true
             fetchList(this.listQuery).then(response => {
                 this.List = response.data.items

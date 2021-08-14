@@ -9,7 +9,7 @@
             border
             fit
             highlight-current-row
-            style="width: 100%;"
+            style="width: 100%; font-size: 20px;"
         >
 
             <el-table-column label="Name" align="center" min-width="200px">
@@ -35,16 +35,16 @@
 
         <div class="operation_bar">
             <el-card shadow="hover">
-                <span class="total_price">Total Price: ${{ total_price}} </span>
+                <span class="total_price" style="font-size: 20px;">Total Price: ${{ total_price}} </span>
                 <br />
                 <br />
-                <el-button v-waves class="order_button" type="success" icon="el-icon-check" @click="orderGoods">
+                <el-button v-waves class="order_button" type="success" icon="el-icon-check" @click="orderGoods" style="font-size:20px;">
                     Pay
                 </el-button>
                 <!-- <router-link class="router_link" :to="{path:'/cart'}"><el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder">
                     Cancel
                 </el-button></router-link> -->
-                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder">
+                <el-button v-waves class="order_button" type="danger" icon="el-icon-close" @click="cancelOrder" style="font-size:20px;">
                     Cancel
                 </el-button>
             </el-card>

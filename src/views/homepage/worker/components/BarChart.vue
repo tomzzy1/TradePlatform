@@ -66,6 +66,9 @@ export default {
           top: 0,
           formatter: function(name) {
             return name
+          },
+          textStyle: {
+            fontSize: 20
           }
         },
         xAxis: [{
@@ -73,6 +76,11 @@ export default {
           data: ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
           axisTick: {
             alignWithLabel: true
+          },
+          axisLabel:{
+            textStyle: {
+              fontSize: 20
+            }
           }
         }],
         grid: {

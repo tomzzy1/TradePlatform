@@ -18,6 +18,7 @@
           type="text"
           tabindex="1"
           autocomplete="on"
+          style="font-size:20px;"
         />
       </el-form-item>
 
@@ -38,6 +39,7 @@
             @keyup.native="checkCapslock"
             @blur="capsTooltip = false"
             @keyup.enter.native="handleLogin"
+            style="font-size:20px;"
           />
           <span class="show-pwd" @click="showPwd">
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
@@ -45,14 +47,14 @@
         </el-form-item>
       </el-tooltip>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;font-size:20px;" @click.native.prevent="handleLogin">Login</el-button>
 
       <div style="position:relative">
         <div class="tips">
-          <span>Username : admin / buyer / worker / seller</span>
+          <span style="font-size:20px;">Username : admin / buyer / worker / seller</span>
         </div>
         <div class="tips">
-          <span>Password : any</span>
+          <span style="font-size:20px;">Password : any</span>
         </div>
         <!--
         <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
@@ -291,7 +293,7 @@ $light_gray:#eee;
     position: relative;
 
     .title {
-      font-size: 26px;
+      font-size: 30px;
       color: $light_gray;
       margin: 0px auto 40px auto;
       text-align: center;
@@ -303,7 +305,7 @@ $light_gray:#eee;
     position: absolute;
     right: 10px;
     top: 7px;
-    font-size: 16px;
+    font-size: 20px;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;

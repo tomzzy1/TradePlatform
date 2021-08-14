@@ -2,15 +2,15 @@
     <div class="app-container">
         <div class="filter-container">
             <div align="right">
-            <el-select v-model="listQuery.search" style="width: 140px;" class="filter-item" @change="handleFilter">
-                <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key"/>
+            <el-select v-model="listQuery.search" style="width: 140px; font-size: 20px;" class="filter-item" @change="handleFilter">
+                <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" style="font-size:20px;"/>
             </el-select>
-            <el-input placeholder="Search" style="width: 200px; margin-right: 10px; margin-left: 10px" class="filter-item" v-model="listQuery.searching_content" />
+            <el-input placeholder="Search" style="width: 200px; margin-right: 10px; margin-left: 10px; font-size:20px;" class="filter-item" v-model="listQuery.searching_content" />
             <el-button-group>
-            <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="searching">
+            <el-button v-waves class="filter-item" type="primary" icon="el-icon-search"  @click="searching" style="font-size:20px;">
                 Search
             </el-button>
-            <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch">
+            <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch" style="font-size:20px;">
                 Clear
             </el-button>
             </el-button-group>
@@ -27,7 +27,7 @@
                         <span class="dataset_info">{{ item.description }}</span>
                         <br />
                         <div class="bottom clearfix">
-                            <router-link :to="{path:'/post_question/id/' + item.id, query:{name:item.name, id:item.id}}" class="detail_link">Post Question</router-link>
+                            <router-link :to="{path:'/post_question/id/' + item.id, query:{name:item.name, id:item.id}}" class="detail_link" style="font-size:20px;">Post Question</router-link>
                         </div>
                     </div>
                     </el-card>
@@ -81,29 +81,29 @@
     }
 
     .dataset_info {
-        font-size: 15px;
+        font-size: 25px;
         font-style: italic;
         display: block;
         margin-left: 10px;
     }
 
     .dataset_author {
-        font-size: 10px;
+        font-size: 20px;
         margin-left: 10px;
     }
 
     .dataset_size {
-        font-size: 10px;
+        font-size: 20px;
         margin-left: 10px;
     }
 
     .dataset_source {
-        font-size: 10px;
+        font-size: 20px;
         margin-left: 10px;
     }
 
     .dataset_time {
-        font-size: 10px;
+        font-size: 20px;
         margin-left: 10px;
     }
 

@@ -10,6 +10,7 @@
       v-bind="$attrs"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
+      style="font-size: 20px;"
     />
   </div>
 </template>

@@ -12,38 +12,38 @@
             <span class="steps">
                 Now select one of the tables from the dataset.
             </span>
-            <el-select clearable class="selection" v-model="table_name" placeholder="Name of Table" @change="clearColumnCondition">
+            <el-select clearable class="selection" v-model="table_name" placeholder="Name of Table" @change="clearColumnCondition" style="font-size:20px;">
                 <el-option
                     v-for="item in table_list"
                     :value="item"
-                    :key="item">
+                    :key="item" style="font-size:20px;">
                 </el-option>
             </el-select>
             <span class="steps">
                 Then select the column from the table.
             </span>
-            <el-select clearable class="selection" v-model="column_name" placeholder="Name of Column" @change="clearCondition">
+            <el-select clearable class="selection" v-model="column_name" placeholder="Name of Column" @change="clearCondition" style="font-size:20px;">
                 <el-option
                     v-for="item in column_list[table_name]"
                     :value="item"
-                    :key="item">
+                    :key="item" style="font-size:20px;">
                 </el-option>
             </el-select>
             <span class="steps">
                 Then select the condition.
             </span>
             <!-- <el-button @click="Test">Test</el-button> -->
-            <el-select clearable class="selection" v-model="condition" placeholder="Condition" @change="getQuery">
+            <el-select clearable class="selection" v-model="condition" placeholder="Condition" @change="getQuery" style="font-size:20px;">
                 <el-option
                     v-for="item in conditions[type_list[table_name][column_name]]"
                     :value="item"
-                    :key="item">
+                    :key="item" style="font-size:20px;">
                 </el-option>
             </el-select>
         </el-card>
         <el-card>
-            <el-input class="query_input" v-model="query" placeholder="Query"/>
-            <el-radio class="complement_checkbox" v-model="complement" label=true>Add up extra money for a complete dataset.</el-radio>
+            <el-input class="query_input" v-model="query" placeholder="Query" style="font-size:20px;"/>
+            <el-radio v-model="complement" class="complement_checkbox" label=true>Add up extra money for a complete dataset.</el-radio>
             <!-- <div align="center">
             <el-button class="button" type="primary" @click="addToCart1(id)"><router-link :to="{path:'/cart'}">Add Entire Dataset to Cart</router-link></el-button>
             <el-button class="button" type="primary" @click="addToCart2(id)"><router-link :to="{path:'/cart'}">Add Dataset with Query</router-link></el-button>
@@ -51,9 +51,9 @@
             </div> -->
             <div align="center">
             <el-button-group>
-            <el-button class="button" type="primary" @click="addToCart1(id)">Add Entire Dataset to Cart</el-button>
-            <el-button class="button" type="primary" @click="addToCart2(id)">Add Dataset with Query</el-button>
-            <el-button class="button" type="danger" @click="cancel">cancel</el-button>
+            <el-button class="button" type="primary" @click="addToCart1(id)" style="font-size:20px;">Add Entire Dataset <br />to Cart</el-button>
+            <el-button class="button" type="primary" @click="addToCart2(id)" style="font-size:20px;">Add Dataset <br />with Query</el-button>
+            <el-button class="button" type="danger" @click="cancel" style="font-size:20px;">Cancel <br />and Quit</el-button>
             </el-button-group>
             </div>
         </el-card>
@@ -75,6 +75,7 @@
         font-family: sans-serif;
         margin-bottom: 15px;
         line-height: 27px;
+        font-size: 20px;
     }
 
     .operation_area {
@@ -83,7 +84,7 @@
 
     .tip {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 15px;
+        font-size: 20px;
         font-style: italic;
         display: block;
         margin-bottom: 15px;
@@ -91,7 +92,7 @@
 
     .steps {
         font-family: Times;
-        font-size: 20px;
+        font-size: 25px;
         display: block;
         margin-bottom: 10px;
     }
@@ -106,15 +107,17 @@
 
     .button {
         width: 250px;
-        height: 40px;
+        height: 80px;
     }
 
     .complement_checkbox {
-        display: block;
         font-family: sans-serif;
-        font-size: 30px;
-        margin-bottom: 10px;
-        size: medium;
+        /* font-size: 20px; */
+        margin-bottom: 20px;
+    }
+
+    .el-radio__label{
+        font-size: 20px !important;
     }
 
 </style>

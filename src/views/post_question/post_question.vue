@@ -15,28 +15,28 @@
             <el-input class="question_input" v-model="description" placeholder="Description"/>
             <div class="heading">Please select the number of potential answers:</div>
             <el-select class="answer_number_select" v-model="answer_number" placeholder="Number" @change="updateCorrectAnswerOptions">
-                <el-option v-for="item in answerNumberOptions" :key="item.key" :label="item.display_name" :value="item.key" />
+                <el-option v-for="item in answerNumberOptions" :key="item.key" :label="item.display_name" :value="item.key" style="font-size:20px;"/>
             </el-select>
             <div class="heading">Please type in each potential answers:</div>
             <el-row>
                 <el-col :span="24" v-for="i in answer_number" :key="i">
-                    <div class="heading">Option {{i}}: </div><el-input class="answer_input" v-model="answers[i-1]" placeholder="Answer"/>
+                    <div class="heading">Option {{i}}: </div><el-input class="answer_input" v-model="answers[i-1]" placeholder="Answer" style="font-size:20px;"/>
                 </el-col>
             </el-row>
             <div class="heading">Please select the correct answer:</div>
             <el-select class="correct_answer_number_select" v-model="correct_answer" placeholder="Option">
-                <el-option v-for="item in correctAnswerOptions" :key="item.key" :label="item.display_name" :value="item.key" />
+                <el-option v-for="item in correctAnswerOptions" :key="item.key" :label="item.display_name" :value="item.key" style="font-size:20px;"/>
             </el-select>
             <div class="heading">Please type in the point for this question:</div>
             <el-input class="point_input" v-model="point" placeholder="Point" />
             <div align="center">
-                <el-button v-waves type="primary" @click="postOneQuestion">
+                <el-button v-waves type="primary" @click="postOneQuestion" style="font-size:20px;">
                     Confirm
                 </el-button>
-                <el-button v-waves type="success" @click="Submit">
+                <el-button v-waves type="success" @click="Submit" style="font-size:20px;">
                     Submit All Questions
                 </el-button>
-                <el-button v-waves type="danger" @click="Cancel"><router-link :to="{path:'/post'}">
+                <el-button v-waves type="danger" @click="Cancel"><router-link :to="{path:'/post'}" style="font-size:20px;">
                     Cancel
                 </router-link></el-button>
             </div>
@@ -61,50 +61,61 @@
 
     .database_info {
         line-height: 25px;
+        font-size: 20px;
     }
 
     .database_info {
-        margin-bottom: 20px; 
+        margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .question_input {
         margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .answer_number_select {
         width: 100%;
         margin-bottom: 20px;
+        font-size: 20px;
     } 
 
     .heading {
         margin-bottom: 10px;
+        font-size: 20px;
     }
 
     .answer_input {
         margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .correct_answer_number_select {
         width: 100%;
         margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .point_input {
         margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .select_block {
         margin-top: 30px;
+        font-size: 20px;
     }
 
     .demonstration {
         display: block;
         font-display: center;
+        font-size: 20px;
     }
 
     .description_header {
         font-weight: bold;
         color: #36a3f7;
+        font-size: 20px;
     }
 
 </style>

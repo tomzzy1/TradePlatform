@@ -187,7 +187,7 @@ export default {
   }
 
   .pan-info-roles {
-      font-size: 12px;
+      font-size: 20px;
       font-weight: 700;
       color: #333;
       display: block;

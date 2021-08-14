@@ -199,7 +199,7 @@ export default {
 
 <style lang="scss" scoped>
 .tags-view-container {
-  height: 34px;
+  height: 45px;
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #d8dce5;
@@ -209,15 +209,15 @@ export default {
       display: inline-block;
       position: relative;
       cursor: pointer;
-      height: 26px;
-      line-height: 26px;
+      height: 40px;
+      line-height: 25px;
       border: 1px solid #d8dce5;
       color: #495060;
       background: #fff;
       padding: 0 8px;
-      font-size: 12px;
-      margin-left: 5px;
-      margin-top: 4px;
+      font-size: 20px;
+      margin-left: 6px;
+      margin-top: 6px;
       &:first-of-type {
         margin-left: 15px;
       }
@@ -249,7 +249,7 @@ export default {
     list-style-type: none;
     padding: 5px 0;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 400;
     color: #333;
     box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);

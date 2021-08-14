@@ -66,7 +66,10 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['QUCA', 'UP', 'UCP']
+          data: ['QUCA', 'UP', 'UCP'],
+          textStyle: {
+            fontSize: 20
+          }
         },
         series: [
           {
@@ -81,9 +84,19 @@ export default {
               { value: UCP, name: 'UCP' },
             ],
             animationEasing: 'cubicInOut',
-            animationDuration: 2600
+            animationDuration: 2600,
+            itemStyle: {
+              normal:{
+                label:{
+                  textStyle: {
+                    fontSize: 20
+              }
+            }
           }
-        ]
+        }
+          }
+        ],
+        
       })
     }
   }

@@ -20,8 +20,8 @@
         </el-row>
 
         <el-card align="right">
-            <el-button @click="Submit" type="primary">Submit</el-button>
-            <el-button @click="Cancel" type="danger"><router-link :to="{path:'/crowdsourcing'}">Cancel</router-link></el-button>
+            <el-button @click="Submit" type="primary" style="font-size:20px;">Submit</el-button>
+            <el-button @click="Cancel" type="danger"><router-link :to="{path:'/crowdsourcing'}" style="font-size:20px;">Cancel</router-link></el-button>
         </el-card>
         <!-- <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" /> -->
     </div>
@@ -40,7 +40,7 @@
     .question {
         color: #337ab7;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 25px;
         display: block;
         margin-bottom: 10px;
         margin-left: 10px;
@@ -48,7 +48,7 @@
     }
 
     .hint {
-        font-size: 15px;
+        font-size: 20px;
         display: block;
         margin-left: 10px;
         margin-bottom: 10px;
@@ -58,11 +58,16 @@
     .options {
         display: block;
         margin-left: 20px;
+        font-size: 20px;
     }
 
     .option {
         display: block;
-        font-size: 25px;
+        font-size: 20px;
+    }
+
+    .el-radio__label{
+        font-size: 20px !important;
     }
     
 </style>
@@ -83,8 +88,8 @@
                 list: null,
                 Answers: {},
                 // list: [
-                //     { id: 120, question: "Q1: WTF", answers: "Option 1;Option 2;Option 3", correctAnswer: -1, point: 1 },
-                //     { id: 121, question: "Q2: WTH", answers: "Option 1;Option 2;Option 3", correctAnswer: 2, point: 2 },
+                //     { id: 120, description: "This is a question", question: "Q1: WTF", answers: "Option 1;Option 2;Option 3", correctAnswer: -1, point: 1 },
+                //     { id: 121, description: "This is a question", question: "Q2: WTH", answers: "Option 1;Option 2;Option 3", correctAnswer: 2, point: 2 },
                 // ],
                 correctAnsweredList: [],
                 pointList: []

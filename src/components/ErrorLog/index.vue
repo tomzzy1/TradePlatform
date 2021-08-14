@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 .message-title {
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
   font-weight: bold;
   padding-right: 8px;

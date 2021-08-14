@@ -2,15 +2,15 @@
   <div class="app-container">
     <div class="filter-container">
       <div align="right">
-        <el-select v-model="listQuery.search" style="width: 140px; margin-right: 10px;" class="filter-item">
-          <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
+        <el-select v-model="listQuery.search" style="width: 140px; margin-right: 10px; font-size:20px;" class="filter-item">
+          <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" style="font-size:20px;" />
         </el-select>
-        <el-input v-model="listQuery.searching_content" placeholder="Search" style="width: 200px; margin-right: 10px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        <el-input v-model="listQuery.searching_content" placeholder="Search" style="width: 200px; margin-right: 10px; font-size:20px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button-group>
-          <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="searching">
+          <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="searching" style="font-size:20px;">
             Search
           </el-button>
-          <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch">
+          <el-button v-waves class="filter-item" type="info" icon="el-icon-close" @click="clearSearch" style="font-size:20px;">
             Clear
           </el-button>
         </el-button-group>
@@ -23,11 +23,11 @@
         border
         fit
         highlight-current-row
-        style="width: 100%;"
+        style="width: 100%; font-size:20px;"
         @sort-change="sortChange"
       >
 
-        <el-table-column label="Selected" align="center" width="100px">
+        <el-table-column label="Selected" align="center" width="120px">
           <template slot-scope="{row}">
             <el-checkbox v-model="row.checked" />
           </template>
@@ -44,7 +44,7 @@
             <span>{{ row.name }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="Time" width="100px" align="center">
+        <el-table-column label="Time" width="150px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.date }}</span>
           </template>
@@ -69,10 +69,10 @@
           </el-button> -->
             <!-- <el-button v-waves size='mini' type="success" @click="buyGood(row)"> -->
             <el-button-group>
-            <el-button v-waves type="success" @click="buyGood(row)">
+            <el-button v-waves type="success" @click="buyGood(row)" style="font-size:20px;">
               Buy
             </el-button>
-            <el-button v-if="row.status!='deleted'" class="delete_button" type="danger" @click="handleDelete(row,$index)">
+            <el-button v-if="row.status!='deleted'" class="delete_button" type="danger" @click="handleDelete(row,$index)" style="font-size:20px;">
               Delete
             </el-button>
             </el-button-group>
@@ -82,7 +82,7 @@
 
       <div align="right" style="margin-top:20px;">
         <!-- <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" @click="buyGoods" style="float: right"> -->
-        <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px;" @click="buyGoods">
+        <el-button v-waves class="buy_button" type="success" icon="el-icon-sold-out" style="width: 195px; font-size: 20px;" @click="buyGoods" >
           Buy
         </el-button>
       </div>

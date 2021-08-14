@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'Data Query & Trade Platform',
+      title: 'DQTP',
       // logo: 'https://images.weserv.nl/?url=https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fassets.imedao.com%2Fimages%2Flogos%2Flogo_xueqiu_180%2Flogo_xueqiu_180-05.png&refer=http%3A%2F%2Fassets.imedao.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629625532&t=d3da211e881cd3cefaad820d09bfd62b'
       logo: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fassets.imedao.com%2Fimages%2Flogos%2Flogo_xueqiu_180%2Flogo_xueqiu_180-05.png&refer=http%3A%2F%2Fassets.imedao.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629625532&t=d3da211e881cd3cefaad820d09bfd62b'
       // logo: 'el-icon-s-data'
@@ -49,8 +49,8 @@ export default {
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 80px;
+  line-height: 80px;
   background: #2b2f3a;
   text-align: center;
   overflow: hidden;
@@ -60,8 +60,8 @@ export default {
     width: 100%;
 
     & .sidebar-logo {
-      width: 32px;
-      height: 32px;
+      width: 60px;
+      height: 60px;
       vertical-align: middle;
       margin-right: 12px;
     }
@@ -72,7 +72,7 @@ export default {
       color: #fff;
       font-weight: 40;
       line-height: 50px;
-      font-size: 11px;
+      font-size: 40px;
       font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
       vertical-align: middle;
     }

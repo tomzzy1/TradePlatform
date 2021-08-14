@@ -22,8 +22,8 @@
             <br />
             <div class="heading">Sensitivity Degree: </div><el-input class="sensitivity_degree_input" v-model="params.sensitivity_degree" placeholder="Sensitivity Degree" />
             <br /> -->
-            <div class="heading">File Type: </div><el-select v-model="fileType" class="file_type_select" placeholder="File Type">
-                <el-option v-for="item in fileTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
+            <div class="heading">File Type: </div><el-select v-model="fileType" class="file_type_select" placeholder="File Type" style="font-size:20px;">
+                <el-option v-for="item in fileTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" style="font-size:20px;"/>
             </el-select>
             <br />
             <div align="center">
@@ -94,10 +94,11 @@
         width: 100%;
         margin-bottom: 30px;
         /* margin-right: 20px; */
+        font-size: 20px;
     }
 
     .notice {
-        font-size: 5px;
+        font-size: 20px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin-top: 20px;
         text-align: center;
@@ -107,26 +108,31 @@
         min-width: 100px;
         margin-bottom: 20px;
         /* margin-right: 5px; */
+        font-size: 20px;
     }
 
     .price_coefficient_input {
         min-width: 100px;
         /* margin-right: 5px; */
         margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .sensitivity_degree_input {
         min-width: 100px;
         /* margin-right: 5px; */
         margin-bottom: 20px;
+        font-size: 20px;
     }
 
     .el-button {
         width: 150px;
+        font-size: 20px;
     }
 
     .heading {
         margin-bottom: 10px;
+        font-size: 20px;
     }
 
     .date_picker {
@@ -143,6 +149,7 @@
         margin-top: 10px;
         font-style: italic;
         font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
     }
 
     .tip {
@@ -150,6 +157,7 @@
         margin-bottom: 10px;
         font-style: italic;
         font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
     }
 
 </style>

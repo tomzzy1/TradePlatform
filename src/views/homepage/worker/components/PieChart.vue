@@ -66,7 +66,10 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['Questions Answered', 'Questions Unanswered']
+          data: ['Questions Answered', 'Questions Unanswered'],
+          textStyle: {
+            fontSize: 20
+          }
         },
         series: [
           {
@@ -80,7 +83,16 @@ export default {
               { value: unanswered, name: 'Questions Unanswered' }
             ],
             animationEasing: 'cubicInOut',
-            animationDuration: 2600
+            animationDuration: 2600,
+            itemStyle: {
+              normal:{
+                label:{
+                  textStyle: {
+                    fontSize: 20
+			            }
+                }
+              }
+            }
           }
         ]
       })

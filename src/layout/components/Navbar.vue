@@ -42,7 +42,7 @@
           </a> -->
           <!-- <el-dropdown-item divided @click.native="logout"> -->
             <el-dropdown-item @click.native="logout">
-            <span style="display:block;">Log Out</span>
+            <span style="display:block;font-size:20px;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
